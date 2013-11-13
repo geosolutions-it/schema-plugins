@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+	<!--FILE IDENTIFIER-->
+	<M1>Informazioni sui dati - Identificatore del file</M1>
+	<alert.M1><div>L'elemento fileIdentifier è mancante, incompleto o ha un valore errato</div></alert.M1>
+	<!--METADATA LANGUAGE-->
+	<M2>Informazioni sui dati - Lingua dei metadati</M2>
+	<alert.M2><div>L'elemento Language (Lingua dei metadati) è mancante, incompleto o ha un valore errato</div></alert.M2>
+	<!--PARENT IDENTIFIER-->
+	<M3>Informazioni sui dati - Id file precedente</M3>
+	<alert.M3><div>L'elemento parentIdentifier è mancante, incompleto o ha un valore errato</div></alert.M3>
+	<!--HIERARCHY LEVEL-->
+	<M4>Informazioni sui dati - Livello gerarchico</M4>
+	<alert.M4><div>L'elemento hierarchyLevel è mancante, incompleto o ha un valore errato</div></alert.M4>
+	<!--METADATA STANDARD NAME-->
+	<M5>Informazioni sui dati - Nome dello standard</M5>
+	<alert.M5><div>L'elemento metadataStandardName è mancante, incompleto o ha un valore errato. Il valore dell'elemento deve essere uguale a 'DM - Regole tecniche RNDT'</div></alert.M5>
+	<!--METADATA STANDARD NAME-->
+	<M6>Informazioni sui dati - Versione dello standard</M6>
+	<alert.M6><div>L'elemento metadataStandardVersion è mancante, incompleto o ha un valore errato. Il valore dell'elemento deve essere uguale a '10 novembre 2011'</div></alert.M6>
+	<!--METADATA CHARACTER SET-->
+	<M7>Informazioni sui dati - Set dei caratteri dei metadati</M7>
+	<alert.M7><div>L'elemento characterSet è mancante, incompleto o ha un valore errato</div></alert.M7>
+	<!--DATA IDENTIFICATION - DATE TYPE-->
+	<M8>Identificazione dei Dati - Tipo Data</M8>
+	<alert.M8><div>L'elemento dateType è mancante, incompleto o ha un valore errato</div></alert.M8>
+	<!--DATA IDENTIFICATION -  RESPONSIBLE PARTY-->
+	<M9>Identificazione dei Dati - Responsabile</M9>
+	<alert.M9><div>L'elemento citedResponsibleParty è mancante, incompleto o ha un valore errato. Il metadato deve contenere gli elementi organisationName,role e electronicMailAddress e almeno uno tra gli elemnti phone e onlineResource</div></alert.M9>
+	<!--DATA IDENTIFICATION - IDENTIFIER-->
+	<M13>Identificazione dei Dati - Identificatore</M13>
+	<alert.M13><div>L'elemento RS_Identifier è mancante, incompleto o ha un valore errato</div></alert.M13>
+	<!--DATA IDENTIFICATION - SERIES-->
+	<M14>Identificazione dei Dati - Id livello superiore</M14>
+	<alert.M14><div>L'elemento series è mancante, incompleto o ha un valore errato</div></alert.M14>
+	<!--DATA IDENTIFICATION - DATASET RESPONSIBLE PARTY (POINT OF CONTACT)-->	
+	<M15>Identificazione dei Dati - Punto di contatto</M15>
+	<alert.M15><div>L'elemento pointOfContact è mancante, incompleto o ha un valore errato. Il metadato deve contenere gli elementi organisationName,role e electronicMailAddress e almeno uno tra gli elementi phone e onlineResource</div></alert.M15>
+	<!--DATA IDENTIFICATION - PRESENTATION FORM-->
+	<M30>Identificazione dei Dati - Formato di presentazione</M30>
+	<alert.M30><div>L'elemento presentationForm è mancante, incompleto o ha un valore errato</div></alert.M30>
+	<!--DATA IDENTIFICATION - SPATIAL REPRESENTATION TYPE-->
+	<M31>Identificazione dei Dati - Tipo di rappresentazione spaziale</M31>
+	<alert.M31><div>L'elemento spatialRepresentationType è mancante, incompleto o ha un valore errato</div></alert.M31>
+	<!--DATA IDENTIFICATION - SPATIAL RESOLUTION OF THE DATASET-->
+	<M32>Identificazione dei Dati - Risoluzione spaziale</M32>
+	<alert.M32><div>L'elemento spatialResolution è mancante, incompleto o ha un valore errato</div></alert.M32>
+	<!--DATA IDENTIFICATION - GEOGRAPHIC LOCATION OF THE DATASET-->
+	<M33>Identificazione dei Dati - Estensione dei dati - Localizzazione geografica</M33>
+	<alert.M33><div>L'elemento geographicElement è mancante, incompleto o ha un valore errato</div></alert.M33>
+	<!--DATA QUALITY - SCOPE-->
+	<M34>Qualità dei dati - Livello di qualità</M34>
+	<alert.M34><div>L'elemento Scope è mancante, incompleto o ha un valore errato</div></alert.M34>
+	<!--DATA QUALITY - POSITIONAL ACCURACY-->
+	<M35>Qualità dei dati - Accuratezza posizionale</M35>
+	<alert.M35><div>L'elemento DQ_AbsoluteExternalPositionalAccuracy è mancante, incompleto o ha un valore errato</div></alert.M35>
+	<!--DATA QUALITY - LINEAGE-->
+	<M36>Qualità dei dati - Genealogia</M36>
+	<alert.M36><div>L'elemento Lineage è mancante, incompleto o ha un valore errato</div></alert.M36>
+	<!--DATA QUALITY -  CONFORMANCE REPORT - SPECIFICATION-->
+	<M37>Qualità dei dati - Conformità - specifiche</M37>
+	<alert.M37><div>L'elemento DQ_ConformanceResult è mancante, incompleto o ha un valore errato</div></alert.M37>
+	<!--REFERENCE SYSTEM-->
+	<M38>Sistema di riferimento spaziale</M38>
+	<alert.M38><div>L'elemento referenceSystemInfo> è mancante, incompleto o ha un valore errato</div></alert.M38>
+	<!--METADATA DATE FORMAT-->
+	<M99>Data dei metadati - Formato</M99>
+	<alert.M99>La data del metadato deve essere documentata attraverso l'elemento gco:Date</alert.M99>
+	<!--DATE FORMAT-->
+	<M100>Data - Formato</M100>
+	<alert.M100>La date devono essere documentate attraverso l'elemento gco:Date</alert.M100>
+	<!--NIL REASON-->
+	<M110>Attributo errato</M110>
+	<alert.M110>Nessun elemento del metadato può utilizzare l'attributo gco:nilReason</alert.M110>
+</strings>
