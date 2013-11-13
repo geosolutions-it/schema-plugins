@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://geonetwork-opensource.org/schemas/schema-ident" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://geonetwork-opensource.org/schemas/schema-ident http://geonetwork-opensource.org/schemas/schema-ident/schema-ident.xsd">
-	<!-- Italian geographic metadata schema based on ISO19139 -->
+	<!-- Italian geographic metadata schema based on ISO19139 (RNDT)-->
 	<name>iso19139.rndt</name>
 	<id>cce12b40-3bf2-11e3-aa6e-0800200c9a66</id>
 	<version>1.0</version>
@@ -15,4 +15,5 @@
 			</gmd:metadataStandardVersion>
 		</elements>
 	</autodetect>
+	<readwriteUuid>true</readwriteUuid>
 </schema>

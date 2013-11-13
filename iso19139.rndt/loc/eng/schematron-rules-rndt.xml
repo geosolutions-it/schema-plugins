@@ -1,43 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <strings>
 	<!--FILE IDENTIFIER-->
-	<M1>[D.P.C.M. 10/11/2011, All.1] - File Identifier</M1>
+	<M1>File Identifier</M1>
 	<alert.M1><div> Element fileIdentifier must be present</div></alert.M1>
 	<!--METADATA LANGUAGE-->
-	<M2>[D.P.C.M. 10/11/2011, All.1] - Metadata Language</M2>
+	<M2>Metadata Language</M2>
 	<alert.M2><div> Element Language (Metadata) must be present</div></alert.M2>
 	<!--PARENT IDENTIFIER-->
-	<M3>[D.P.C.M. 10/11/2011, All.1] - Parent Identifier</M3>
+	<M3>Parent Identifier</M3>
 	<alert.M3><div> Element parentIdentifier must be present</div></alert.M3>
 	<!--HIERARCHY LEVEL-->
-	<M4>[D.P.C.M. 10/11/2011, All.1] - Hierarchy Level</M4>
+	<M4>Hierarchy Level</M4>
 	<alert.M4><div> Element hierarchyLevel must be present</div></alert.M4>
 	<!--METADATA STANDARD NAME-->
-	<M5>[D.P.C.M. 10/11/2011, All.1] - Metadata Standard</M5>
+	<M5>Metadata Standard</M5>
 	<alert.M5><div> Element metadataStandardName must be present and equal to 'DM - Regole tecniche RNDT'</div></alert.M5>
 	<!--METADATA STANDARD NAME-->
-	<M6>[D.P.C.M. 10/11/2011, All.1] - Metadata Standard Version</M6>
+	<M6>Metadata Standard Version</M6>
 	<alert.M6><div> Element metadataStandardVersion must be present and equal to '10 novembre 2011'</div></alert.M6>
 	<!--METADATA CHARACTER SET-->
-	<M7>[D.P.C.M. 10/11/2011, All.1] - Metadata Character Set</M7>
+	<M7>Metadata Character Set</M7>
 	<alert.M7><div> Element characterSet must be present</div></alert.M7>
 	<!--DATA IDENTIFICATION - DATE TYPE-->
-	<M8>[D.P.C.M. 10/11/2011, All.1] - Data Identification - Date Type</M8>
+	<M8>Data Identification - Date Type</M8>
 	<alert.M8><div> Element dateType must be present</div></alert.M8>
 	<!--DATA IDENTIFICATION -  RESPONSIBLE PARTY-->
-	<M9>[D.P.C.M. 10/11/2011, All.1] - Data Identification - Responsible Party</M9>
+	<M9>Data Identification - Responsible Party</M9>
 	<alert.M9><div> Responsible Party is missing or has a wrong value. Responsible Party must contain organisationName,role,and electronicMailAddress elements and at least one of phone and onlineResource elements</div></alert.M9>
 	<!--DATA IDENTIFICATION - IDENTIFIER-->
-	<M13>[D.P.C.M. 10/11/2011, All.1] - Data Identification - Identifier</M13>
+	<M13>Data Identification - Identifier</M13>
 	<alert.M13><div> Element RS_Identifier must be present</div></alert.M13>
 	<!--DATA IDENTIFICATION - SERIES-->
-	<M14>[D.P.C.M. 10/11/2011, All.1] - Data Identification - Series</M14>
+	<M14>Data Identification - Series</M14>
 	<alert.M14><div> Element series must be present</div></alert.M14>
+	<!--DATA IDENTIFICATION - DATASET RESPONSIBLE PARTY (POINT OF CONTACT)-->	
+	<M15>Data Identification - Dataset Responsible Party</M15>
+	<alert.M15><div>Dataset Responsible Party is missing or has a wrong value. Dataset Responsible Party must contain organisationName,role,and electronicMailAddress elements and at least one of phone and onlineResource elements</div></alert.M15>
 	<!--DATA IDENTIFICATION - PRESENTATION FORM-->
-	<M30>[D.P.C.M. 10/11/2011, All.1] - Data Identification - Presentation Form</M30>
+	<M30>Data Identification - Presentation Form</M30>
 	<alert.M30><div> Element PresentationFromCode must be present</div></alert.M30>
-	
+	<!--DATA IDENTIFICATION - SPATIAL REPRESENTATION TYPE-->
+	<M31>Data Identification - Spatial Representation Type</M31>
+	<alert.M31><div> Element Spatial Representation Type must be present</div></alert.M31>
+	<!--DATA IDENTIFICATION - SPATIAL RESOLUTION OF THE DATASET-->
+	<M32>Data Identification - Spatial Resolution of the Dataset</M32>
+	<alert.M32><div> Element Spatial Resolution must be present</div></alert.M32>
+	<!--DATA IDENTIFICATION - GEOGRAPHIC LOCATION OF THE DATASET-->
+	<M33>Data Identification - Geographic Location of the Dataset</M33>
+	<alert.M33><div> Element Geographic Location must be present</div></alert.M33>
+	<!--DATA QUALITY - SCOPE-->
+	<M34>Data Quality - Scope</M34>
+	<alert.M34><div> Element Scope must be present</div></alert.M34>
+	<!--DATA QUALITY - POSITIONAL ACCURACY-->
+	<M35>Data Quality - Positional accuracy</M35>
+	<alert.M35><div> Positional accuracy is missing or has a wrong value</div></alert.M35>
+	<!--DATA QUALITY - LINEAGE-->
+	<M36>Data Quality - Lineage</M36>
+	<alert.M36><div> Element Lineage must be present</div></alert.M36>
+	<!--DATA QUALITY -  CONFORMANCE REPORT - SPECIFICATION-->
+	<M37>Data Quality - Conformance Report - Specification</M37>
+	<alert.M37><div> Conformance Report - Specification is missing or has a wrong value</div></alert.M37>
+	<!--DATA QUALITY - REFERENCE SYSTEM-->
+	<M38>Data Quality - Reference System</M38>
+	<alert.M38><div> Reference System is missing or has a wrong value</div></alert.M38>
+	<!--METADATA DATE FORMAT-->
+	<M99>Date</M99>
+	<alert.M99>Metadata date must be documented through element gco:Date</alert.M99>
 	<!--DATE FORMAT-->
-<!-- 	<M100>[D.P.C.M. 10/11/2011, All.1] - Date Format</M100>
-	<alert.M100><div>Date element must be in ISO 8601 Standard (yyyy-mm-dd or yyyymmdd)</div></alert.M100> -->
+	<M100>Date</M100>
+	<alert.M100>Dates must be documented through element gco:Date</alert.M100>
+	<!--NIL REASON-->
+	<M110>Attribute not allowed</M110>
+	<alert.M110>No element must have attribute gco:nilReason</alert.M110>
 </strings>
