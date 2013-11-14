@@ -66,6 +66,12 @@
 	<!--DATA/SERVICE IDENTIFICATION - KEYWORDS-->
 	<M39>Identificazione dei Dati/Servizi - Parole Chiave</M39>
 	<alert.M39><div>L'elemento descriptiveKeywords è mancante, incompleto o ha un valore errato</div></alert.M39>
+	<!--DISTRIBUTION INFO - DISTRIBUTION FORMAT-->
+	<M45>Distribuzione dei dati - Formato di distribuzione</M45>
+	<alert.M45><div>L'elemento distributionFormat è mancante, incompleto o ha un valore errato</div></alert.M45>
+	<!--DISTRIBUTION INFO - DISTRIBUTOR-->
+	<M46>Distribuzione dei dati - Distributore</M46>
+	<alert.M46><div>L'elemento distributor è mancante, incompleto o ha un valore errato. Il metadato deve contenere gli elementi organisationName,role e electronicMailAddress e almeno uno tra gli elementi phone e onlineResource</div></alert.M46>
 	<!--CONSTRAINTS - USE LIMITATIONS-->
 	<M50>Vincoli sui Dati - Limitazione d'uso</M50>
 	<alert.M50><div>L'elemento useLimitation è mancante, incompleto o ha un valore errato</div></alert.M50>

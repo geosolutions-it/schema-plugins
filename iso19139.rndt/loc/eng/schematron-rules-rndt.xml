@@ -66,6 +66,12 @@
 	<!--DATA/SERVICE IDENTIFICATION - KEYWORDS-->
 	<M39>Data/service Identification - Keywords</M39>
 	<alert.M39><div> DescriptiveKeywords element is missing or has a wrong value</div></alert.M39>
+	<!--DISTRIBUTION INFO - DISTRIBUTION FORMAT-->
+	<M45>Distribution Info - Distribution Format</M45>
+	<alert.M45><div> DistributionFormat element is missing or has a wrong value</div></alert.M45>
+	<!--DISTRIBUTION INFO - DISTRIBUTOR-->
+	<M46>Distribution Info - Distributor</M46>
+	<alert.M46><div> Distributor element is missing or has a wrong value. Distributor must contain organisationName,role,and electronicMailAddress elements and at least one of phone and onlineResource elements</div></alert.M46>
 	<!--CONSTRAINTS - USE LIMITATIONS-->
 	<M50>Constraints - Use Limitations</M50>
 	<alert.M50><div> Uselimitations element is missing or has a wrong value</div></alert.M50>
