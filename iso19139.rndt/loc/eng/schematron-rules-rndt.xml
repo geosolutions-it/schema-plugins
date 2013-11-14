@@ -71,13 +71,34 @@
 	<alert.M50><div> Uselimitations element is missing or has a wrong value</div></alert.M50>
 	<!--CONSTRAINTS - ACCESS CONSTRAINTS-->
 	<M51>Constraints - Access Constraints</M51>
-	<alert.M51><div> accessConstraints element is missing or has a wrong value</div></alert.M51>
+	<alert.M51><div> AccessConstraints element is missing or has a wrong value</div></alert.M51>
 	<!--CONSTRAINTS - ACCESS CONSTRAINTS-->
 	<M52>Constraints - Use Constraints</M52>
-	<alert.M52><div> useConstraints element is missing or has a wrong value</div></alert.M52>
+	<alert.M52><div> UseConstraints element is missing or has a wrong value</div></alert.M52>
 	<!--CONSTRAINTS - OTHER CONSTRAINTS-->
 	<M53>Constraints - Other Constraints</M53>
 	<alert.M53><div> otherConstraints element is missing or has a wrong value</div></alert.M53>
+	<!--CONTENT INFO - CONTENT TYPE (RASTER DATA)-->
+	<M60>Content Info - Content Type (Raster Data only)</M60>
+	<alert.M60><div> ContentType element is missing or has a wrong value</div></alert.M60>
+	<!--CONTENT INFO - ATTRIBUTE DESCRIPTION (RASTER DATA)-->
+	<M61>Content Info - Content Type (Raster Data only)</M61>
+	<alert.M61><div> AttributeDescription element is missing or has a wrong value</div></alert.M61>
+	<!--SPATIAL REPRESENTATION INFO - DIMENSIONS NUMBER (RASTER DATA)-->
+	<M62>Spatial Representation - Dimensions Number (Raster Data only)</M62>
+	<alert.M62><div> NumberOfDimensions element is missing or has a wrong value</div></alert.M62>
+	<!--SPATIAL REPRESENTATION INFO - AXIS DIMENSION PROPERTIES (RASTER DATA)-->
+	<M63>Spatial Representation - Dimensions Properties (Raster Data only)</M63>
+	<alert.M63><div> AxisDimensionProperties element is missing or has a wrong value</div></alert.M63>
+	<!--SPATIAL REPRESENTATION INFO - CELL GEOEMTRY (RASTER DATA)-->
+	<M64>Spatial Representation - Cell Geometry (Raster Data only)</M64>
+	<alert.M64><div>CellGeometry element is missing or has a wrong value</div></alert.M64>
+	<!--SPATIAL REPRESENTATION INFO - TRANSFORMATION PARAMETER AVAILABILITY (RASTER DATA)-->
+	<M65>Spatial Representation - Transformation Parameter Availability (Raster Data only)</M65>
+	<alert.M65><div> TransformationParameterAvailability element is missing or has a wrong value</div></alert.M65>
+	<!--SPATIAL REPRESENTATION INFO - CHECK POINT AVAILABILITY (GEORECTIFIED RASTER DATA)-->
+	<M66>Spatial Representation - Transformation Parameter Availability (Georectified Raster Data only)</M66>
+	<alert.M66><div> CheckPointAvailability element is missing or has a wrong value</div></alert.M66>
 	<!--METADATA DATE FORMAT-->
 	<M99>Date</M99>
 	<alert.M99>Metadata date must be documented through element gco:Date</alert.M99>

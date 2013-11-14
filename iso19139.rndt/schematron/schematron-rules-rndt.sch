@@ -19,8 +19,12 @@
 	<!--METADATA LANGUAGE-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M2</sch:title>
+		<sch:let name="langCodeList">bul;cze;dan;est;fin;fre;gre;eng;gle;ita;lav;lit;mlt;dut;pol;por;rum;slo;slv;spa;swe;ger;hun</sch:let>
+		<sch:let name="langCodeURI">http://www.loc.gov/standards/iso639-2/</sch:let>
 		<sch:rule context="//gmd:MD_Metadata">
-			<sch:assert test="gmd:language/gmd:LanguageCode/@codeListValue and gmd:language/gmd:LanguageCode!=''">$loc/strings/alert.M2</sch:assert>
+			<sch:let name="value" value="gmd:language/gmd:LanguageCode/@codeListValue"/>
+			<!-- <sch:assert test="contains($langCodeList,gmd:language/gmd:LanguageCode/@codeListValue) and gmd:language/gmd:LanguageCode!='' and gmd:language/gmd:LanguageCode/@codeList= $langCodeURI">$loc/strings/alert.M2</sch:assert> -->
+			<sch:assert test="exists(tokenize($langCodeList, ';')[. = $value]) and gmd:language/gmd:LanguageCode!='' and gmd:language/gmd:LanguageCode/@codeList= $langCodeURI">$loc/strings/alert.M2</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 	<!--PARENT IDENTIFIER-->
@@ -121,7 +125,7 @@
 	<!--DATA/SERVICE IDENTIFICATION - GEOGRAPHIC LOCATION-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M33</sch:title>
-		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/">
+		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
 			<sch:assert test="gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox">$loc/strings/alert.M33</sch:assert>
 		</sch:rule>
 	</sch:pattern>
@@ -170,9 +174,13 @@
 		<sch:let name="gemetThesaurusTitle">GEMET - INSPIRE themes, version 1.0</sch:let>
 		<sch:let name="gemetThesaurusDate">2008-06-01</sch:let>
 		<sch:let name="gemetThesaurusDateType">publication</sch:let>
+		<sch:let name="inspireServicesKeyWords">humanInteractionService;humanCatalogueViewer;humanGeographicViewer;humanGeographicSpreadsheetViewer;humanServiceEditor;humanChainDefinitionEditor;humanWorkflowEnactmentManager;humanGeographicFeatureEditor;humanGeographicSymbolEditor;humanFeatureGeneralizationEditor;humanGeographicDataStructureViewer;infoManagementService;infoFeatureAccessService;infoMapAccessService;infoCoverageAccessService;infoSensorDescriptionService;infoProductAccessService;infoFeatureTypeService;infoCatalogueService;infoRegistryService;infoGazetteerService;infoOrderHandlingService;infoStandingOrderService;taskManagementService;chainDefinitionService;workflowEnactmentService;subscriptionService;spatialProcessingService;spatialCoordinateConversionService;spatialCoordinateTransformationService;spatialCoverageVectorConversionService;spatialImageCoordinateConversionService;spatialRectificationService;spatialOrthorectificationService;spatialSensorGeometryModelAdjustmentService;spatialImageGeometryModelConversionService;spatialSubsettingService;spatialSamplingService;spatialTilingChangeService;spatialDimensionMeasurementService;spatialFeatureManipulationService;spatialFeatureMatchingService;spatialFeatureGeneralizationService;spatialRouteDeterminationService;spatialPositioningService;spatialProximityAnalysisService;thematicProcessingService;thematicGeoparameterCalculationService;thematicClassificationService;thematicFeatureGeneralizationService;thematicSubsettingService;thematicSpatialCountingService;thematicChangeDetectionService;thematicGeographicInformationExtractionService;thematicImageProcessingService;thematicReducedResolutionGenerationService;thematicImageManipulationService;thematicImageUnderstandingService;thematicImageSynthesisService;thematicMultibandImageManipulationService;thematicObjectDetectionService;thematicGeoparsingService;thematicGeocodingService;temporalProcessingService;temporalReferenceSystemTransformationService;temporalSubsettingService;temporalSamplingService;temporalProximityAnalysisService;metadataProcessingService;metadataStatisticalCalculationService;metadataGeographicAnnotationService;comService;comEncodingService;comTransferService;comGeographicCompressionService;comMessagingService;comRemoteFileAndExecutableManagement</sch:let>
 		<sch:title>$loc/strings/M39</sch:title>
 		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification">
 			<sch:assert test="count(gmd:descriptiveKeywords[contains($inspireKeyWords, gmd:MD_Keywords/gmd:keyword/gco:CharacterString) and gmd:MD_Keywords/gmd:thesaurusName/gmd:CI_Citation/gmd:title/gco:CharacterString = $gemetThesaurusTitle and gmd:MD_Keywords/gmd:thesaurusName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date = $gemetThesaurusDate and gmd:MD_Keywords/gmd:thesaurusName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode/@codeListValue = $gemetThesaurusDateType]) >0">$loc/strings/alert.M39</sch:assert>
+		</sch:rule>
+		<sch:rule context="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
+			<sch:assert test="count(gmd:descriptiveKeywords[contains($inspireServicesKeyWords, gmd:MD_Keywords/gmd:keyword/gco:CharacterString)]) >0">$loc/strings/alert.M39</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 	<!--CONSTRAINTS - USE LIMITATIONS-->
@@ -202,7 +210,56 @@
 		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
 			<sch:assert test="count(gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:otherConstraints/gco:CharacterString and gmd:MD_LegalConstraints/gmd:useConstraints/gmd:MD_RestrictionCode/@codeListValue!='otherRestrictions' and gmd:MD_LegalConstraints/gmd:accessConstraints/gmd:MD_RestrictionCode/@codeListValue!='otherRestrictions']) = 0">$loc/strings/alert.M53</sch:assert>
 		</sch:rule>
-	</sch:pattern> 
+	</sch:pattern>
+	<!--CONTENT INFO - CONTENT TYPE (RASTER DATA)-->
+	<sch:pattern>
+		<sch:title>$loc/strings/M60</sch:title>
+		<sch:rule context="//gmd:MD_Metadata[gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType/gmd:MD_SpatialRepresentationTypeCode/@codeListValue='grid']">
+			<sch:assert test="gmd:contentInfo/gmd:MD_ImageDescription/gmd:contentType/gmd:MD_CoverageContentTypeCode/@codeListValue">$loc/strings/alert.M60</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<!--CONTENT INFO - ATTRIBUTE DESCRIPTION (RASTER DATA)-->
+	<sch:pattern>
+		<sch:title>$loc/strings/M61</sch:title>
+		<sch:rule context="//gmd:MD_Metadata[gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType/gmd:MD_SpatialRepresentationTypeCode/@codeListValue='grid']">
+			<sch:assert test="gmd:contentInfo/gmd:MD_ImageDescription/gmd:attributeDescription/gco:RecordType">$loc/strings/alert.M61</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<!--SPATIAL REPRESENTATION INFO - DIMENSIONS NUMBER (RASTER DATA)-->
+	<sch:pattern>
+		<sch:title>$loc/strings/M62</sch:title>
+		<sch:rule context="//gmd:MD_Metadata[gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType/gmd:MD_SpatialRepresentationTypeCode/@codeListValue='grid']">
+			<sch:assert test="gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:numberOfDimensions/gco:Integer or gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:numberOfDimensions/gco:Integer">$loc/strings/alert.M62</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<!--SPATIAL REPRESENTATION INFO - AXIS DIMENSION PROPERTIES (RASTER DATA)-->
+	<sch:pattern>
+		<sch:title>$loc/strings/M63</sch:title>
+		<sch:rule context="//gmd:MD_Metadata[gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType/gmd:MD_SpatialRepresentationTypeCode/@codeListValue='grid']">
+			<sch:assert test="(gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:axisDimensionProperties/gmd:MD_Dimension/gmd:dimensionName/gmd:MD_DimensionNameTypeCode/@codeListValue and gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:axisDimensionProperties/gmd:MD_Dimension/gmd:dimensionSize/gco:Integer and gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:axisDimensionProperties/gmd:MD_Dimension/gmd:dimensionSize/gco:Integer!='') or (gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:axisDimensionProperties/gmd:MD_Dimension/gmd:dimensionName/gmd:MD_DimensionNameTypeCode/@codeListValue and gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:axisDimensionProperties/gmd:MD_Dimension/gmd:dimensionSize/gco:Integer and gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:axisDimensionProperties/gmd:MD_Dimension/gmd:dimensionSize/gco:Integer!='')">$loc/strings/alert.M63</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<!--SPATIAL REPRESENTATION INFO - CELL GEOMETRY (RASTER DATA)-->
+	<sch:pattern>
+	<sch:title>$loc/strings/M64</sch:title>
+		<sch:rule context="//gmd:MD_Metadata[gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType/gmd:MD_SpatialRepresentationTypeCode/@codeListValue='grid']">
+			<sch:assert test="gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:cellGeometry/gmd:MD_CellGeometryCode/@codeListValue or gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:cellGeometry/gmd:MD_CellGeometryCode/@codeListValue">$loc/strings/alert.M64</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<!--SPATIAL REPRESENTATION INFO - TRANSFORMATION PARAMETER AVAILABILITY (RASTER DATA)-->
+	<sch:pattern>
+	<sch:title>$loc/strings/M65</sch:title>
+		<sch:rule context="//gmd:MD_Metadata[gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType/gmd:MD_SpatialRepresentationTypeCode/@codeListValue='grid']">
+			<sch:assert test="gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:transformationParameterAvailability/gco:Boolean or gmd:spatialRepresentationInfo//gmd:MD_Georeferenceable/gmd:transformationParameterAvailability/gco:Boolean">$loc/strings/alert.M65</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<!--SPATIAL REPRESENTATION INFO - CHECK POINT AVAILABILITY (GEORECTIFIED RASTER DATA)-->
+	<sch:pattern>
+	<sch:title>$loc/strings/M66</sch:title>
+		<sch:rule context="//gmd:MD_Metadata[gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType/gmd:MD_SpatialRepresentationTypeCode/@codeListValue='grid' and gmd:spatialRepresentationInfo/gmd:MD_Georectified]">
+			<sch:assert test="gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:checkPointAvailability/gco:Boolean">$loc/strings/alert.M66</sch:assert>
+		</sch:rule>
+	</sch:pattern>
 	<!--METADATA DATE-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M99</sch:title>
@@ -226,8 +283,4 @@
 			<sch:assert test="count(//*[@gco:nilReason])=0">$loc/strings/alert.M110</sch:assert>
 		</sch:rule>
 	</sch:pattern>
-	<!--Per i servizi: 
-1) /gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty Ruolo [1] – Esso deve assumere uno dei valori della lista “CI_RoleCode” (§3.4.3.3 - all. 2 DM), tranne “punto di  contatto” (pointOfContact) e “distributore” (distributor).
-2) parole chiave servizi!!!
--->
 </sch:schema>

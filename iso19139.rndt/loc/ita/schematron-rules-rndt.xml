@@ -78,6 +78,27 @@
 	<!--CONSTRAINTS - OTHER CONSTRAINTS-->
 	<M53>Vincoli sui Dati - Altri Vincoli</M53>
 	<alert.M53><div>L'elemento otherConstraints è mancante, incompleto o ha un valore errato</div></alert.M53>
+	<!--CONTENT INFO - CONTENT TYPE (RASTER DATA)-->
+	<M60>Informazioni sul contenuto - Tipo di contenuto (solo per Dati Raster)</M60>
+	<alert.M60><div>L'elemento contentType è mancante, incompleto o ha un valore errato</div></alert.M60>
+	<!--CONTENT INFO - ATTRIBUTE DESCRIPTION (RASTER DATA)-->
+	<M61>Informazioni sul contenuto - Descrizione degli attributi (solo per Dati Raster)</M61>
+	<alert.M61><div>L'elemento attributeDescription è mancante, incompleto o ha un valore errato</div></alert.M61>
+	<!--SPATIAL REPRESENTATION INFO - DIMENSIONS NUMBER (RASTER DATA)-->
+	<M62>Rappresentazione spaziale - Numero di dimensioni (solo per Dati Raster)</M62>
+	<alert.M62><div>L'elemento numberOfDimensions è mancante, incompleto o ha un valore errato</div></alert.M62>
+	<!--SPATIAL REPRESENTATION INFO - AXIS DIMENSION PROPERTIES (RASTER DATA)-->
+	<M63>Rappresentazione spaziale - Proprietà dimensioni (solo per Dati Raster)</M63>
+	<alert.M63><div>L'elemento axisDimensionProperties è mancante, incompleto o ha un valore errato</div></alert.M63>
+	<!--SPATIAL REPRESENTATION INFO - CELL GEOEMTRY (RASTER DATA)-->
+	<M64>Rappresentazione spaziale - Geometria della Cella (solo per Dati Raster)</M64>
+	<alert.M64><div>L'elemento cellGeometry è mancante, incompleto o ha un valore errato</div></alert.M64>
+	<!--SPATIAL REPRESENTATION INFO - TRANSFORMATION PARAMETER AVAILABILITY (RASTER DATA)-->
+	<M65>Rappresentazione spaziale - Disponibilità coefficienti della trasformazione (solo per Dati Raster)</M65>
+	<alert.M65><div>L'elemento transformationParameterAvailability è mancante, incompleto o ha un valore errato</div></alert.M65>
+	<!--SPATIAL REPRESENTATION INFO - CHECK POINT AVAILABILITY (GEORECTIFIED RASTER DATA)-->
+	<M66>Rappresentazione spaziale - Disponibilità dei check-points (solo per Dati Raster Georettificati)</M66>
+	<alert.M66><div>L'elemento checkPointAvailability è mancante, incompleto o ha un valore errato</div></alert.M66>
 	<!--METADATA DATE FORMAT-->
 	<M99>Data dei metadati - Formato</M99>
 	<alert.M99>La data del metadato deve essere documentata attraverso l'elemento gco:Date</alert.M99>
