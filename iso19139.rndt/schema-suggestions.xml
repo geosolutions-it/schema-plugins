@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fields>	
-  <field name="gmd:contactInstructions">
+  <!-- <field name="gmd:contactInstructions">
     <suggest name="gco:CharacterString"/>
     <suggest name="gmx:FileName"/>
-  </field>
+  </field> -->
   
-	<field name="gmd:otherCitationDetails">
+	<!-- <field name="gmd:otherCitationDetails">
 		<suggest name="gco:CharacterString"/>
 		<suggest name="gmx:FileName"/>
-	</field>
+	</field> -->
 	
 	<field name="gmd:language">
-		<suggest name="gco:CharacterString"/>
+		<!-- RNDT -->
+		<!-- <suggest name="gco:CharacterString"/> -->
 		<suggest name="gmd:LanguageCode"/>
 	</field>
 	
-	<field name="gmx:FileName">
+	<!-- <field name="gmx:FileName">
 		<suggest name="src"/>
-	</field> 
+	</field> --> 
 	
 	<!-- Service -->
-	<field name="srv:coupledResource">
-		<suggest name="srv:SV_CoupledResource"/>
+	<!-- RNDT -->
+	<field name="srv:couplingType">
+		<suggest name="srv:SV_CouplingType"/>
 	</field>
 	
 
-    <!-- Distribution -->
-    <field name="gmd:MD_Distribution">
+    <!-- Distribution -->		
+		<field name="gmd:MD_Distribution">
+		<!-- RNDT -->
+		<suggest name="gmd:distributionFormat"/>
+		<suggest name="gmd:distributor"/>
+		<!-- RNDT -->
         <suggest name="gmd:transferOptions"/>
     </field>
     
@@ -43,9 +49,16 @@
     </field>
     
     <field name="gmd:CI_OnlineResource">
-		<suggest name="gmd:protocol"/>
+		<!-- RNDT -->
+		<!-- <suggest name="gmd:protocol"/> -->
+		<suggest name="gmd:linkage"/>
 		<!-- <suggest name="gmd:name"/> comment even if mandatory and useful for WMS
 		<suggest name="gmd:description"/> -->
+	</field>
+	
+	<!-- RNDT -->
+	<field name="gmd:linkage">
+		<suggest name="gmd:URL"/>
 	</field>
 	
   
@@ -54,20 +67,23 @@
     <!-- ResponsibleParty -->
 	
     <field name="gmd:CI_ResponsibleParty">
-		<!--<suggest name="gmd:individualName"/>-->
 		<suggest name="gmd:organisationName"/>
-		<!--<suggest name="gmd:positionName"/>-->
 		<suggest name="gmd:contactInfo"/>
+		<!-- RNDT -->
+		<suggest name="gmd:role"/>
 	</field>
 	
 	<field name="gmd:CI_Contact">
-		<!-- <suggest name="gmd:phone"/> -->
+		<!-- RNDT -->
+		<suggest name="gmd:phone"/>
 		<suggest name="gmd:address"/>
+		<suggest name="gmd:onlineResource"/>
 	</field>
 	
 	<field name="gmd:CI_Telephone">
 		<suggest name="gmd:voice"/>
-		<suggest name="gmd:facsimile"/>
+		<!-- RNDT -->
+		<!-- <suggest name="gmd:facsimile"/> -->
 	</field>
 	
 	<field name="gmd:CI_Address">
@@ -83,24 +99,31 @@
   
     <!-- Keywords -->
 	<field name="gmd:MD_Keywords">
-		<suggest name="gmd:type"/>
+		<!-- RNDT -->
+		<suggest name="gmd:keyword"/>
+		<suggest name="gmd:thesaurusName"/>
 	</field>
 	
     <field name="gmd:keyword">
-        <suggest name="xlink:href"/>
-        <suggest name="xlink:type"/>
+		<!-- RNDT -->
+        <suggest name="gco:CharacterString"/>
     </field>
+	
+	<!-- RNDT -->
+	<field name="gmd:thesaurusName">
+        <suggest name="gmd:CI_Citation"/>
+    </field>
+	
   
     <field name="gmd:extent">
         <suggest name="gmd:EX_Extent"/>
-    </field>
-    
-    
+    </field>   
     
     
     <!-- Extent -->
 	<field name="gmd:EX_Extent">
-		<suggest name="gmd:description"/>
+		<!-- RNDT -->
+		<!-- <suggest name="gmd:description"/> -->
         <suggest name="gmd:geographicElement"/>
         <suggest name="gmd:temporalElement"/>
 		<suggest name="gmd:verticalElement"/>
@@ -119,9 +142,10 @@
 		<suggest name="gml:endPosition"/>	
 	</field>
 	
-	<field name="gmd:polygon">
+	
+	<!--<field name="gmd:polygon">
 		<suggest name="gml:Polygon"/>
-	</field>
+	</field> -->
 	
 	<field name="gmd:EX_GeographicBoundingBox">
 		<suggest name="gmd:westBoundLongitude"/>
@@ -129,7 +153,9 @@
 		<suggest name="gmd:southBoundLatitude"/>
 		<suggest name="gmd:northBoundLatitude"/>
 	</field>
-
+	
+	<!-- RNDT -->
+	<!-- 
 	<field name="gmd:attributes">
 		<suggest name="uuidref"/>
 	</field>
@@ -144,7 +170,7 @@
 
 	<field name="gmd:attributeInstances">
 		<suggest name="uuidref"/>
-	</field>
+	</field> 
 
 	<field name="gmd:propertyType">
 		<suggest name="uuidref"/>
@@ -156,19 +182,20 @@
 
 	<field name="gmd:featureAttribute">
 		<suggest name="uuidref"/>
-	</field>
+	</field>-->
 
 	<field name="srv:operatesOn">
 		<suggest name="uuidref"/>
 	</field>
 
-	<field name="gml:Polygon">
+	<!-- RNDT -->
+	<!-- <field name="gml:Polygon">
 		<suggest name="srsName"/>
-	</field>
-
+	</field> 
+	
 	<field name="gml:descriptionReference">
 		<suggest name="xlink:href"/>
-	</field>
+	</field> -->
 
 
   <field name="gmd:MD_Constraints">
@@ -176,7 +203,8 @@
   </field>
   
   <field name="gmd:MD_LegalConstraints">
-    <suggest name="gmd:useLimitation"/>
+	<!-- RNDT -->
+    <!-- <suggest name="gmd:useLimitation"/> -->
     <suggest name="gmd:accessConstraints"/>
     <suggest name="gmd:useConstraints"/>
     <suggest name="gmd:otherContraints"/>
@@ -184,7 +212,8 @@
   
   <field name="gmd:MD_SecurityContraints">
     <suggest name="gmd:classification"/>
-    <suggest name="gmd:useLimitation"/>
+	<!-- RNDT -->
+    <!-- <suggest name="gmd:useLimitation"/> -->
   </field>
   
 
@@ -208,7 +237,7 @@
     
     
     <!-- Constraint -->
-    <field name="fra:FRA_Constraints">
+<!--     <field name="fra:FRA_Constraints">
         <suggest name="gmd:useLimitation"/>
     </field>
 
@@ -222,12 +251,13 @@
     <field name="fra:FRA_SecurityContraints">
         <suggest name="gmd:classification"/>
         <suggest name="gmd:useLimitation"/>
-    </field>
+    </field> -->
 
 
     <!-- Date -->
     <field name="gmd:CI_Date">
         <suggest name="gmd:date"/>
+		<suggest name="gmd:dateType"/>
     </field>
     
     <!-- This is not supported. Date or DateTime 
@@ -241,6 +271,11 @@
     <!-- Resolution -->
     <field name="gmd:spatialResolution">
         <suggest name="gmd:MD_Resolution"/>
+    </field>
+	
+	<field name="ggmd:MD_Resolution">
+        <suggest name="gmd:distance"/>
+		<suggest name="gmd:equivalentScale"/>
     </field>
 	
 	

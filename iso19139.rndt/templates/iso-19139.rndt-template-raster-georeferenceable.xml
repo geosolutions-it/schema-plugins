@@ -33,7 +33,7 @@ e" codeListValue="utf8">utf8</gmd:MD_CharacterSetCode>
 					<gmd:address>
 						<gmd:CI_Address>
 							<gmd:electronicMailAddress>
-								<gco:CharacterString>Indirizzo e-mail del soggetto responsabile dei metadati</gco:CharacterString>
+								<gco:CharacterString>responsabile.metadati@organizzazione.it</gco:CharacterString>
 							</gmd:electronicMailAddress>
 						</gmd:CI_Address>
 					</gmd:address>
@@ -166,7 +166,7 @@ de" codeListValue="area">Area</gmd:MD_CellGeometryCode>
 									<gmd:address>
 										<gmd:CI_Address>
 											<gmd:electronicMailAddress>
-												<gco:CharacterString>Indirizzo e-mail dell'ufficio responsabile del dato</gco:CharacterString>
+												<gco:CharacterString>responsabile.dato@organizzazione.it</gco:CharacterString>
 											</gmd:electronicMailAddress>
 										</gmd:CI_Address>
 									</gmd:address>
@@ -220,7 +220,7 @@ ode" codeListValue="mapDigital">Mappa digitale</gmd:CI_PresentationFormCode>
 							<gmd:address>
 								<gmd:CI_Address>
 									<gmd:electronicMailAddress>
-										<gco:CharacterString>Indirizzo e-mail dell'organizzazione da contattare per avere informazioni sulla risorsa</gco:CharacterString>
+										<gco:CharacterString>informazioni.risorsa@organizzazione.it</gco:CharacterString>
 									</gmd:electronicMailAddress>
 								</gmd:CI_Address>
 							</gmd:address>
@@ -401,7 +401,7 @@ TypeCode" codeListValue="image">Immagine</gmd:MD_CoverageContentTypeCode>
 									<gmd:address>
 										<gmd:CI_Address>
 											<gmd:electronicMailAddress>
-												<gco:CharacterString>Indirizzo e-mail dell'organizzazione che distribuisce i dati</gco:CharacterString>
+												<gco:CharacterString>distribuzione.risorsa@organizzazione.it</gco:CharacterString>
 											</gmd:electronicMailAddress>
 										</gmd:CI_Address>
 									</gmd:address>
