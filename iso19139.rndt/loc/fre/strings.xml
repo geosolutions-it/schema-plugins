@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+  <rndtTab>Vue essentielle</rndtTab>
+  <rndtTabDesc>Description</rndtTabDesc>
+  <rndtTabTech>Compléments techniques</rndtTabTech>
+  <rndtTabQua>Qualité</rndtTabQua>
+  <rndtTabAcc>Conditions d'accès</rndtTabAcc>
+  <rndtTabMd>Info métadonnées</rndtTabMd>
+</strings>
