@@ -136,6 +136,13 @@ de" codeListValue="area">Area</gmd:MD_CellGeometryCode>
 	<!-- IDENTIFICAZIONE DEI DATI -->
 	<gmd:identificationInfo>
 		<gmd:MD_DataIdentification>
+			<gmd:resourceMaintenance>
+				<gmd:MD_MaintenanceInformation>
+					<gmd:maintenanceAndUpdateFrequency>
+						<gmd:MD_MaintenanceFrequencyCode codeListValue="asNeeded" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_MaintenanceFrequencyCode"/>
+					</gmd:maintenanceAndUpdateFrequency>
+				</gmd:MD_MaintenanceInformation>
+			</gmd:resourceMaintenance>
 			<gmd:citation>
 				<gmd:CI_Citation>
 					<gmd:title>

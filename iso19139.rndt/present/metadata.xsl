@@ -54,8 +54,6 @@
 		<xsl:param name="edit" select="false()"/>
 		<xsl:param name="embedded"/>
 		
-<!--		<H1><xsl:value-of select="string('eco3')"/></H1>	-->
-		
 		<!-- process in profile mode first -->
 <!--		<xsl:variable name="rndtElements">
 			<xsl:apply-templates mode="iso19139.rndt" select="." >
