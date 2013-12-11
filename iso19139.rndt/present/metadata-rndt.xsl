@@ -83,9 +83,15 @@
 						<xsl:with-param name="edit"   select="$edit"/>
 					</xsl:apply-templates>
 					
+					<!-- Topic Category -->
+					<xsl:apply-templates mode="elementEP" select="gmd:topicCategory">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+					</xsl:apply-templates>
+					
 					<!-- Date -->
 					<xsl:apply-templates mode="elementEP"
-						select="gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date">
+						select="gmd:citation/gmd:CI_Citation/gmd:date">
 						<xsl:with-param name="schema" select="$schema" />
 						<xsl:with-param name="edit" select="$edit" />
 					</xsl:apply-templates>
@@ -147,12 +153,6 @@
 						<xsl:with-param name="edit"   select="$edit"/>
 					</xsl:apply-templates>
 					
-					<!-- Topic Category -->
-					<xsl:apply-templates mode="elementEP" select="gmd:topicCategory">
-						<xsl:with-param name="schema" select="$schema"/>
-						<xsl:with-param name="edit"   select="$edit"/>
-					</xsl:apply-templates>
-					
 					<!-- SupplementalInformation (Optional for RNDT) -->						
 					<xsl:apply-templates mode="elementEP" select="gmd:supplementalInformation">
 						<xsl:with-param name="schema" select="$schema"/>
@@ -165,9 +165,9 @@
 			<xsl:if test="not($dataset)">				
 				<xsl:call-template name="complexElementGuiWrapper">
 					<xsl:with-param name="title"
-						select="/root/gui/schemas/iso19139.rndt/strings/services/title" />
+						select="/root/gui/schemas/iso19139.rndt/strings/service/title" />
 					<xsl:with-param name="id"
-						select="generate-id(/root/gui/schemas/iso19139.rndt/strings/services/title)" />
+						select="generate-id(/root/gui/schemas/iso19139.rndt/strings/service/title)" />
 					<xsl:with-param name="content">
 						
 						<!-- Service Type -->
@@ -190,8 +190,7 @@
 						
 						<!-- Resource Coupled -->
 						<xsl:apply-templates mode="elementEP"
-							select="
-							srv:operatesOn|
+							select="srv:operatesOn|
 							geonet:child[string(@name)='operatesOn']">
 							<xsl:with-param name="schema" select="$schema" />
 							<xsl:with-param name="edit" select="$edit" />
@@ -200,8 +199,7 @@
 						<!-- Contains Operations -->
 						<xsl:apply-templates mode="elementEP"
 							select="
-							srv:containsOperations|
-							geonet:child[string(@name)='containsOperations']">
+							srv:containsOperations">
 							<xsl:with-param name="schema" select="$schema" />
 							<xsl:with-param name="edit" select="$edit" />
 						</xsl:apply-templates>
@@ -287,7 +285,16 @@
 								<xsl:with-param name="edit" select="$edit" />
 							</xsl:apply-templates>
 						</xsl:with-param>
-					</xsl:call-template>					
+					</xsl:call-template>	
+					
+					<!-- Temporal extent -->
+					<xsl:apply-templates mode="elementEP"
+						select="gmd:extent/gmd:EX_Extent/gmd:temporalElement">
+						<xsl:with-param name="schema" select="$schema" />
+						<xsl:with-param name="edit" select="$edit" />
+						<xsl:with-param name="force" select="true()" />
+					</xsl:apply-templates>
+					
 				</xsl:with-param>					
 			</xsl:call-template>
 			
@@ -426,10 +433,10 @@
 					select="generate-id(/root/gui/schemas/iso19139.rndt/strings/metadata/title)" />
 				<xsl:with-param name="content">
 					
-					<xsl:call-template name="complexElementGuiWrapper">
+<!--					<xsl:call-template name="complexElementGuiWrapper">
 						<xsl:with-param name="title"
 							select="string(/root/gui/*[name(.)=$schema]/element[@name='gmd:MD_Metadata']/label)" />
-						<xsl:with-param name="content">
+						<xsl:with-param name="content">-->
 							<xsl:apply-templates mode="elementEP"
 								select="
 								../../gmd:fileIdentifier|
@@ -449,14 +456,11 @@
 								<xsl:with-param name="schema" select="$schema" />
 								<xsl:with-param name="edit" select="$edit" />
 							</xsl:apply-templates>
-						</xsl:with-param>
-					</xsl:call-template>
-					
+<!--						</xsl:with-param>
+					</xsl:call-template>-->
 					
 				</xsl:with-param>
 			</xsl:call-template>
-			
 		</xsl:for-each>
-
 	</xsl:template>
 </xsl:stylesheet>
