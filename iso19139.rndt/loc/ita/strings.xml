@@ -1,9 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <strings>
-  <rndtTab>Core view</rndtTab>
-  <rndtTabDesc>Description</rndtTabDesc>
+  <rndtTab>Vista RNDT</rndtTab>
+  <!--rndtTabDesc>Description</rndtTabDesc>
   <rndtTabTech>Technical info.</rndtTabTech>
   <rndtTabQua>Quality</rndtTabQua>
   <rndtTabAcc>Access constraints</rndtTabAcc>
-  <rndtTabMd>Metadata</rndtTabMd>
+  <rndtTabMd>Metadata</rndtTabMd-->
+  
+  <identification>
+    <title>
+        Identificazione
+    </title>
+  </identification>
+  <keywords>
+    <title>
+      Parole chiave &amp; Temi INSPIRE
+    </title>
+  </keywords>
+  <service>
+    <title>
+      Identificazione dei servizi
+    </title>
+  </service>
+  <constraint>
+    <title>
+      Vincoli relativi all'accesso e all'uso
+    </title>
+  </constraint>
+  <geoloc>
+    <title>
+      Localizzazione geografica
+    </title>
+  </geoloc>
+  <verticalExtent>
+    <title>
+      Estensione verticale
+    </title>
+  </verticalExtent>
+  <quality>
+    <title>
+      Qualità e validità
+    </title>
+  </quality>
+  <conformity>
+    <title>
+      Conformità
+    </title>
+  </conformity>
+  <distribution>
+    <title>
+      Distribuzione dei dati
+    </title>
+  </distribution>
+  <metadata>
+    <title>
+      Metadati
+    </title>
+  </metadata>
 </strings>
