@@ -297,7 +297,6 @@ CI_DateTypeCode" codeListValue="publication">Pubblicazione</gmd:CI_DateTypeCode>
 							<gmd:explanation>
 								<gco:CharacterString>Fare riferimento alle specifiche indicate</gco:CharacterString>
 							</gmd:explanation>
-							<gmd:pass/>
 						</gmd:DQ_ConformanceResult>
 					</gmd:result>
 				</gmd:DQ_DomainConsistency>

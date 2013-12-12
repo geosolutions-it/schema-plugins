@@ -67,4 +67,9 @@
       Rappresentazione spaziale dei dati Raster
     </title>
   </rasterSpatialRepresentation>
+  <positionalAccuracy>
+    <title>
+      Accuratezza posizionale
+    </title>
+  </positionalAccuracy>
 </strings>
