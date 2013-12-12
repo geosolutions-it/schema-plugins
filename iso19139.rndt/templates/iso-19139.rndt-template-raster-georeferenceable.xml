@@ -137,13 +137,6 @@ de" codeListValue="area">Area</gmd:MD_CellGeometryCode>
 	<!-- IDENTIFICAZIONE DEI DATI -->
 	<gmd:identificationInfo>
 		<gmd:MD_DataIdentification>
-			<gmd:resourceMaintenance>
-				<gmd:MD_MaintenanceInformation>
-					<gmd:maintenanceAndUpdateFrequency>
-						<gmd:MD_MaintenanceFrequencyCode codeListValue="asNeeded" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_MaintenanceFrequencyCode"/>
-					</gmd:maintenanceAndUpdateFrequency>
-				</gmd:MD_MaintenanceInformation>
-			</gmd:resourceMaintenance>
 			<gmd:citation>
 				<gmd:CI_Citation>
 					<gmd:title>
@@ -255,6 +248,13 @@ ode" codeListValue="mapDigital">Mappa digitale</gmd:CI_PresentationFormCode>
 					</gmd:role>
 				</gmd:CI_ResponsibleParty>
 			</gmd:pointOfContact>
+			<gmd:resourceMaintenance>
+				<gmd:MD_MaintenanceInformation>
+					<gmd:maintenanceAndUpdateFrequency>
+						<gmd:MD_MaintenanceFrequencyCode codeListValue="asNeeded" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_MaintenanceFrequencyCode"/>
+					</gmd:maintenanceAndUpdateFrequency>
+				</gmd:MD_MaintenanceInformation>
+			</gmd:resourceMaintenance>
 			<!-- Fornire almeno una parola chiave del thesaurus GEMET (categoria tematica come prevista dagli allegati della Direttiva INSPIRE -->
 			<gmd:descriptiveKeywords>
 				<gmd:MD_Keywords>
