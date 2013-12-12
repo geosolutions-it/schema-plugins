@@ -63,7 +63,7 @@
 		<xs:complexContent>
 			<xs:extension base="gco:AbstractObject_Type">
 				<xs:sequence>
-					<xs:element name="statement" type="gco:CharacterString_PropertyType" minOccurs="0"/>
+					<xs:element name="statement" type="gco:CharacterString_PropertyType" minOccurs="1" />
 					<xs:element name="processStep" type="gmd:LI_ProcessStep_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="source" type="gmd:LI_Source_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
@@ -116,7 +116,7 @@
 					<xs:element name="valueType" type="gco:RecordType_PropertyType" minOccurs="0"/>
 					<xs:element name="valueUnit" type="gco:UnitOfMeasure_PropertyType"/>
 					<xs:element name="errorStatistic" type="gco:CharacterString_PropertyType" minOccurs="0"/>
-					<xs:element name="value" type="gco:Record_PropertyType" maxOccurs="unbounded"/>
+					<xs:element name="value" type="gco:Record_PropertyType" minOccurs="1" maxOccurs="1"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
