@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gmd:MD_Metadata xmlns:gsr="http://www.isotc211.org/2005/gsr " xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchemainstance" xmlns:gss="http://www.isotc211.org/2005/gss">
+<gmd:MD_Metadata 
+	xmlns:gmd="http://www.isotc211.org/2005/gmd" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:xlink="http://www.w3.org/1999/xlink" 
+	xmlns:gml="http://www.opengis.net/gml" 
+	xmlns:gts="http://www.isotc211.org/2005/gts" 
+	xmlns:gss="http://www.isotc211.org/2005/gss"
+	xmlns:gsr="http://www.isotc211.org/2005/gsr" 
+	xmlns:gco="http://www.isotc211.org/2005/gco" 
+	xsi:schemaLocation="http://www.isotc211.org/2005/gmd
+	http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gmd/gmd.xsd" >
+	
 	<gmd:fileIdentifier>
 		<gco:CharacterString>cod_ipa:id_file</gco:CharacterString>
 	</gmd:fileIdentifier>
@@ -451,4 +462,4 @@ org/export.htm?gml=urn:ogc:def:crs:EPSG::4979"/>
 			</gmd:lineage>
 		</gmd:DQ_DataQuality>
 	</gmd:dataQualityInfo>
-</gmd:MD_Metadata>
+
