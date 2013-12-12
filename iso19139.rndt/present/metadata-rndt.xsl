@@ -655,36 +655,339 @@
 				</xsl:apply-templates>
 			</xsl:if>
 			
-			<!-- Contenuto dei dati raster -->
-			<xsl:apply-templates mode="complexElement" 
-				select="../../gmd:contentInfo">
-				<xsl:with-param name="schema" select="$schema" />
-				<xsl:with-param name="edit" select="$edit" />
-			</xsl:apply-templates>			
-			<xsl:if	test="not(../../gmd:contentInfo)">
-				<xsl:apply-templates mode="elementEP"
-					select="../../geonet:child[string(@name)='contentInfo']">
-					<xsl:with-param name="schema" select="$schema" />
-					<xsl:with-param name="edit" select="$edit" />
-					<xsl:with-param name="force" select="true()" />
-				</xsl:apply-templates>
+			<!-- Raster data content -->
+			<xsl:if test="exists(../../gmd:contentInfo/gmd:MD_ImageDescription)">
+				<xsl:call-template name="complexElementGuiWrapper">
+					<xsl:with-param name="title"
+						select="/root/gui/schemas/iso19139.rndt/strings/rasterContent/title" />
+					<xsl:with-param name="id"
+						select="generate-id(/root/gui/schemas/iso19139.rndt/strings/rasterContent/title)" />
+					<xsl:with-param name="content">
+						
+						<!-- Attribute Description -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:contentInfo/gmd:MD_ImageDescription/gmd:attributeDescription">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:contentInfo/gmd:MD_ImageDescription/gmd:attributeDescription)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:contentInfo/gmd:MD_ImageDescription/geonet:child[string(@name)='attributeDescription']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- Content Type -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:contentInfo/gmd:MD_ImageDescription/gmd:contentType">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:contentInfo/gmd:MD_ImageDescription/gmd:contentType)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:contentInfo/gmd:MD_ImageDescription/geonet:child[string(@name)='contentType']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- Radiometric Resolution -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:contentInfo/gmd:MD_ImageDescription/gmd:dimension/gmd:MD_Band/gmd:bitsPerValue">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:contentInfo/gmd:MD_ImageDescription/gmd:dimension/gmd:MD_Band/gmd:bitsPerValue)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:contentInfo/gmd:MD_ImageDescription/gmd:dimension/gmd:MD_Band/geonet:child[string(@name)='bitsPerValue']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- Triangulation Area -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:contentInfo/gmd:MD_ImageDescription/gmd:triangulationIndicator">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:contentInfo/gmd:MD_ImageDescription/gmd:triangulationIndicator)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:contentInfo/gmd:MD_ImageDescription/geonet:child[string(@name)='triangulationIndicator']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+					</xsl:with-param>
+				</xsl:call-template>
 			</xsl:if>
-			
-			<!-- Contenuto dei dati raster -->
-			<xsl:apply-templates mode="complexElement" 
-				select="../../gmd:spatialRepresentationInfo">
-				<xsl:with-param name="schema" select="$schema" />
-				<xsl:with-param name="edit" select="$edit" />
-			</xsl:apply-templates>
-			<xsl:if	test="not(../../gmd:spatialRepresentationInfo)">
-				<xsl:apply-templates mode="elementEP"
-					select="../../geonet:child[string(@name)='spatialRepresentationInfo']">
-					<xsl:with-param name="schema" select="$schema" />
-					<xsl:with-param name="edit" select="$edit" />
-					<xsl:with-param name="force" select="true()" />
-				</xsl:apply-templates>
+
+			<!-- Spatial Representation information for Raster data -->	
+			<xsl:if test="exists(../../gmd:spatialRepresentationInfo)">
+				<xsl:call-template name="complexElementGuiWrapper">
+					<xsl:with-param name="title"
+						select="/root/gui/schemas/iso19139.rndt/strings/rasterSpatialRepresentation/title" />
+					<xsl:with-param name="id"
+						select="generate-id(/root/gui/schemas/iso19139.rndt/strings/rasterSpatialRepresentation/title)" />
+					<xsl:with-param name="content">
+						
+						<!-- Number of Dimension -->
+						
+						<!-- MD_Georectified -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:numberOfDimensions">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:numberOfDimensions)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/geonet:child[string(@name)='numberOfDimensions']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- MD_Georeferenceable -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:numberOfDimensions">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:numberOfDimensions)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/geonet:child[string(@name)='numberOfDimensions']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- Dimension Properties -->
+						
+						<!-- MD_Georectified -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:axisDimensionProperties">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:axisDimensionProperties)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/geonet:child[string(@name)='axisDimensionProperties']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- MD_Georeferenceable -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:axisDimensionProperties">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:axisDimensionProperties)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/geonet:child[string(@name)='axisDimensionProperties']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- Cell Geometry -->
+						
+						<!-- MD_Georectified -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:cellGeometry">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:cellGeometry)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/geonet:child[string(@name)='cellGeometry']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- MD_Georeferenceable -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:cellGeometry">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:cellGeometry)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/geonet:child[string(@name)='cellGeometry']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- Transformation Parameter Availability -->
+						
+						<!-- MD_Georectified -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:transformationParameterAvailability">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:transformationParameterAvailability)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/geonet:child[string(@name)='transformationParameterAvailability']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- MD_Georeferenceable -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:transformationParameterAvailability">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:transformationParameterAvailability)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/geonet:child[string(@name)='transformationParameterAvailability']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- Chak Point Availability -->
+						
+						<!-- Only for MD_Georectified -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:checkPointAvailability">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:checkPointAvailability)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/geonet:child[string(@name)='checkPointAvailability']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- Chak Point Description -->
+						
+						<!-- Only for MD_Georectified -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:checkPointDescription">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:checkPointDescription)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/geonet:child[string(@name)='checkPointDescription']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- Coorner Points Coordinates -->
+						
+						<!-- Only for MD_Georectified -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:cornerPoints">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:cornerPoints)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/geonet:child[string(@name)='cornerPoints']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- Pixel Point -->
+						
+						<!-- Only for MD_Georectified -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:pointInPixel">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:pointInPixel)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/geonet:child[string(@name)='pointInPixel']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- Control Point Availability -->
+						
+						<!-- Only for MD_Georeferenceable -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:controlPointAvailability">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:controlPointAvailability)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/geonet:child[string(@name)='controlPointAvailability']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- Orentation Parameter Availabiliti -->
+						
+						<!-- Only for MD_Georeferenceable -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:orientationParameterAvailability">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:orientationParameterAvailability)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/geonet:child[string(@name)='orientationParameterAvailability']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- Georeferenced Parameters -->
+						
+						<!-- Only for MD_Georeferenceable -->
+						<xsl:apply-templates mode="elementEP" 
+							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:georeferencedParameters">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>			
+						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:georeferencedParameters)">
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/geonet:child[string(@name)='georeferencedParameters']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+					</xsl:with-param>
+				</xsl:call-template>
 			</xsl:if>
-			
+						
 			<!-- Metadata  -->
 			<xsl:call-template name="complexElementGuiWrapper">
 				<xsl:with-param name="title"

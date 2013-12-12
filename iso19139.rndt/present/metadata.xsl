@@ -54,8 +54,8 @@
 		<xsl:param name="edit" select="false()"/>
 		<xsl:param name="embedded"/>
 		
-		<!-- process in profile mode first -->
-<!--		<xsl:variable name="rndtElements">
+        <!--<!-\- process in profile mode first -\->
+		<xsl:variable name="rndtElements">
 			<xsl:apply-templates mode="iso19139.rndt" select="." >
 				<xsl:with-param name="schema" select="$schema"/>
 				<xsl:with-param name="edit"   select="$edit"/>
@@ -63,22 +63,28 @@
 			</xsl:apply-templates>
 		</xsl:variable>
 		
-		<xsl:choose> -->
+		<xsl:choose> 
 			
-			<!-- if we got a match in profile mode then show it -->
-<!--			<xsl:when test="count($rndtElements/*)>0">
+			<!-\- If we got a match in profile mode then show it -\->
+			<xsl:when test="count($rndtElements/*)>0">
 				<xsl:copy-of select="$rndtElements"/>
 			</xsl:when>
 			
-			<!-\- otherwise process in base iso19139 mode -\->
-			<xsl:otherwise>-->
+			<!-\- Otherwise process in base iso19139 mode -\->
+			<xsl:otherwise>
 				<xsl:apply-templates mode="iso19139" select="." >
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 					<xsl:with-param name="embedded" select="$embedded" />
 				</xsl:apply-templates>
-<!--			</xsl:otherwise>
+			</xsl:otherwise>
 		</xsl:choose>-->
+		
+		<xsl:apply-templates mode="iso19139" select="." >
+			<xsl:with-param name="schema" select="$schema"/>
+			<xsl:with-param name="edit"   select="$edit"/>
+			<xsl:with-param name="embedded" select="$embedded" />
+		</xsl:apply-templates>
 	</xsl:template>	
 
 	<xsl:template mode="iso19139" match="gmd:MD_Metadata|*[@gco:isoType='gmd:MD_Metadata']" priority="2">
@@ -282,99 +288,5 @@
 	<xsl:template name="iso19139.rndt-javascript">
 		<xsl:call-template name="iso19139-javascript" />
 	</xsl:template>
-	
-<!--	<xsl:template mode="iso19139.rndt" match="gmd:identificationInfo/gmd:MD_DataIdentification|
-		gmd:identificationInfo/srv:SV_ServiceIdentification|
-		gmd:identificationInfo/*[@gco:isoType='gmd:MD_DataIdentification']|
-		gmd:identificationInfo/*[@gco:isoType='srv:SV_ServiceIdentification']">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		
-		<xsl:call-template name="complexElementGuiWrapper">
-			<xsl:with-param name="title"
-				select="/root/gui/strings/inspireSection/identification/title" />
-			<xsl:with-param name="id"
-				select="generate-id(/root/gui/strings/inspireSection/identification/title)" />
-			<xsl:with-param name="content">
-			
-				<xsl:apply-templates mode="elementEP"
-					select="gmd:citation/gmd:CI_Citation/gmd:title|
-							gmd:CI_Citation/geonet:child[string(@name)='title']">
-					<xsl:with-param name="schema" select="$schema" />
-					<xsl:with-param name="edit" select="$edit" />
-				</xsl:apply-templates>
-				
-				<xsl:apply-templates mode="elementEP"
-					select="gmd:citation/gmd:CI_Citation/gmd:date|
-							gmd:citation/geonet:child[string(@name)='date']">
-					<xsl:with-param name="schema" select="$schema" />
-					<xsl:with-param name="edit" select="$edit" />
-				</xsl:apply-templates>
-				
-				<xsl:apply-templates mode="elementEP" select="gmd:citation/gmd:CI_Citation/gmd:presentationForm">
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-				</xsl:apply-templates>
-				
-				<xsl:apply-templates mode="complexElement" select="gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty">
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-				</xsl:apply-templates>
-				
-			</xsl:with-param>
-		</xsl:call-template>
-	</xsl:template>-->
-	
-<!--	<xsl:template mode="iso19139" match="gmd:EX_VerticalExtent">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		
-		<xsl:apply-templates mode="complexElement" select=".">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-	</xsl:template>
-	
-	<xsl:template mode="iso19139" match="gmd:citation/gmd:CI_Citation/gmd:series/gmd:CI_Series">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		
-		<xsl:apply-templates mode="simpleElement" select=".">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-	</xsl:template>	
-	
-	<!-\- Optional for RNDT -\->
-	<xsl:template mode="iso19139" match="gmd:citation/gmd:CI_Citation/gmd:otherCitationDetails">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		
-		<xsl:apply-templates mode="simpleElement" select=".">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-	</xsl:template>	
-	
-	<xsl:template mode="iso19139" match="gmd:spatialResolution">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		
-		<xsl:apply-templates mode="complexElement" select=".">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-	</xsl:template>
-	
-	<!-\- Optional for RNDT -\->
-	<xsl:template mode="iso19139" match="gmd:supplementalInformation">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		
-		<xsl:apply-templates mode="simpleElement" select=".">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-	</xsl:template>-->
-	
+
 </xsl:stylesheet>
