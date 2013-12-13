@@ -170,14 +170,15 @@
 	<xsl:template match="gmd:LanguageCode[@codeListValue]" priority="10">
 		<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/">
 			<xsl:apply-templates select="@*[name(.)!='codeList']"/>
-		</gmd:LanguageCode>
-	</xsl:template>
-	<!-- 'fre' should be use for metadata record in French.
-		Some catalogues are using 'fra' instead. -->
-	<xsl:template match="gmd:language[gco:CharacterString='fra']" priority="10">
-		<gmd:language>
-			<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="fre"/>
-		</gmd:language>
+
+            <!-- add a node text-->
+            <xsl:if test="string-length()=0">
+                <xsl:value-of select="@codeListValue"/>
+            </xsl:if>
+            <xsl:if test="string-length()>0">
+                <xsl:value-of select="."/>
+            </xsl:if>
+        </gmd:LanguageCode>
 	</xsl:template>
 	
 	<xsl:template match="gmd:*[@codeListValue]">
@@ -186,6 +187,14 @@
 			<xsl:attribute name="codeList">
 			  <xsl:value-of select="concat('http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#',local-name(.))"/>
 			</xsl:attribute>
+
+            <!-- add a node text-->
+            <xsl:if test="string-length()=0">
+                <xsl:value-of select="@codeListValue"/>
+            </xsl:if>
+            <xsl:if test="string-length()>0">
+                <xsl:value-of select="."/>
+            </xsl:if>
 		</xsl:copy>
 	</xsl:template>
 
@@ -197,6 +206,14 @@
 			<xsl:attribute name="codeList">
 				<xsl:value-of select="concat('http://www.isotc211.org/2005/iso19119/resources/Codelist/gmxCodelists.xml#',local-name(.))"/>
 			</xsl:attribute>
+
+            <!-- add a node text-->
+            <xsl:if test="string-length()=0">
+                <xsl:value-of select="@codeListValue"/>
+            </xsl:if>
+            <xsl:if test="string-length()>0">
+                <xsl:value-of select="."/>
+            </xsl:if>
 		</xsl:copy>
 	</xsl:template>
 
