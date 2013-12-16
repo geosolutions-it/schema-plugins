@@ -123,7 +123,7 @@ MD_ScopeCode" codeListValue="service">Servizio</gmd:MD_ScopeCode>
 									<gmd:onlineResource>
 										<gmd:CI_OnlineResource>
 											<gmd:linkage>
-												<gmd:URL>>http://sito.web.ufficio.responsabile.servizio.it</gmd:URL>
+												<gmd:URL>http://sito.web.ufficio.responsabile.servizio.it</gmd:URL>
 											</gmd:linkage>
 										</gmd:CI_OnlineResource>
 									</gmd:onlineResource>
@@ -164,7 +164,7 @@ MD_ScopeCode" codeListValue="service">Servizio</gmd:MD_ScopeCode>
 							<gmd:onlineResource>
 								<gmd:CI_OnlineResource>
 									<gmd:linkage>
-										<gmd:URL>>http://sito.web.organizzazione.da.contattare.per.informazioni.risorsa.it</gmd:URL>
+										<gmd:URL>http://sito.web.organizzazione.da.contattare.per.informazioni.risorsa.it</gmd:URL>
 									</gmd:linkage>
 								</gmd:CI_OnlineResource>
 							</gmd:onlineResource>
@@ -297,6 +297,7 @@ CI_DateTypeCode" codeListValue="publication">Pubblicazione</gmd:CI_DateTypeCode>
 							<gmd:explanation>
 								<gco:CharacterString>Fare riferimento alle specifiche indicate</gco:CharacterString>
 							</gmd:explanation>
+							<gmd:pass></gmd:pass>
 						</gmd:DQ_ConformanceResult>
 					</gmd:result>
 				</gmd:DQ_DomainConsistency>
