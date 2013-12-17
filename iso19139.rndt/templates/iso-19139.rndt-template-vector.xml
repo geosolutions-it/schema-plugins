@@ -15,7 +15,7 @@
 		<gco:CharacterString>cod_ipa:id_file</gco:CharacterString>
 	</gmd:fileIdentifier>
 	<gmd:language>
-		<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2" codeListValue="ita">ita</gmd:LanguageCode>
+		<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="ita">ita</gmd:LanguageCode>
 	</gmd:language>
 	<gmd:characterSet>
 		<gmd:MD_CharacterSetCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_CharacterSetCod
@@ -433,8 +433,7 @@ org/export.htm?gml=urn:ogc:def:crs:EPSG::4979"/>
 									<gmd:date>
 										<gmd:CI_Date>
 											<gmd:date>
-												<gco:Date>2010-
-12-08</gco:Date>
+												<gco:Date>2010-12-08</gco:Date>
 											</gmd:date>
 											<gmd:dateType>
 												<gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication">Pubblicazione</gmd:CI_DateTypeCode>
