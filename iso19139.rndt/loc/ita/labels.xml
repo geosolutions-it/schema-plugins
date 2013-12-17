@@ -7,39 +7,13 @@
 		<help>Testo libero. Da evitare abbreviazioni.</help>		
 	</element>
 	<element name="gmd:code" context="gmd:RS_Identifier">
-		<label>Identificatore</label>
-		<condition>Identificatore univoco della risorsa</condition>
-		<condition>Obbligatorio</condition>
-	</element>
-	<element name="gmd:code" context="gmd:RS_Identifier">
-		<label>Identificatore</label>
-		<condition>Identificatore univoco della risorsa</condition>
-		<condition>Obbligatorio</condition>
-	</element>
-	<element name="gmd:issueIdentification">
-		<label>Id livello superiore</label>
-		<description>Identificatore del file di metadati di livello superiore</description>
+		<label>Identificatore univoco della risorsa</label>
 		<condition>Obbligatorio</condition>
 	</element>
 	<element name="gmd:hierarchyLevel">
 		<label>Livello gerarchico</label>
 		<description>Categoria di informazione cui vengono applicati metadati</description>
 		<condition>Obbligatorio</condition>
-	</element>
-	<element name="gmd:fileIdentifier">
-		<label>Identificatore del file</label>
-		<description>Identificatore del file di metadati</description>
-		<condition>Obbligatorio</condition>
-	</element>
-	<element name="gmd:parentIdentifier">
-		<label>Id file precedente</label>
-		<description>Identificatore metadati di rango superiore</description>
-		<condition>Obbligatorio</condition>
-	</element>
-	<element name="gmd:URL">
-		<label>Sito web</label>
-		<description>Sito web</description>
-		<condition>Documentare alternativamente a 'Telefono'</condition>
 	</element>
 	<element name="gmd:date" context="gmd:CI_Citation">
 		<condition>Obbligatorio</condition>
@@ -59,7 +33,7 @@
 		<description>Organizzazione titolare dei dati.</description>
 	</element>
 	<element name="gmd:organisationName">
-		<label>Nome dell'Ente</label>
+		<label>Ente, ufficio o soggetto responsabile</label>
 		<description>Indicare il nome completo dell'ufficio, dell'ente o del soggetto responsabile. Non usare abbreviazioni (es. inserire "Regione" e non "Reg.").</description>
 		<condition>Obbligatorio</condition>
 	</element>
@@ -67,54 +41,6 @@
 		<label>Telefono</label>
 		<description>Numero telefonico dell'ufficio, dell'ente o del soggetto responsabile</description>
 		<_condition>È necessario documentare obbligatoriamente almeno un elemento tra telefono e sito web.</_condition>
-	</element>
-	<element name="gmd:name" context="gmd:MD_Format">
-		<label>Name formato</label>
-		<description>Formato di distribuzione</description>
-		<condition>Obbligatorio</condition>
-	</element>
-	<element name="gmd:numberOfDimensions">
-		<label>Numero di dimensioni</label>
-		<description>Numero degli assi spaziali-temporali indipendenti</description>
-		<condition>obbligatorio</condition>
-	</element>
-	<element name="gmd:cornerPoints">
-		<label>Punto del pixel</label>
-		<description>Posizione sulla Terra nel sistema di riferimento definito dall' SRS e dalla coordinata griglia delle celle agli estremi opposti di un'immagine raster lungo le due diagonali</description>
-		<condition>obbligatorio</condition>
-	</element>
-	<element name="srv:couplingType">
-		<label>Risorsa accoppiata</label>
-		<description>Tipo di accoppiamentog</description>
-	</element>
-	<element name="srv:DCP">
-		<label>DCP (Distributed Computing Platforms)</label>
-	</element>
-	<element name="srv:connectPoint">
-		<label>Punto di connessione</label>
-		<description>Gestione per l'accesso all'interfaccia del servizio</description>
-	</element>
-	<element name="srv:invocationName">
-		<label>Nome richiesta</label>
-		<description>Il nome utilizzato per richiamare questa interfaccia nel contesto del DCP. Il nome è identico per tutti i DCP</description>
-	</element>
-	<element name="gmd:attributeDescription">
-		<label>Descrizione degli attributi</label>
-		<description>Descrizione dell'attributo descritto dal valore di misura</description>
-		<condition>obbligatorio</condition>
-	</element>
-	<element name="gmd:bitsPerValue">
-		<label>Risoluzione radiometrica</label>
-		<description>Numero massimo di bit significativi con cui può essere rappresentata l'intensità radiometrica di ogni pixel</description>
-	</element>
-	<element name="gmd:resourceMaintenance">
-		<label>Gestione dei dati</label>
-		<description>Informazioni sulla frequenza di aggiornamento della risorsa.</description>
-	</element>
-	<element name="gmd:version" context="gmd:MD_Format">
-		<label>Versione formato</label>
-		<description>Versione di distribuzione</description>
-		<condition>Obbligatorio</condition>
 	</element>
 	<element name="gmd:pointOfContact">
 		<label>Punto di contatto</label>
@@ -128,23 +54,17 @@
 		<condition>obbligatorio</condition>
 		<help>Indicare il nome completo dell’ufficio responsabile della comunicazione dei metadati come indicato all’atto dell’accreditamento IPA. Non usare abbreviazioni (es.inserire ‘Regione’ e non ‘Reg.’).</help>
 	</element>
-	<element name="gmd:language" context="gmd:MD_DataIdentification">
-		<label>Lingua</label>
-		<description>Linguaggio utilizzato per i dati</description>
-		<help>Linguaggio utilizzato per i dati</help>
-		<_condition>Obbligatorio</_condition>
-	</element>
-	<!--element name="gmd:language" context="gmd:MD_Metadata">
+	<element name="gmd:language" context="gmd:MD_Metadata">
 		<label>Lingua dei metadati</label>
 		<description>Linguaggio nel quale sono espressi i metadati</description>
 		<condition>Obbligatorio</condition>
-	</element-->
-	<!--element name="gmd:language">
+	</element>
+	<element name="gmd:language">
 		<label>Lingua della risorsa</label>
 		<description>Linguaggio utilizzato per i dati</description>
 		<help>Linguaggio utilizzato per i dati</help>
 		<condition>Obbligatorio</condition>
-	</element-->
+	</element>
 	<element name="gmd:CI_Series">
 		<label>Id livello superiore</label>
 		<description>Riferimento univoco relativo alla serie di cui il dataset è parte</description>
@@ -152,7 +72,7 @@
 		<condition>Obbligatorio</condition>
 	</element>
 	<element name="gmd:abstract">
-		<label>Descrizione</label>
+		<label>Sommario</label>
 		<description>Breve testo di descrizione del contenuto della risorsa</description>
 		<condition>obbligatorio</condition>
 		<help>Testo libero. Fornire una descrizione dei dati che si stanno documentando.</help>
@@ -235,8 +155,8 @@
 		<help>Si fa riferimento al DM e relativi allegati che regolamentano il funzionamento del Repertorio. Il nome da inserire è “DM - Regole tecniche RNDT”.</help>
 	</element>
 	<element name="gmd:metadataStandardVersion">
-		<label>Versione dello standard</label>
-		<description>Versione dello standard/profilo di metadati utilizzato</description>
+		<label>Versione dello standard/profilo di metadati utilizzato</label>
+		<description>Versione dello standard/profilo utilizzato</description>
 		<condition>Obbligatorio</condition>
 		<help>Si fa riferimento al DM e relativi allegati che regolamentano il funzionamento del Repertorio. La versione da indicare è “10 novembre 2011”.</help>
 	</element>
@@ -291,7 +211,7 @@
 		Testo libero. Descrivere la provenienza e il processo di produzione dei dati, fornendo informazioni sulla storia e il ciclo di vita, dalla rilevazione e l’acquisizione fino alla forma attuale. L’elemento può includere qualsiasi informazione sulla qualità richiesta per garantire l’interoperabilità e la valutazione dei dati e, dove necessario, una dichiarazione che indica se l'insieme di dati è stato convalidato o sottoposto a un controllo di qualità, se si tratta della versione ufficiale (qualora esistano più versioni) e se ha una validità legale.
 	</element>
 	<element name="gmd:statement" id="83.0">
-		<label>Genealogia</label>
+		<label>Genealogia del dato – Processo di produzione</label>
 		<description>Testo descrittivo della “genealogia” dei dati</description>
 		<condition>Obbligatorio</condition>
 	</element>
@@ -311,19 +231,6 @@
 		<condition>Obbligatorio</condition>
 		<help>Per la compilazione dell'lemento stesso  valgono le indicazioni fornite nel dizionario al § 3.4.2 dell’allegato 2 al DM (true = conforme, false = non conforme e se non viene espresso nessun grado di conformità, allora si considera il grado pari al valore “non valutato”). Ciò significa che in tal caso, nel file XML deve essere comunque presente il tag relativo anche se non valorizzato.</help>
 	</element>
-	<element name="gmd:referenceSystemInfo" id="13.0">
-		<label>Sistema di riferimento</label>
-		<description>Descrizione del sistema di riferimento spaziale dei dati</description>
-	</element>
-	<element name="gmd:MD_TopicCategoryCode">
-		<label>Categoria tematica</label>
-		<description>Classificazione tematica dei dati geografici usata per aiutare nel raggruppamento e nella ricerca dei dataset geografici disponibili. Può anche essere usata per raggruppare le keyword. NOTA: Ci sono sovrapposizioni tra le categorie generali; si incoraggia l'utente a selezionare quella più appropriata.</description>
-	</element>
-	<element name="gmd:classification" id="74.0">
-		<condition>Obbligatorio</condition>
-		<label>Vincoli di sicurezza</label>
-		<description>Nome delle restrizioni d'utilizzo sulla risorsa o sui metadati</description>
-	</element>	
 	<element name="gmd:identifier" context="gmd:CI_Citation">
 		<label>Identificatore</label>
 		<description>Riferimento univoco che identifica la risorsa nel livello gerarchico specificato</description>
@@ -349,7 +256,7 @@
 		<help>L’elemento deve assumere uno dei valori della lista “MD_CharacterSetCode” (§ 3.4.3.5 – all. 2 DM)</help>
 	</element>
 	<element name="gmd:characterSet" id="40.0" context="gmd:MD_DataIdentification">
-		<label>Set dei caratteri</label>
+		<label>Set dei caratteri dei dati</label>
 		<description>Nome dello standard del set di caratteri utilizzato per i dati</description>
 		<_condition>condizionato / deve essere documentato se ISO/IEC 10646-1 non è utilizzato e non è definito dall’encoding</_condition>
 		<help>L’elemento deve assumere uno dei valori della lista “MD_CharacterSetCode” (§ 3.4.3.5 – all. 2 DM)</help>
