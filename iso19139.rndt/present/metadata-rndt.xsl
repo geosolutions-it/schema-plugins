@@ -265,20 +265,6 @@
 						select="generate-id(/root/gui/schemas/iso19139.rndt/strings/service/title)" />
 					<xsl:with-param name="content">
 						
-						<!-- Service Type -->
-						<xsl:apply-templates mode="elementEP"
-							select="srv:serviceType">
-							<xsl:with-param name="schema" select="$schema" />
-							<xsl:with-param name="edit" select="$edit" />
-						</xsl:apply-templates>
-						<xsl:if test="not(gmd:serviceType)">
-							<xsl:apply-templates mode="elementEP"
-								select="geonet:child[string(@name)='serviceType']">
-								<xsl:with-param name="schema" select="$schema" />
-								<xsl:with-param name="edit" select="$edit" />
-							</xsl:apply-templates>
-						</xsl:if>
-						
 						<!-- Coupling Type -->
 						<xsl:apply-templates mode="elementEP"
 							select="srv:couplingType">
@@ -302,6 +288,20 @@
 						<xsl:if test="not(srv:operatesOn)">
 							<xsl:apply-templates mode="elementEP"
 								select="geonet:child[string(@name)='operatesOn']">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+							</xsl:apply-templates>
+						</xsl:if>
+						
+						<!-- Service Type -->
+						<xsl:apply-templates mode="elementEP"
+							select="srv:serviceType">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>
+						<xsl:if test="not(gmd:serviceType)">
+							<xsl:apply-templates mode="elementEP"
+								select="geonet:child[string(@name)='serviceType']">
 								<xsl:with-param name="schema" select="$schema" />
 								<xsl:with-param name="edit" select="$edit" />
 							</xsl:apply-templates>
@@ -373,19 +373,6 @@
 					</xsl:if>
 					
 					<xsl:apply-templates mode="elementEP"
-						select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints">
-						<xsl:with-param name="schema" select="$schema" />
-						<xsl:with-param name="edit" select="$edit" />
-					</xsl:apply-templates>
-					<xsl:if test="not(gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints)">
-						<xsl:apply-templates mode="elementEP"
-							select="gmd:resourceConstraints/gmd:MD_LegalConstraints/geonet:child[string(@name)='otherConstraints']">
-							<xsl:with-param name="schema" select="$schema" />
-							<xsl:with-param name="edit" select="$edit" />
-						</xsl:apply-templates>
-					</xsl:if>
-					
-					<xsl:apply-templates mode="elementEP"
 						select="gmd:resourceConstraints/gmd:MD_SecurityConstraints/gmd:classification">
 						<xsl:with-param name="schema" select="$schema" />
 						<xsl:with-param name="edit" select="$edit" />
@@ -393,6 +380,19 @@
 					<xsl:if test="not(gmd:resourceConstraints/gmd:MD_SecurityConstraints/gmd:classification)">
 						<xsl:apply-templates mode="elementEP"
 							select="gmd:resourceConstraints/gmd:MD_SecurityConstraints/geonet:child[string(@name)='classification']">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>
+					</xsl:if>
+					
+					<xsl:apply-templates mode="elementEP"
+						select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints">
+						<xsl:with-param name="schema" select="$schema" />
+						<xsl:with-param name="edit" select="$edit" />
+					</xsl:apply-templates>
+					<xsl:if test="not(gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints)">
+						<xsl:apply-templates mode="elementEP"
+							select="gmd:resourceConstraints/gmd:MD_LegalConstraints/geonet:child[string(@name)='otherConstraints']">
 							<xsl:with-param name="schema" select="$schema" />
 							<xsl:with-param name="edit" select="$edit" />
 						</xsl:apply-templates>
