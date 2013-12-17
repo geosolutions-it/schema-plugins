@@ -8,12 +8,12 @@
 	</element>
 	<element name="gmd:code" context="gmd:RS_Identifier">
 		<label>Identificatore</label>
-		<condition>Identificatore univoco della risorsa</condition>
+		<description>Identificatore univoco della risorsa</description>
 		<condition>Obbligatorio</condition>
 	</element>
 	<element name="gmd:code" context="gmd:RS_Identifier">
 		<label>Identificatore</label>
-		<condition>Identificatore univoco della risorsa</condition>
+		<description>Identificatore univoco della risorsa</description>
 		<condition>Obbligatorio</condition>
 	</element>
 	<element name="gmd:issueIdentification">
@@ -28,18 +28,20 @@
 	</element>
 	<element name="gmd:fileIdentifier">
 		<label>Identificatore del file</label>
-		<description>Identificatore del file di metadati</description>
+		<description>Identificatore univovo del file di metadati</description>
 		<condition>Obbligatorio</condition>
+		<help>L'identificatore deve avere come prefisso il codice IPA dell'Amministrazione titolare del dato o del servizio, seguito dal carattere ":". Il codice IPA assegnato all'Amministrazione nel momento dell'accreditamento come da comma 1 dell’art. 19 dell'allegato A del DPCM 1 aprile 2008.</help>
 	</element>
 	<element name="gmd:parentIdentifier">
 		<label>Id file precedente</label>
-		<description>Identificatore metadati di rango superiore</description>
+		<description>Identificatore univoco del file di metadati dell'eventuale trasmissione precedente al RNDT, cui il file corrente è relazionato.</description>
 		<condition>Obbligatorio</condition>
+		<help>L'identificatore deve avere come prefisso il codice IPA dell'Amministrazione titolare del dato o del servizio, seguito dal carattere ":". Il codice IPA assegnato all'Amministrazione nel momento dell'accreditamento come da comma 1 dell’art. 19 dell'allegato A del DPCM 1 aprile 2008. Nel caso di prima trasmissione l'elemento assume lo stesso valore dell’elemento "Identificatore del file".</help>
 	</element>
 	<element name="gmd:URL">
 		<label>Sito web</label>
 		<description>Sito web</description>
-		<condition>Documentare alternativamente a 'Telefono'</condition>
+		<help>Se l'informazione è fornita per identificare un ente, un ufficio o un soggetto associato a un dato o a un servizio, può essere inserita alternativamente al 'Telefono'</help>
 	</element>
 	<element name="gmd:date" context="gmd:CI_Citation">
 		<condition>Obbligatorio</condition>
@@ -67,6 +69,7 @@
 		<label>Telefono</label>
 		<description>Numero telefonico dell'ufficio, dell'ente o del soggetto responsabile</description>
 		<_condition>È necessario documentare obbligatoriamente almeno un elemento tra telefono e sito web.</_condition>
+		<help>Può essere inserita alternativamente al 'Sito web'</help>
 	</element>
 	<element name="gmd:name" context="gmd:MD_Format">
 		<label>Name formato</label>
@@ -88,7 +91,8 @@
 		<description>Tipo di accoppiamentog</description>
 	</element>
 	<element name="srv:DCP">
-		<label>DCP (Distributed Computing Platforms)</label>
+		<label>DCP (Distributed Computing Platforms)</label>		
+		<description>Lista dei valori DCPList</description>
 	</element>
 	<element name="srv:connectPoint">
 		<label>Punto di connessione</label>
@@ -244,7 +248,7 @@
 		<label>Tipo data</label>
 		<description>Evento della data di riferimento</description>
 		<condition>obbligatorio</condition>
-		<help>L'elemento puo assumere uno dei valori della lista “CI_DateTypeCode” (§ 3.4.3.1 - all. 2 DM). Vista l’estensione della codelist effettuata dal RNDT con l’aggiunta del valore “rilievo”, per garantire la conformità con INSPIRE è necessario che sia presente almeno una data il cui tipo sia o “creazione (creation)” o “pubblicazione (publication)” o “revisione (revision)”. </help>
+		<help>L'elemento puo assumere uno dei valori della lista “CI_DateTypeCode” (§ 3.4.3.1 - all. 2 DM). Vista l’estensione della codelist effettuata dal RNDT con l’aggiunta del valore “rilievo”, per garantire la conformità con INSPIRE è necessario che sia presente almeno una data il cui tipo sia o “creazione (creation)” o “pubblicazione (publication)” o “revisione (revision)”. Il tipo di data per il thesaurus GEMET – INSPIRE Themes è “pubblicazione”. </help>
 	</element>
 	<element name="gmd:EX_TemporalExtent">
 		<label>Estensione temporale</label>
@@ -316,10 +320,12 @@
 		<description>Descrizione del sistema di riferimento spaziale dei dati</description>
 	</element>
 	<element name="gmd:MD_TopicCategoryCode">
-		<label>Categoria tematica</label>
-		<description>Classificazione tematica dei dati geografici usata per aiutare nel raggruppamento e nella ricerca dei dataset geografici disponibili. Può anche essere usata per raggruppare le keyword. NOTA: Ci sono sovrapposizioni tra le categorie generali; si incoraggia l'utente a selezionare quella più appropriata.</description>
+		<label>Categoria tematica</label>		
+		<description>Tema principale cui si riferiscono i dati.</description>
+		<condition>Obbligatorio</condition>
+		<help>L’elemento deve assumere uno dei valori della lista “MD_TopicCategoryCode” (§ 3.4.3.15 – all. 2 DM).</help>
 	</element>
-	<element name="gmd:classification" id="74.0">
+	<element name="gmd:classification" id="74.0">		
 		<condition>Obbligatorio</condition>
 		<label>Vincoli di sicurezza</label>
 		<description>Nome delle restrizioni d'utilizzo sulla risorsa o sui metadati</description>
@@ -359,5 +365,31 @@
 		<description>Metodo di rappresentazione spaziale dei dati</description>
 		<condition>Obbligatorio</condition>
 		<help>L’elemento Esso deve assumere uno dei valori della lista “CI_SpatialRepresentationTypeCode” (§ 3.4.3.14 - all. 2 DM)</help>
+	</element>
+	<element name="gmd:transferOptions" id="273.0">
+		<label>Risorsa on-line</label>
+		<description>Informazioni sulle fonti online per accedere alla risorsa</description>
+		<help>Dati: inserire l’indirizzo espresso come URL al quale è possibile ottenere i dati documentati e/o accedere ai relativi servizi. Se non è disponibile nessun link diretto alla risorsa, allora fornire un link ad un punto di contatto dove reperire maggiori informazioni sulla risorsa stessa.
+		Servizi: da documentare obbligatoriamente se è disponibile un link al servizio. L’elemento potrebbe essere indicato in uno dei modi seguenti: un link ad un documento di “capabilities” del servizio; un link ad un documento WSDL del servizio (SOAP binding); un link ad una pagina web con ulteriori informazioni; un link ad un’applicazione client con cui si accede direttamente al servizio.</help>
+	</element>
+	<element name="gmd:role" id="379.0">
+		<label>Ruolo</label>
+		<description>Ruolo dell'ente, dell'ufficio o del soggetto cui l'elemento fa riferimento</description>
+		<condition>obbligatorio</condition>
+	</element>
+	<element name="gmd:MD_DigitalTransferOptions" id="274.0">
+		<label>Risorsa on-line</label>
+		<description>Indirizzo per l'accesso online alla risorsa</description>
+		<help>Dati: inserire l’indirizzo espresso come URL al quale è possibile ottenere i dati documentati e/o accedere ai relativi servizi. Se non è disponibile nessun link diretto alla risorsa, allora fornire un link ad un punto di contatto dove reperire maggiori informazioni sulla risorsa stessa.
+		Servizi: da documentare obbligatoriamente se è disponibile un link al servizio. L’elemento potrebbe essere indicato in uno dei modi seguenti: un link ad un documento di “capabilities” del servizio; un link ad un documento WSDL del servizio (SOAP binding); un link ad una pagina web con ulteriori informazioni; un link ad un’applicazione client con cui si accede direttamente al servizio.</help>
+	</element>
+	<element name="gmd:CI_Date" id="393.0">
+		<label>Data</label>
+		<description>Data di riferimento ed evento usato per descriverla (aaaa-mm-gg o aaaammgg)</description>
+		<_condition>L'obbligatorietà di questo campo dipende dal soggetto referente</_condition>
+	</element>
+	<element name="gmd:RS_Identifier" id="208.0">
+		<description>Identificatore</description>
+		<label>Identificatore</label>
 	</element>
 </labels>
