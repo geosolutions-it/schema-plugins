@@ -224,7 +224,7 @@
 		<help>È necessario fornire le informazioni relative ai seguenti elementi, espressi in gradi decimali, con la precisione di almeno due cifre decimali, nel sistema WGS84</help>
 	</element>
 	<element name="gmd:verticalCRS">
-		<label>Datum verticale</label>
+		<label>CRS verticale</label>
 		<description>Fornisce informazioni sull'origine da cui vengono misurati i valori delle quote massime e minime</description>
 		<help>Per la documentazione di questo elemento, utilizzare, facendo comunque riferimento alla lista di valori “MD_ReferenceSystemCode” di cui al § 3.4.3.11 dell’allegato 2 al DM, il tag relativo con la compilazione del solo attributo “href” attraverso il quale indicare l’URI al quale reperire le informazioni del sistema di riferimento considerato. Nel caso in cui si tratta di un sistema di riferimento inserito nel database di EPSG, allora l’URI da considerare è “http://www.epsgregistry. org/export.htm?gml=urn:ogc:def:crs:EPSG::xxxx” dove ‘xxxx’ è il codice EPSG del sistema considerato (v., a questo proposito, la tabella delle corrispondenze al § 3.4.8.3 dell’allegato 2 al DM). Nel caso in cui il sistema di riferimento non sia inserito nel database di EPSG, allora l’URI da considerare è il seguente: “http://www.rndt.gov.it/ReferenceSystemCode#codice_domini o” dove ‘codice_dominio’ è il valore della omonima colonna della lista di valori citata, corrispondente al sistema considerato.</help>
 	</element>
