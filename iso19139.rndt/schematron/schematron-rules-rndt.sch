@@ -77,15 +77,15 @@
 			and gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode!=''">$loc/strings/alert.M8</sch:assert>
 		</sch:rule>
 	</sch:pattern>
-	<!--DATA/SERVICE IDENTIFICATION - RESPONSIBLE PARTY-->
+	<!--DATA/SERVICE IDENTIFICATION - RESPONSIBLE PARTY (POINT OF CONTACT)-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M9</sch:title>
-		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation
-		|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation">
-			<sch:let name="responsibleParty" value="(gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString) 
-			and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='pointOfContact') 
-			and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='distributor') 
-			and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString) and ((gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString) or (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL))"/>
+		<sch:rule context="//gmd:MD_Metadata/gmd:contact">
+			<sch:let name="responsibleParty" value="(gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString!='')
+			and count(gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue='pointOfContact')>0 		
+			and (gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString!='') 
+			and ((gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString!='') 
+			or (gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL!=''))"/>
 			<sch:assert test="$responsibleParty">$loc/strings/alert.M9</sch:assert>
 		</sch:rule>
 	</sch:pattern>
@@ -104,14 +104,17 @@
 			<sch:assert test="gmd:series/gmd:CI_Series/gmd:issueIdentification/gco:CharacterString">$loc/strings/alert.M14</sch:assert>
 		</sch:rule>
 	</sch:pattern>
-	<!--DATA/SERVICE IDENTIFICATION - DATASET RESPONSIBLE PARTY (POINT OF CONTACT)-->
+	<!--DATA/SERVICE IDENTIFICATION - DATASET RESPONSIBLE PARTY-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M15</sch:title>
 		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation
 		|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation">
-			<sch:let name="responsibleParty" value="(gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString) 
-			and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue='pointOfContact') 
-			and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString) and ((gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString) or (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL))"/>
+			<sch:let name="responsibleParty" value="(gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString!='') 
+			and count(gmd:citedResponsibleParty[gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='pointOfContact'
+			or gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='distributor']) > 0
+			and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString!='') 
+			and ((gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString!='') 
+			or (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL!=''))"/>
 			<sch:assert test="$responsibleParty">$loc/strings/alert.M15</sch:assert>
 		</sch:rule>
 	</sch:pattern>
@@ -142,9 +145,9 @@
 	<!--DATA/SERVICE IDENTIFICATION - GEOGRAPHIC LOCATION-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M33</sch:title>
-		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification
-		|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
-			<sch:assert test="gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox">$loc/strings/alert.M33</sch:assert>
+		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent
+		|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent">
+			<sch:assert test="gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox">$loc/strings/alert.M33</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 	<!--DATA/SERVICE QUALITY - SCOPE-->
@@ -198,7 +201,7 @@
 	</sch:pattern>
 	<!--DATA/SERVICE IDENTIFICATION - KEYWORDS-->
 	<sch:pattern>
-		<sch:let name="inspireKeyWords">Condizioni atmosferiche;Atmospheric conditions;Copertura del suolo;Land cover;Distribuzione della popolazione - demografia;Population distribution — demography;Distribuzione delle specie;Species distribution;Edifici;Buildings;Elementi geografici meteorologici;Meteorological geographical features;Elementi geografici oceanografici;Oceanographic geographical features;Elevazione;Elevation;Geologia;Geology;Habitat e biotopi;Habitats and biotopes;Idrografia;Hydrography;Impianti agricoli e di acquacoltura;Agricultural and aquaculture facilities;Impianti di monitoraggio ambientale;Environmental monitoring facilities;Indirizzi;Addresses;Nomi geografici;Geographical names;Orto immagini;Orthoimagery;Parcelle catastali;Cadastral parcels;Produzione e impianti industriali;Production and industrial facilities;Regioni biogeografiche;Bio-geographical regions;Regioni marine;Sea regions;Reti di trasporto;Transport networks;Risorse energetiche;Energy resources;Risorse minerarie;Mineral resources;Salute umana e sicurezza;Human health and safety;Servizi di pubblica utilità e servizi amministrativi;Utility and governmental services</sch:let>
+		<sch:let name="inspireKeyWords">Condizioni atmosferiche;Atmospheric conditions;Copertura del suolo;Land cover;Distribuzione della popolazione - demografia;Population distribution — demography;Distribuzione delle specie;Species distribution;Edifici;Buildings;Elementi geografici meteorologici;Meteorological geographical features;Elementi geografici oceanografici;Oceanographic geographical features;Elevazione;Elevation;Geologia;Geology;Habitat e biotopi;Habitats and biotopes;Idrografia;Hydrography;Impianti agricoli e di acquacoltura;Agricultural and aquaculture facilities;Impianti di monitoraggio ambientale;Environmental monitoring facilities;Indirizzi;Addresses;Nomi geografici;Geographical names;Orto immagini;Orthoimagery;Parcelle catastali;Cadastral parcels;Produzione e impianti industriali;Production and industrial facilities;Regioni biogeografiche;Bio-geographical regions;Regioni marine;Sea regions;Reti di trasporto;Transport networks;Risorse energetiche;Energy resources;Risorse minerarie;Mineral resources;Salute umana e sicurezza;Human health and safety;Servizi di pubblica utilità e servizi amministrativi;Utility and governmental services;Sistemi di coordinate;Coordinate reference systems;Sistemi di griglie geografiche;Geographical grid systems;Siti protetti;Protected sites;Suolo;Soil;Unità amministrative;Administrative units;Unità statistiche;Statistical units;Utilizzo del territorio;Land use;Zone a rischio naturale;Natural risk zones;Zone sottoposte a gestione/limitazioni/regolamentazione e unità con obbligo di comunicare dati;Area management/restriction/regulation zones and reporting units</sch:let>
 		<sch:let name="gemetThesaurusTitle">GEMET - INSPIRE themes, version 1.0</sch:let>
 		<sch:let name="gemetThesaurusDate">2008-06-01</sch:let>
 		<sch:let name="gemetThesaurusDateType">publication</sch:let>

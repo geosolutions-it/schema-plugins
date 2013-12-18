@@ -14,7 +14,7 @@
 		<gco:CharacterString>cod_ipa:id_file</gco:CharacterString>
 	</gmd:fileIdentifier>
 	<gmd:language>
-		<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2" codeListValue="ita">ita</gmd:LanguageCode>
+		<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="ita">ita</gmd:LanguageCode>
 	</gmd:language>
 	<gmd:characterSet>
 		<gmd:MD_CharacterSetCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_CharacterSetCod
@@ -487,9 +487,7 @@ TypeCode" codeListValue="image">Immagine</gmd:MD_CoverageContentTypeCode>
 							<gmd:specification>
 								<gmd:CI_Citation>
 									<gmd:title>
-										<gco:CharacterString>REGOLAMENTO
-(UE) N. 1089/2010 DELLA COMMISSIONE del 23 novembre 2010 recante attuazione della direttiva 2007/2/CE del Parlamento europeo e del
-Consiglio per quanto riguarda l'interoperabilità dei set di dati territoriali e dei servizi di dati territoriali</gco:CharacterString>
+										<gco:CharacterString>REGOLAMENTO (UE) N. 1089/2010 DELLA COMMISSIONE del 23 novembre 2010 recante attuazione della direttiva 2007/2/CE del Parlamento europeo e del Consiglio per quanto riguarda l'interoperabilità dei set di dati territoriali e dei servizi di dati territoriali</gco:CharacterString>
 									</gmd:title>
 									<gmd:date>
 										<gmd:CI_Date>
