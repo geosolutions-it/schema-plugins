@@ -11,9 +11,9 @@
 	xmlns:exslt="http://exslt.org/common"
 	exclude-result-prefixes="gmd gco gml gts srv xlink exslt geonet">
 
-  <xsl:import href="metadata-fop.xsl"/>
+  <!--xsl:import href="metadata-fop.xsl"/-->
   <xsl:include href="metadata-rndt.xsl"/>
-
+  
   <xsl:template name="iso19139.rndtBrief">
     <metadata>
 			<xsl:choose>
@@ -103,9 +103,9 @@
 							<xsl:apply-templates mode="brief" select="."/>
 						</xsl:variable>
 						<xsl:variable name="metadata" select="exslt:node-set($md)/*[1]"/>
-						<xsl:call-template name="thumbnail">
+						<!--xsl:call-template name="thumbnail">
 							<xsl:with-param name="metadata" select="$metadata"/>
-						</xsl:call-template>
+						</xsl:call-template-->
 					</div>
 				</xsl:if>
 				<xsl:if test="/root/gui/config/editor-metadata-relation">
@@ -285,8 +285,6 @@
 	<!-- === Javascript used by functions in this presentation XSLT          -->
 	<!-- =================================================================== -->
 	<!-- Javascript used by functions in this XSLT -->
-	<xsl:template name="iso19139.rndt-javascript">
-		<xsl:call-template name="iso19139-javascript" />
-	</xsl:template>
+	<xsl:template name="iso19139.rndt-javascript" />
 
 </xsl:stylesheet>

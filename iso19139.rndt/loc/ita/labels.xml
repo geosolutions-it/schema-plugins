@@ -11,11 +11,6 @@
 		<condition>Identificatore univoco della risorsa</condition>
 		<condition>Obbligatorio</condition>
 	</element>
-	<element name="gmd:code" context="gmd:RS_Identifier">
-		<label>Identificatore</label>
-		<condition>Identificatore univoco della risorsa</condition>
-		<condition>Obbligatorio</condition>
-	</element>
 	<element name="gmd:issueIdentification">
 		<label>Id livello superiore</label>
 		<description>Identificatore del file di metadati di livello superiore</description>
