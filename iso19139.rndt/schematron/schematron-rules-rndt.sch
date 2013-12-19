@@ -20,12 +20,13 @@
 	<sch:pattern>
 		<sch:title>$loc/strings/M2</sch:title>
 		<sch:let name="langCodeList">bul;cze;dan;est;fin;fre;gre;eng;gle;ita;lav;lit;mlt;dut;pol;por;rum;slo;slv;spa;swe;ger;hun</sch:let>
-		<sch:let name="langCodeURI">http://www.loc.gov/standards/iso639-2/</sch:let>
+		<sch:let name="langCodeURI">http://www.loc.gov/standards/iso639-2</sch:let>
 		<sch:rule context="//gmd:MD_Metadata">
 			<sch:let name="value" value="gmd:language/gmd:LanguageCode/@codeListValue"/>
 			<!-- <sch:assert test="contains($langCodeList,gmd:language/gmd:LanguageCode/@codeListValue) and gmd:language/gmd:LanguageCode!='' and gmd:language/gmd:LanguageCode/@codeList= $langCodeURI">$loc/strings/alert.M2</sch:assert> -->
 			<sch:assert test="exists(tokenize($langCodeList, ';')[. = $value]) and gmd:language/gmd:LanguageCode!='' 
-			and gmd:language/gmd:LanguageCode/@codeList= $langCodeURI">$loc/strings/alert.M2</sch:assert>
+			and (gmd:language/gmd:LanguageCode/@codeList= $langCodeURI or
+			gmd:language/gmd:LanguageCode/@codeList = concat($langCodeURI,'/'))">$loc/strings/alert.M2</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 	<!--PARENT IDENTIFIER-->
@@ -348,6 +349,36 @@
 		</sch:rule>
 		<!--			<sch:assert test="matches(gco:Date,'^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$') or matches(gco:Date,'^(((\d{4}((0[13578]|1[02])(0[1-9]|[12]\d|3[01])|(0[13456789]|1[012])(0[1-9]|[12]\d|30)|02(0[1-9]|1\d|2[0-8])))|((\d{2}[02468][048]|\d{2}[13579][26]))0229)){0,8}$')">$loc/strings/alert.M100</sch:assert>
 		</sch:rule>-->
+	</sch:pattern>
+	<!--COD IPA-->
+	<sch:pattern>
+		<sch:title>$loc/strings/M101</sch:title>
+		<sch:rule context="gmd:parentIdentifier|gmd:fileIdentifier|
+		/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:series/gmd:CI_Series/gmd:issueIdentification|
+		/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code">
+			<sch:assert test="contains(gco:CharacterString,':')">$loc/strings/alert.M101</sch:assert>
+		</sch:rule>
+			</sch:pattern>
+	<!--COD IPA - PARENT IDENTIFIER-->
+	<sch:pattern>
+		<sch:title>$loc/strings/M102</sch:title>
+		<sch:rule context="gmd:parentIdentifier[contains(../gmd:fileIdentifier/gco:CharacterString,':')]">
+			<sch:assert test="starts-with(gco:CharacterString,substring-before(../gmd:fileIdentifier/gco:CharacterString,':'))">$loc/strings/alert.M102</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<!--COD IPA - SERIES-->
+	<sch:pattern>
+		<sch:title>$loc/strings/M103</sch:title>
+		<sch:rule context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code[contains(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':')]">
+			<sch:assert test="starts-with(gco:CharacterString,substring-before(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':'))">$loc/strings/alert.M103</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<!--COD IPA - IDENTIFIER-->
+	<sch:pattern>
+		<sch:title>$loc/strings/M104</sch:title>
+		<sch:rule context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:series/gmd:CI_Series/gmd:issueIdentification[contains(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':')]">
+			<sch:assert test="starts-with(gco:CharacterString,substring-before(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':'))">$loc/strings/alert.M104</sch:assert>
+		</sch:rule>
 	</sch:pattern>
 	<!--NIL REASON-->
 	<sch:pattern>
