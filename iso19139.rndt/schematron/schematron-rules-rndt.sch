@@ -39,7 +39,8 @@
 	<sch:pattern>
 		<sch:title>$loc/strings/M4</sch:title>
 		<sch:rule context="//gmd:MD_Metadata">
-			<sch:assert test="gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue and gmd:hierarchyLevel/gmd:MD_ScopeCode!=''">$loc/strings/alert.M4</sch:assert>
+			<sch:assert test="gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue">$loc/strings/alert.M4</sch:assert>
+			<sch:assert test="not(gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue) or gmd:hierarchyLevel/gmd:MD_ScopeCode!=''">$loc/strings/alert.M4a</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 	<!--METADATA STANDARD NAME-->
@@ -64,7 +65,7 @@
 	<sch:pattern>
 		<sch:title>$loc/strings/M7</sch:title>
 		<sch:rule context="//gmd:MD_Metadata">
-			<sch:assert test="gmd:characterSet/gmd:MD_CharacterSetCode/@codeListValue 
+			<sch:assert test="gmd:characterSet/gmd:MD_CharacterSetCode/@codeListValue
 			and gmd:characterSet/gmd:MD_CharacterSetCode!=''">$loc/strings/alert.M7</sch:assert>
 		</sch:rule>
 	</sch:pattern>
@@ -73,7 +74,7 @@
 		<sch:title>$loc/strings/M8</sch:title>
 		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation
 		|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation">
-			<sch:assert test="gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode/@codeListValue 
+			<sch:assert test="gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode/@codeListValue
 			and gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode!=''">$loc/strings/alert.M8</sch:assert>
 		</sch:rule>
 	</sch:pattern>
@@ -154,7 +155,7 @@
 	<sch:pattern>
 		<sch:title>$loc/strings/M34</sch:title>
 		<sch:rule context="//gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality">
-			<sch:assert test="gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode/@codeListValue 
+			<sch:assert test="gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode/@codeListValue
 			and gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode!=''">$loc/strings/alert.M34</sch:assert>
 		</sch:rule>
 	</sch:pattern>
