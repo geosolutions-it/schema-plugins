@@ -11,11 +11,6 @@
 		<description>Identificatore univoco della risorsa</description>
 		<condition>Obbligatorio</condition>
 	</element>
-	<element name="gmd:code" context="gmd:RS_Identifier">
-		<label>Identificatore</label>
-		<description>Identificatore univoco della risorsa</description>
-		<condition>Obbligatorio</condition>
-	</element>
 	<element name="gmd:issueIdentification">
 		<label>Id livello superiore</label>
 		<description>Identificatore del file di metadati di livello superiore</description>
@@ -28,7 +23,7 @@
 	</element>
 	<element name="gmd:fileIdentifier">
 		<label>Identificatore del file</label>
-		<description>Identificatore univovo del file di metadati</description>
+		<description>Identificatore univoco del file di metadati</description>
 		<condition>Obbligatorio</condition>
 		<help>L'identificatore deve avere come prefisso il codice IPA dell'Amministrazione titolare del dato o del servizio, seguito dal carattere ":". Il codice IPA assegnato all'Amministrazione nel momento dell'accreditamento come da comma 1 dell’art. 19 dell'allegato A del DPCM 1 aprile 2008.</help>
 	</element>
