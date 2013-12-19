@@ -111,6 +111,18 @@
 	<!--DATE FORMAT-->
 	<M100>Data - Formato</M100>
 	<alert.M100>La date devono essere documentate attraverso l'elemento gco:Date</alert.M100>
+	<!--COD IPA-->
+	<M101>Identificativi - Codice IPA</M101>
+	<alert.M101>Gli identificatavi devono avere come prefisso il codice IPA dell'Amministrazione Respansabile. Verificare che sia stato correttamente configurato il SiteId di GeoNetwork.</alert.M101>
+	<!--COD IPA - PARENT IDENTIFIER-->
+	<M102>Id file precedente - Codice IPA</M102>
+	<alert.M102>L'identificatore del file precedente deve avere come prefisso il codice IPA dell'Amministrazione Respansabile.</alert.M102>
+	<!--COD IPA - SERIES-->
+	<M103>Id livello superiore - Codice IPA</M103>
+	<alert.M103>L'identificatore del livello superiore deve avere come prefisso il codice IPA dell'Amministrazione Respansabile.</alert.M103>
+	<!--COD IPA - IDENTIFIER-->
+	<M104>Id della risorsa - Codice IPA</M104>
+	<alert.M104>L'identificatore del livello superiore deve avere come prefisso il codice IPA dell'Amministrazione Respansabile.</alert.M104>
 	<!--NIL REASON-->
 	<M110>Attributo errato</M110>
 	<alert.M110>Nessun elemento del metadato può utilizzare l'attributo gco:nilReason</alert.M110>
