@@ -40,7 +40,7 @@
                 <xsl:namespace name="gco" select="'http://www.isotc211.org/2005/gco'"/>
                 <xsl:namespace name="gmx" select="'http://www.isotc211.org/2005/gmx'"/>
                 <xsl:namespace name="srv" select="'http://www.isotc211.org/2005/srv'"/>
-                <xsl:namespace name="gml" select="'http://www.opengis.net/gml'"/>
+                <xsl:namespace name="gml" select="'http://www.opengis.net/gml/3.2'"/>
                 <!--<xsl:namespace name="abc" select="'http://www.opengis.net/abc'"/>-->
                 <xsl:namespace name="xlink" select="'http://www.w3.org/1999/xlink'"/>
                 <xsl:copy-of select="@*[name()!='xsi:schemaLocation' and name()!='gco:isoType']"/>
@@ -105,19 +105,34 @@
     </xsl:template>
 
 -->
+
+
+    <!-- ================================================================= -->
+    <!-- Convert gml URI -->
+
+    <xsl:template match="gml:*">
+       <xsl:element name="{concat('gml:', local-name(.))}" namespace="http://www.opengis.net/gml/3.2">
+          <xsl:apply-templates select="node()|@*"/>
+       </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="@gml:*">
+       <xsl:attribute name="{concat('gml:', local-name(.))}" namespace="http://www.opengis.net/gml/3.2">
+          <xsl:value-of select="."/>
+       </xsl:attribute>
+    </xsl:template>
+
+<!--
     <xsl:template match="*[namespace-uri()='http://www.opengis.net/gml/3.2']" priority="100">
         <xsl:element name="{local-name(.)}" namespace="http://www.opengis.net/gml">
-        <!--<xsl:element name="{local-name(.)}">-->
-        <!--<xsl:element name="gml:{local-name(.)}" >-->
             <xsl:apply-templates select="@*|node()"/>
         </xsl:element>
     </xsl:template>
 
     <xsl:template match="@*[namespace-uri()='http://www.opengis.net/gml/3.2']" priority="100">
-        <!--<xsl:attribute name="gml:{local-name(.)}" namespace="http://www.opengis.net/gml"><xsl:copy/></xsl:attribute>-->
         <xsl:attribute name="{local-name(.)}"><xsl:copy/></xsl:attribute>
     </xsl:template>
-
+-->
     <xsl:template match="comment()" priority="100"/>
     
 	<xsl:template match="@*|node()">

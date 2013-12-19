@@ -15,6 +15,8 @@
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
                 xmlns:srv="http://www.isotc211.org/2005/srv"
 
+                xmlns:gml="http://www.opengis.net/gml"
+
                 xmlns:ngmp="urn:int:nato:geometoc:geo:metadata:ngmp:1.0"
                 xmlns:geonet="http://www.fao.org/geonetwork"
 
@@ -33,7 +35,7 @@
 			<xsl:namespace name="gco" select="'http://www.isotc211.org/2005/gco'"/>
 			<xsl:namespace name="gmx" select="'http://www.isotc211.org/2005/gmx'"/>
 			<xsl:namespace name="srv" select="'http://www.isotc211.org/2005/srv'"/>
-			<xsl:namespace name="gml" select="'http://www.opengis.net/gml'"/>
+			<xsl:namespace name="gml" select="'http://www.opengis.net/gml/3.2'"/>
 			<xsl:namespace name="xlink" select="'http://www.w3.org/1999/xlink'"/>
 			<xsl:copy-of select="@*[name()!='xsi:schemaLocation' and name()!='gco:isoType']"/>
 			<xsl:attribute name="xsi:schemaLocation">http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</xsl:attribute>
@@ -66,8 +68,25 @@
 
     <xsl:template match="geonet:info" priority="100"/>
 
-    <!-- Fix the namespace URI defined in STANAG -->
 
+    <!-- ================================================================= -->
+    <!-- Convert gml URI - CKAN requires gml/3.2 -->
+
+    <xsl:template match="gml:*">
+       <xsl:element name="{concat('gml:', local-name(.))}" namespace="http://www.opengis.net/gml/3.2">
+          <xsl:apply-templates select="node()|@*"/>
+       </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="@gml:*">
+       <xsl:attribute name="{concat('gml:', local-name(.))}" namespace="http://www.opengis.net/gml/3.2">
+          <xsl:value-of select="."/>
+       </xsl:attribute>
+    </xsl:template>
+
+
+    <!-- Fix the namespace URI defined in STANAG -->
+<!--
     <xsl:template match="*[namespace-uri()='http://www.opengis.net/gml/3.2']" priority="100">
         <xsl:element name="{local-name(.)}" namespace="http://www.opengis.net/gml">
             <xsl:apply-templates select="@*|node()"/>
@@ -77,10 +96,10 @@
     <xsl:template match="@*[namespace-uri()='http://www.opengis.net/gml/3.2']" priority="100">
         <xsl:attribute name="{local-name(.)}"><xsl:copy/></xsl:attribute>
     </xsl:template>
-
+-->
     <!-- temp: find out which elements we still have to translate -->
 
-	<xsl:template match="ngmp:*" priority="100">
+    <xsl:template match="ngmp:*" priority="100">
         <xsl:comment><xsl:value-of select="name(.)"/></xsl:comment>
     </xsl:template>
 
