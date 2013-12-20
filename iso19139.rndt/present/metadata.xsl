@@ -288,8 +288,16 @@
 	<xsl:template name="iso19139.rndt-javascript">
 		<xsl:call-template name="iso19139-javascript" />
 	</xsl:template>
-
-
+	
+	<!-- Do not try do display element with no children in view mode -->
+	<!-- Usually this should not happen because GeoNetwork will add default children like gco:CharacterString. 
+		 Fixed #299
+		 TODO : metadocument contains geonet:element which is probably not required ?
+	-->
+	<xsl:template mode="iso19139" priority="200" match="*[(@gco:nilReason='missing' or @gco:nilReason='unknown') and geonet:element and count(*)=1]"/>
+	
+	<xsl:template mode="iso19139" priority="200" match="*[geonet:element and count(*)=1 and text()='']"/>
+	
 	<xsl:template mode="iso19139" match="gmd:DQ_AbsoluteExternalPositionalAccuracy">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>

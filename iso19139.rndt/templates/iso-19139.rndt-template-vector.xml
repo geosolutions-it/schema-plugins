@@ -445,6 +445,7 @@ org/export.htm?gml=urn:ogc:def:crs:EPSG::4979"/>
 							<gmd:explanation>
 								<gco:CharacterString>Fare riferimento alle specifiche indicate</gco:CharacterString>
 							</gmd:explanation>
+							<gmd:pass gco:nilReason="unknown"/>
 						</gmd:DQ_ConformanceResult>
 					</gmd:result>
 				</gmd:DQ_DomainConsistency>
