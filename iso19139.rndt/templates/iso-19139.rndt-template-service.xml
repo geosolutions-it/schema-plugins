@@ -11,12 +11,12 @@
 	xmlns:srv="http://www.isotc211.org/2005/srv"
 	xsi:schemaLocation="http://www.isotc211.org/2005/gmd
 	http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gmd/gmd.xsd" >
-	
+
 	<gmd:fileIdentifier>
 		<gco:CharacterString>cod_ipa:id_file</gco:CharacterString>
 	</gmd:fileIdentifier>
 	<gmd:language>
-		<gmd:LanguageCode codeList=" http://www.loc.gov/standards/iso639-2 " codeListValue="ita">ita</gmd:LanguageCode>
+		<gmd:LanguageCode codeList=" http://www.loc.gov/standards/iso639-2/" codeListValue="ita">ita</gmd:LanguageCode>
 	</gmd:language>
 	<gmd:characterSet>
 		<gmd:MD_CharacterSetCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#
@@ -123,7 +123,7 @@ MD_ScopeCode" codeListValue="service">Servizio</gmd:MD_ScopeCode>
 									<gmd:onlineResource>
 										<gmd:CI_OnlineResource>
 											<gmd:linkage>
-												<gmd:URL>>http://sito.web.ufficio.responsabile.servizio.it</gmd:URL>
+												<gmd:URL>http://sito.web.ufficio.responsabile.servizio.it</gmd:URL>
 											</gmd:linkage>
 										</gmd:CI_OnlineResource>
 									</gmd:onlineResource>
@@ -164,7 +164,7 @@ MD_ScopeCode" codeListValue="service">Servizio</gmd:MD_ScopeCode>
 							<gmd:onlineResource>
 								<gmd:CI_OnlineResource>
 									<gmd:linkage>
-										<gmd:URL>>http://sito.web.organizzazione.da.contattare.per.informazioni.risorsa.it</gmd:URL>
+										<gmd:URL>http://sito.web.organizzazione.da.contattare.per.informazioni.risorsa.it</gmd:URL>
 									</gmd:linkage>
 								</gmd:CI_OnlineResource>
 							</gmd:onlineResource>
@@ -252,7 +252,7 @@ MD_ClassificationCode" codeListValue="unclassified">Non classificato</gmd:MD_Cla
 					<srv:connectPoint>
 						<gmd:CI_OnlineResource>
 							<gmd:linkage>
-								<gmd:URL>http://url,servizio?service=WMS&amp;request=GetCapabilities</gmd:URL>
+								<gmd:URL>http://url.servizio?service=WMS&amp;request=GetCapabilities</gmd:URL>
 							</gmd:linkage>
 						</gmd:CI_OnlineResource>
 					</srv:connectPoint>
@@ -261,6 +261,21 @@ MD_ClassificationCode" codeListValue="unclassified">Non classificato</gmd:MD_Cla
 			<srv:operatesOn xlink:href="http://www.rndt.gov.it#r_abruzz:Carta_Parchi"/>
 		</srv:SV_ServiceIdentification>
 	</gmd:identificationInfo>
+	<gmd:distributionInfo>
+		<gmd:MD_Distribution>
+			<gmd:transferOptions>
+				<gmd:MD_DigitalTransferOptions>
+					<gmd:onLine>
+						<gmd:CI_OnlineResource>
+							<gmd:linkage>
+								<gmd:URL>http://url.accesso.servizio.it</gmd:URL>
+							</gmd:linkage>
+						</gmd:CI_OnlineResource>
+					</gmd:onLine>
+				</gmd:MD_DigitalTransferOptions>
+			</gmd:transferOptions>
+		</gmd:MD_Distribution>
+	</gmd:distributionInfo>	
 	<!-- QUALITÀ DEI DATI -->
 	<gmd:dataQualityInfo>
 		<gmd:DQ_DataQuality>

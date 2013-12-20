@@ -559,11 +559,51 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="name">
-               <xsl:value-of select="$loc/strings/M110"/>
+               <xsl:value-of select="$loc/strings/M101"/>
             </xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M44"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="name">
+               <xsl:value-of select="$loc/strings/M102"/>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M45"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="name">
+               <xsl:value-of select="$loc/strings/M103"/>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M46"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="name">
+               <xsl:value-of select="$loc/strings/M104"/>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M47"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="name">
+               <xsl:value-of select="$loc/strings/M110"/>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M48"/>
       </svrl:schematron-output>
    </xsl:template>
 
@@ -595,11 +635,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M7"/>
+      <xsl:apply-templates select="*" mode="M7"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M7"/>
    <xsl:template match="@*|node()" priority="-2" mode="M7">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M7"/>
+      <xsl:apply-templates select="*" mode="M7"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M2-->
@@ -607,7 +647,7 @@
       <xsl:copy-of select="$loc/strings/M2"/>
    </svrl:text>
    <xsl:variable name="langCodeList">bul;cze;dan;est;fin;fre;gre;eng;gle;ita;lav;lit;mlt;dut;pol;por;rum;slo;slv;spa;swe;ger;hun</xsl:variable>
-   <xsl:variable name="langCodeURI">http://www.loc.gov/standards/iso639-2/</xsl:variable>
+   <xsl:variable name="langCodeURI">http://www.loc.gov/standards/iso639-2</xsl:variable>
 
 	  <!--RULE -->
 <xsl:template match="//gmd:MD_Metadata" priority="1000" mode="M8">
@@ -616,10 +656,10 @@
 
 		    <!--ASSERT -->
 <xsl:choose>
-         <xsl:when test="exists(tokenize($langCodeList, ';')[. = $value]) and gmd:language/gmd:LanguageCode!=''     and gmd:language/gmd:LanguageCode/@codeList= $langCodeURI"/>
+         <xsl:when test="exists(tokenize($langCodeList, ';')[. = $value]) and gmd:language/gmd:LanguageCode!=''     and (gmd:language/gmd:LanguageCode/@codeList= $langCodeURI or    gmd:language/gmd:LanguageCode/@codeList = concat($langCodeURI,'/'))"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" ref="#_{geonet:element/@ref}"
-                                test="exists(tokenize($langCodeList, ';')[. = $value]) and gmd:language/gmd:LanguageCode!='' and gmd:language/gmd:LanguageCode/@codeList= $langCodeURI">
+                                test="exists(tokenize($langCodeList, ';')[. = $value]) and gmd:language/gmd:LanguageCode!='' and (gmd:language/gmd:LanguageCode/@codeList= $langCodeURI or gmd:language/gmd:LanguageCode/@codeList = concat($langCodeURI,'/'))">
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
@@ -629,11 +669,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M8"/>
+      <xsl:apply-templates select="*" mode="M8"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M8"/>
    <xsl:template match="@*|node()" priority="-2" mode="M8">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M8"/>
+      <xsl:apply-templates select="*" mode="M8"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M3-->
@@ -660,11 +700,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M9"/>
+      <xsl:apply-templates select="*" mode="M9"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M9"/>
    <xsl:template match="@*|node()" priority="-2" mode="M9">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M9"/>
+      <xsl:apply-templates select="*" mode="M9"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M4-->
@@ -691,11 +731,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M10"/>
+      <xsl:apply-templates select="*" mode="M10"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M10"/>
    <xsl:template match="@*|node()" priority="-2" mode="M10">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M10"/>
+      <xsl:apply-templates select="*" mode="M10"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M5-->
@@ -722,11 +762,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M11"/>
+      <xsl:apply-templates select="*" mode="M11"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M11"/>
    <xsl:template match="@*|node()" priority="-2" mode="M11">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M11"/>
+      <xsl:apply-templates select="*" mode="M11"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M6-->
@@ -753,11 +793,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M12"/>
+      <xsl:apply-templates select="*" mode="M12"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M12"/>
    <xsl:template match="@*|node()" priority="-2" mode="M12">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M12"/>
+      <xsl:apply-templates select="*" mode="M12"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M7-->
@@ -784,11 +824,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M13"/>
+      <xsl:apply-templates select="*" mode="M13"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M13"/>
    <xsl:template match="@*|node()" priority="-2" mode="M13">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M13"/>
+      <xsl:apply-templates select="*" mode="M13"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M8-->
@@ -818,11 +858,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M14"/>
+      <xsl:apply-templates select="*" mode="M14"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M14"/>
    <xsl:template match="@*|node()" priority="-2" mode="M14">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M14"/>
+      <xsl:apply-templates select="*" mode="M14"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M9-->
@@ -831,13 +871,11 @@
    </svrl:text>
 
 	  <!--RULE -->
-<xsl:template match="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation   |//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation"
-                 priority="1000"
-                 mode="M15">
+<xsl:template match="//gmd:MD_Metadata/gmd:contact" priority="1000" mode="M15">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                       context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation   |//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation"/>
+                       context="//gmd:MD_Metadata/gmd:contact"/>
       <xsl:variable name="responsibleParty"
-                    select="(gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString)     and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='pointOfContact')     and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='distributor')     and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString) and ((gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString) or (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL))"/>
+                    select="(gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString!='')    and count(gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue='pointOfContact')&gt;0       and (gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString!='')     and ((gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString!='')     or (gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL!=''))"/>
 
 		    <!--ASSERT -->
 <xsl:choose>
@@ -854,11 +892,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M15"/>
+      <xsl:apply-templates select="*" mode="M15"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M15"/>
    <xsl:template match="@*|node()" priority="-2" mode="M15">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M15"/>
+      <xsl:apply-templates select="*" mode="M15"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M13-->
@@ -888,11 +926,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M16"/>
+      <xsl:apply-templates select="*" mode="M16"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M16"/>
    <xsl:template match="@*|node()" priority="-2" mode="M16">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M16"/>
+      <xsl:apply-templates select="*" mode="M16"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M14-->
@@ -922,11 +960,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M17"/>
+      <xsl:apply-templates select="*" mode="M17"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M17"/>
    <xsl:template match="@*|node()" priority="-2" mode="M17">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M17"/>
+      <xsl:apply-templates select="*" mode="M17"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M15-->
@@ -941,7 +979,7 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation   |//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation"/>
       <xsl:variable name="responsibleParty"
-                    select="(gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString)     and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue='pointOfContact')     and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString) and ((gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString) or (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL))"/>
+                    select="(gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString!='')     and count(gmd:citedResponsibleParty[gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='pointOfContact'    or gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='distributor']) &gt; 0    and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString!='')     and ((gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString!='')     or (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL!=''))"/>
 
 		    <!--ASSERT -->
 <xsl:choose>
@@ -958,11 +996,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M18"/>
+      <xsl:apply-templates select="*" mode="M18"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M18"/>
    <xsl:template match="@*|node()" priority="-2" mode="M18">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M18"/>
+      <xsl:apply-templates select="*" mode="M18"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M30-->
@@ -992,11 +1030,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M19"/>
+      <xsl:apply-templates select="*" mode="M19"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M19"/>
    <xsl:template match="@*|node()" priority="-2" mode="M19">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M19"/>
+      <xsl:apply-templates select="*" mode="M19"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M31-->
@@ -1026,11 +1064,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M20"/>
+      <xsl:apply-templates select="*" mode="M20"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M20"/>
    <xsl:template match="@*|node()" priority="-2" mode="M20">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M20"/>
+      <xsl:apply-templates select="*" mode="M20"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M32-->
@@ -1060,11 +1098,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M21"/>
+      <xsl:apply-templates select="*" mode="M21"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M21"/>
    <xsl:template match="@*|node()" priority="-2" mode="M21">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M21"/>
+      <xsl:apply-templates select="*" mode="M21"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M33-->
@@ -1073,18 +1111,18 @@
    </svrl:text>
 
 	  <!--RULE -->
-<xsl:template match="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification   |//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification"
+<xsl:template match="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent   |//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent"
                  priority="1000"
                  mode="M22">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                       context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification   |//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification"/>
+                       context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent   |//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent"/>
 
 		    <!--ASSERT -->
 <xsl:choose>
-         <xsl:when test="gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox"/>
+         <xsl:when test="gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" ref="#_{geonet:element/@ref}"
-                                test="gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox">
+                                test="gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox">
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
@@ -1094,11 +1132,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M22"/>
+      <xsl:apply-templates select="*" mode="M22"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M22"/>
    <xsl:template match="@*|node()" priority="-2" mode="M22">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M22"/>
+      <xsl:apply-templates select="*" mode="M22"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M34-->
@@ -1128,11 +1166,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M23"/>
+      <xsl:apply-templates select="*" mode="M23"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M23"/>
    <xsl:template match="@*|node()" priority="-2" mode="M23">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M23"/>
+      <xsl:apply-templates select="*" mode="M23"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M35-->
@@ -1162,11 +1200,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M24"/>
+      <xsl:apply-templates select="*" mode="M24"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M24"/>
    <xsl:template match="@*|node()" priority="-2" mode="M24">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M24"/>
+      <xsl:apply-templates select="*" mode="M24"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M36-->
@@ -1196,11 +1234,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M25"/>
+      <xsl:apply-templates select="*" mode="M25"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M25"/>
    <xsl:template match="@*|node()" priority="-2" mode="M25">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M25"/>
+      <xsl:apply-templates select="*" mode="M25"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M37-->
@@ -1248,11 +1286,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M26"/>
+      <xsl:apply-templates select="*" mode="M26"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M26"/>
    <xsl:template match="@*|node()" priority="-2" mode="M26">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M26"/>
+      <xsl:apply-templates select="*" mode="M26"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M38-->
@@ -1279,15 +1317,15 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M27"/>
+      <xsl:apply-templates select="*" mode="M27"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M27"/>
    <xsl:template match="@*|node()" priority="-2" mode="M27">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M27"/>
+      <xsl:apply-templates select="*" mode="M27"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M39-->
-<xsl:variable name="inspireKeyWords">Condizioni atmosferiche;Atmospheric conditions;Copertura del suolo;Land cover;Distribuzione della popolazione - demografia;Population distribution — demography;Distribuzione delle specie;Species distribution;Edifici;Buildings;Elementi geografici meteorologici;Meteorological geographical features;Elementi geografici oceanografici;Oceanographic geographical features;Elevazione;Elevation;Geologia;Geology;Habitat e biotopi;Habitats and biotopes;Idrografia;Hydrography;Impianti agricoli e di acquacoltura;Agricultural and aquaculture facilities;Impianti di monitoraggio ambientale;Environmental monitoring facilities;Indirizzi;Addresses;Nomi geografici;Geographical names;Orto immagini;Orthoimagery;Parcelle catastali;Cadastral parcels;Produzione e impianti industriali;Production and industrial facilities;Regioni biogeografiche;Bio-geographical regions;Regioni marine;Sea regions;Reti di trasporto;Transport networks;Risorse energetiche;Energy resources;Risorse minerarie;Mineral resources;Salute umana e sicurezza;Human health and safety;Servizi di pubblica utilità e servizi amministrativi;Utility and governmental services</xsl:variable>
+<xsl:variable name="inspireKeyWords">Condizioni atmosferiche;Atmospheric conditions;Copertura del suolo;Land cover;Distribuzione della popolazione - demografia;Population distribution — demography;Distribuzione delle specie;Species distribution;Edifici;Buildings;Elementi geografici meteorologici;Meteorological geographical features;Elementi geografici oceanografici;Oceanographic geographical features;Elevazione;Elevation;Geologia;Geology;Habitat e biotopi;Habitats and biotopes;Idrografia;Hydrography;Impianti agricoli e di acquacoltura;Agricultural and aquaculture facilities;Impianti di monitoraggio ambientale;Environmental monitoring facilities;Indirizzi;Addresses;Nomi geografici;Geographical names;Orto immagini;Orthoimagery;Parcelle catastali;Cadastral parcels;Produzione e impianti industriali;Production and industrial facilities;Regioni biogeografiche;Bio-geographical regions;Regioni marine;Sea regions;Reti di trasporto;Transport networks;Risorse energetiche;Energy resources;Risorse minerarie;Mineral resources;Salute umana e sicurezza;Human health and safety;Servizi di pubblica utilità e servizi amministrativi;Utility and governmental services;Sistemi di coordinate;Coordinate reference systems;Sistemi di griglie geografiche;Geographical grid systems;Siti protetti;Protected sites;Suolo;Soil;Unità amministrative;Administrative units;Unità statistiche;Statistical units;Utilizzo del territorio;Land use;Zone a rischio naturale;Natural risk zones;Zone sottoposte a gestione/limitazioni/regolamentazione e unità con obbligo di comunicare dati;Area management/restriction/regulation zones and reporting units</xsl:variable>
    <xsl:variable name="gemetThesaurusTitle">GEMET - INSPIRE themes, version 1.0</xsl:variable>
    <xsl:variable name="gemetThesaurusDate">2008-06-01</xsl:variable>
    <xsl:variable name="gemetThesaurusDateType">publication</xsl:variable>
@@ -1318,7 +1356,7 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M28"/>
+      <xsl:apply-templates select="*" mode="M28"/>
    </xsl:template>
 
 	  <!--RULE -->
@@ -1343,11 +1381,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M28"/>
+      <xsl:apply-templates select="*" mode="M28"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M28"/>
    <xsl:template match="@*|node()" priority="-2" mode="M28">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M28"/>
+      <xsl:apply-templates select="*" mode="M28"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M45-->
@@ -1377,11 +1415,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M29"/>
+      <xsl:apply-templates select="*" mode="M29"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M29"/>
    <xsl:template match="@*|node()" priority="-2" mode="M29">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M29"/>
+      <xsl:apply-templates select="*" mode="M29"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M46-->
@@ -1421,11 +1459,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M30"/>
+      <xsl:apply-templates select="*" mode="M30"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M30"/>
    <xsl:template match="@*|node()" priority="-2" mode="M30">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M30"/>
+      <xsl:apply-templates select="*" mode="M30"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M50-->
@@ -1455,11 +1493,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M31"/>
+      <xsl:apply-templates select="*" mode="M31"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M31"/>
    <xsl:template match="@*|node()" priority="-2" mode="M31">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M31"/>
+      <xsl:apply-templates select="*" mode="M31"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M51-->
@@ -1489,11 +1527,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M32"/>
+      <xsl:apply-templates select="*" mode="M32"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M32"/>
    <xsl:template match="@*|node()" priority="-2" mode="M32">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M32"/>
+      <xsl:apply-templates select="*" mode="M32"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M52-->
@@ -1523,11 +1561,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M33"/>
+      <xsl:apply-templates select="*" mode="M33"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M33"/>
    <xsl:template match="@*|node()" priority="-2" mode="M33">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M33"/>
+      <xsl:apply-templates select="*" mode="M33"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M53-->
@@ -1557,11 +1595,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M34"/>
+      <xsl:apply-templates select="*" mode="M34"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M34"/>
    <xsl:template match="@*|node()" priority="-2" mode="M34">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M34"/>
+      <xsl:apply-templates select="*" mode="M34"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M60-->
@@ -1591,11 +1629,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M35"/>
+      <xsl:apply-templates select="*" mode="M35"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M35"/>
    <xsl:template match="@*|node()" priority="-2" mode="M35">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M35"/>
+      <xsl:apply-templates select="*" mode="M35"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M61-->
@@ -1625,11 +1663,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M36"/>
+      <xsl:apply-templates select="*" mode="M36"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M36"/>
    <xsl:template match="@*|node()" priority="-2" mode="M36">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M36"/>
+      <xsl:apply-templates select="*" mode="M36"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M62-->
@@ -1659,11 +1697,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M37"/>
+      <xsl:apply-templates select="*" mode="M37"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M37"/>
    <xsl:template match="@*|node()" priority="-2" mode="M37">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M37"/>
+      <xsl:apply-templates select="*" mode="M37"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M63-->
@@ -1693,11 +1731,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M38"/>
+      <xsl:apply-templates select="*" mode="M38"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M38"/>
    <xsl:template match="@*|node()" priority="-2" mode="M38">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M38"/>
+      <xsl:apply-templates select="*" mode="M38"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M64-->
@@ -1727,11 +1765,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M39"/>
+      <xsl:apply-templates select="*" mode="M39"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M39"/>
    <xsl:template match="@*|node()" priority="-2" mode="M39">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M39"/>
+      <xsl:apply-templates select="*" mode="M39"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M65-->
@@ -1761,11 +1799,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M40"/>
+      <xsl:apply-templates select="*" mode="M40"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M40"/>
    <xsl:template match="@*|node()" priority="-2" mode="M40">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M40"/>
+      <xsl:apply-templates select="*" mode="M40"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M66-->
@@ -1795,11 +1833,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M41"/>
+      <xsl:apply-templates select="*" mode="M41"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M41"/>
    <xsl:template match="@*|node()" priority="-2" mode="M41">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M41"/>
+      <xsl:apply-templates select="*" mode="M41"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M99-->
@@ -1827,11 +1865,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M42"/>
+      <xsl:apply-templates select="*" mode="M42"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M42"/>
    <xsl:template match="@*|node()" priority="-2" mode="M42">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M42"/>
+      <xsl:apply-templates select="*" mode="M42"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M100-->
@@ -1858,11 +1896,147 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M43"/>
+      <xsl:apply-templates select="*" mode="M43"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M43"/>
    <xsl:template match="@*|node()" priority="-2" mode="M43">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M43"/>
+      <xsl:apply-templates select="*" mode="M43"/>
+   </xsl:template>
+
+   <!--PATTERN $loc/strings/M101-->
+<svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+      <xsl:copy-of select="$loc/strings/M101"/>
+   </svrl:text>
+
+	  <!--RULE -->
+<xsl:template match="gmd:parentIdentifier|gmd:fileIdentifier|   /gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:series/gmd:CI_Series/gmd:issueIdentification|   /gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code"
+                 priority="1000"
+                 mode="M44">
+      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                       context="gmd:parentIdentifier|gmd:fileIdentifier|   /gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:series/gmd:CI_Series/gmd:issueIdentification|   /gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code"/>
+
+		    <!--ASSERT -->
+<xsl:choose>
+         <xsl:when test="contains(gco:CharacterString,':')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" ref="#_{geonet:element/@ref}"
+                                test="contains(gco:CharacterString,':')">
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>
+                  <xsl:copy-of select="$loc/strings/alert.M101"/>
+               </svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M44"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M44"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M44">
+      <xsl:apply-templates select="*" mode="M44"/>
+   </xsl:template>
+
+   <!--PATTERN $loc/strings/M102-->
+<svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+      <xsl:copy-of select="$loc/strings/M102"/>
+   </svrl:text>
+
+	  <!--RULE -->
+<xsl:template match="gmd:parentIdentifier[contains(../gmd:fileIdentifier/gco:CharacterString,':')]"
+                 priority="1000"
+                 mode="M45">
+      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                       context="gmd:parentIdentifier[contains(../gmd:fileIdentifier/gco:CharacterString,':')]"/>
+
+		    <!--ASSERT -->
+<xsl:choose>
+         <xsl:when test="starts-with(gco:CharacterString,substring-before(../gmd:fileIdentifier/gco:CharacterString,':'))"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" ref="#_{geonet:element/@ref}"
+                                test="starts-with(gco:CharacterString,substring-before(../gmd:fileIdentifier/gco:CharacterString,':'))">
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>
+                  <xsl:copy-of select="$loc/strings/alert.M102"/>
+               </svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M45"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M45"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M45">
+      <xsl:apply-templates select="*" mode="M45"/>
+   </xsl:template>
+
+   <!--PATTERN $loc/strings/M103-->
+<svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+      <xsl:copy-of select="$loc/strings/M103"/>
+   </svrl:text>
+
+	  <!--RULE -->
+<xsl:template match="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code[contains(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':')]"
+                 priority="1000"
+                 mode="M46">
+      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                       context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code[contains(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':')]"/>
+
+		    <!--ASSERT -->
+<xsl:choose>
+         <xsl:when test="starts-with(gco:CharacterString,substring-before(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':'))"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" ref="#_{geonet:element/@ref}"
+                                test="starts-with(gco:CharacterString,substring-before(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':'))">
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>
+                  <xsl:copy-of select="$loc/strings/alert.M103"/>
+               </svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M46"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M46"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M46">
+      <xsl:apply-templates select="*" mode="M46"/>
+   </xsl:template>
+
+   <!--PATTERN $loc/strings/M104-->
+<svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+      <xsl:copy-of select="$loc/strings/M104"/>
+   </svrl:text>
+
+	  <!--RULE -->
+<xsl:template match="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:series/gmd:CI_Series/gmd:issueIdentification[contains(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':')]"
+                 priority="1000"
+                 mode="M47">
+      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                       context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:series/gmd:CI_Series/gmd:issueIdentification[contains(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':')]"/>
+
+		    <!--ASSERT -->
+<xsl:choose>
+         <xsl:when test="starts-with(gco:CharacterString,substring-before(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':'))"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" ref="#_{geonet:element/@ref}"
+                                test="starts-with(gco:CharacterString,substring-before(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':'))">
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>
+                  <xsl:copy-of select="$loc/strings/alert.M104"/>
+               </svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M47"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M47"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M47">
+      <xsl:apply-templates select="*" mode="M47"/>
    </xsl:template>
 
    <!--PATTERN $loc/strings/M110-->
@@ -1871,7 +2045,7 @@
    </svrl:text>
 
 	  <!--RULE -->
-<xsl:template match="/gmd:MD_Metadata" priority="1000" mode="M44">
+<xsl:template match="/gmd:MD_Metadata" priority="1000" mode="M48">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="/gmd:MD_Metadata"/>
 
 		    <!--ASSERT -->
@@ -1889,10 +2063,10 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M44"/>
+      <xsl:apply-templates select="*" mode="M48"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M44"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M44">
-      <xsl:apply-templates select="*|comment()|processing-instruction()" mode="M44"/>
+   <xsl:template match="text()" priority="-1" mode="M48"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M48">
+      <xsl:apply-templates select="*" mode="M48"/>
    </xsl:template>
 </xsl:stylesheet>

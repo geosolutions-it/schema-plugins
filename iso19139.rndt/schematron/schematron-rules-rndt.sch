@@ -20,12 +20,13 @@
 	<sch:pattern>
 		<sch:title>$loc/strings/M2</sch:title>
 		<sch:let name="langCodeList">bul;cze;dan;est;fin;fre;gre;eng;gle;ita;lav;lit;mlt;dut;pol;por;rum;slo;slv;spa;swe;ger;hun</sch:let>
-		<sch:let name="langCodeURI">http://www.loc.gov/standards/iso639-2/</sch:let>
+		<sch:let name="langCodeURI">http://www.loc.gov/standards/iso639-2</sch:let>
 		<sch:rule context="//gmd:MD_Metadata">
 			<sch:let name="value" value="gmd:language/gmd:LanguageCode/@codeListValue"/>
 			<!-- <sch:assert test="contains($langCodeList,gmd:language/gmd:LanguageCode/@codeListValue) and gmd:language/gmd:LanguageCode!='' and gmd:language/gmd:LanguageCode/@codeList= $langCodeURI">$loc/strings/alert.M2</sch:assert> -->
 			<sch:assert test="exists(tokenize($langCodeList, ';')[. = $value]) and gmd:language/gmd:LanguageCode!='' 
-			and gmd:language/gmd:LanguageCode/@codeList= $langCodeURI">$loc/strings/alert.M2</sch:assert>
+			and (gmd:language/gmd:LanguageCode/@codeList= $langCodeURI or
+			gmd:language/gmd:LanguageCode/@codeList = concat($langCodeURI,'/'))">$loc/strings/alert.M2</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 	<!--PARENT IDENTIFIER-->
@@ -39,7 +40,8 @@
 	<sch:pattern>
 		<sch:title>$loc/strings/M4</sch:title>
 		<sch:rule context="//gmd:MD_Metadata">
-			<sch:assert test="gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue and gmd:hierarchyLevel/gmd:MD_ScopeCode!=''">$loc/strings/alert.M4</sch:assert>
+			<sch:assert test="gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue">$loc/strings/alert.M4</sch:assert>
+			<sch:assert test="not(gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue) or gmd:hierarchyLevel/gmd:MD_ScopeCode!=''">$loc/strings/alert.M4a</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 	<!--METADATA STANDARD NAME-->
@@ -64,7 +66,7 @@
 	<sch:pattern>
 		<sch:title>$loc/strings/M7</sch:title>
 		<sch:rule context="//gmd:MD_Metadata">
-			<sch:assert test="gmd:characterSet/gmd:MD_CharacterSetCode/@codeListValue 
+			<sch:assert test="gmd:characterSet/gmd:MD_CharacterSetCode/@codeListValue
 			and gmd:characterSet/gmd:MD_CharacterSetCode!=''">$loc/strings/alert.M7</sch:assert>
 		</sch:rule>
 	</sch:pattern>
@@ -73,19 +75,19 @@
 		<sch:title>$loc/strings/M8</sch:title>
 		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation
 		|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation">
-			<sch:assert test="gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode/@codeListValue 
+			<sch:assert test="gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode/@codeListValue
 			and gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode!=''">$loc/strings/alert.M8</sch:assert>
 		</sch:rule>
 	</sch:pattern>
-	<!--DATA/SERVICE IDENTIFICATION - RESPONSIBLE PARTY-->
+	<!--DATA/SERVICE IDENTIFICATION - RESPONSIBLE PARTY (POINT OF CONTACT)-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M9</sch:title>
-		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation
-		|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation">
-			<sch:let name="responsibleParty" value="(gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString) 
-			and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='pointOfContact') 
-			and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='distributor') 
-			and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString) and ((gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString) or (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL))"/>
+		<sch:rule context="//gmd:MD_Metadata/gmd:contact">
+			<sch:let name="responsibleParty" value="(gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString!='')
+			and count(gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue='pointOfContact')>0 		
+			and (gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString!='') 
+			and ((gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString!='') 
+			or (gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL!=''))"/>
 			<sch:assert test="$responsibleParty">$loc/strings/alert.M9</sch:assert>
 		</sch:rule>
 	</sch:pattern>
@@ -104,14 +106,17 @@
 			<sch:assert test="gmd:series/gmd:CI_Series/gmd:issueIdentification/gco:CharacterString">$loc/strings/alert.M14</sch:assert>
 		</sch:rule>
 	</sch:pattern>
-	<!--DATA/SERVICE IDENTIFICATION - DATASET RESPONSIBLE PARTY (POINT OF CONTACT)-->
+	<!--DATA/SERVICE IDENTIFICATION - DATASET RESPONSIBLE PARTY-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M15</sch:title>
 		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation
 		|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation">
-			<sch:let name="responsibleParty" value="(gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString) 
-			and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue='pointOfContact') 
-			and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString) and ((gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString) or (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL))"/>
+			<sch:let name="responsibleParty" value="(gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString!='') 
+			and count(gmd:citedResponsibleParty[gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='pointOfContact'
+			or gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='distributor']) > 0
+			and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString!='') 
+			and ((gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString!='') 
+			or (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL!=''))"/>
 			<sch:assert test="$responsibleParty">$loc/strings/alert.M15</sch:assert>
 		</sch:rule>
 	</sch:pattern>
@@ -142,16 +147,16 @@
 	<!--DATA/SERVICE IDENTIFICATION - GEOGRAPHIC LOCATION-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M33</sch:title>
-		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification
-		|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
-			<sch:assert test="gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox">$loc/strings/alert.M33</sch:assert>
+		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent
+		|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent">
+			<sch:assert test="gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox">$loc/strings/alert.M33</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 	<!--DATA/SERVICE QUALITY - SCOPE-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M34</sch:title>
 		<sch:rule context="//gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality">
-			<sch:assert test="gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode/@codeListValue 
+			<sch:assert test="gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode/@codeListValue
 			and gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode!=''">$loc/strings/alert.M34</sch:assert>
 		</sch:rule>
 	</sch:pattern>
@@ -198,7 +203,7 @@
 	</sch:pattern>
 	<!--DATA/SERVICE IDENTIFICATION - KEYWORDS-->
 	<sch:pattern>
-		<sch:let name="inspireKeyWords">Condizioni atmosferiche;Atmospheric conditions;Copertura del suolo;Land cover;Distribuzione della popolazione - demografia;Population distribution — demography;Distribuzione delle specie;Species distribution;Edifici;Buildings;Elementi geografici meteorologici;Meteorological geographical features;Elementi geografici oceanografici;Oceanographic geographical features;Elevazione;Elevation;Geologia;Geology;Habitat e biotopi;Habitats and biotopes;Idrografia;Hydrography;Impianti agricoli e di acquacoltura;Agricultural and aquaculture facilities;Impianti di monitoraggio ambientale;Environmental monitoring facilities;Indirizzi;Addresses;Nomi geografici;Geographical names;Orto immagini;Orthoimagery;Parcelle catastali;Cadastral parcels;Produzione e impianti industriali;Production and industrial facilities;Regioni biogeografiche;Bio-geographical regions;Regioni marine;Sea regions;Reti di trasporto;Transport networks;Risorse energetiche;Energy resources;Risorse minerarie;Mineral resources;Salute umana e sicurezza;Human health and safety;Servizi di pubblica utilità e servizi amministrativi;Utility and governmental services</sch:let>
+		<sch:let name="inspireKeyWords">Condizioni atmosferiche;Atmospheric conditions;Copertura del suolo;Land cover;Distribuzione della popolazione - demografia;Population distribution — demography;Distribuzione delle specie;Species distribution;Edifici;Buildings;Elementi geografici meteorologici;Meteorological geographical features;Elementi geografici oceanografici;Oceanographic geographical features;Elevazione;Elevation;Geologia;Geology;Habitat e biotopi;Habitats and biotopes;Idrografia;Hydrography;Impianti agricoli e di acquacoltura;Agricultural and aquaculture facilities;Impianti di monitoraggio ambientale;Environmental monitoring facilities;Indirizzi;Addresses;Nomi geografici;Geographical names;Orto immagini;Orthoimagery;Parcelle catastali;Cadastral parcels;Produzione e impianti industriali;Production and industrial facilities;Regioni biogeografiche;Bio-geographical regions;Regioni marine;Sea regions;Reti di trasporto;Transport networks;Risorse energetiche;Energy resources;Risorse minerarie;Mineral resources;Salute umana e sicurezza;Human health and safety;Servizi di pubblica utilità e servizi amministrativi;Utility and governmental services;Sistemi di coordinate;Coordinate reference systems;Sistemi di griglie geografiche;Geographical grid systems;Siti protetti;Protected sites;Suolo;Soil;Unità amministrative;Administrative units;Unità statistiche;Statistical units;Utilizzo del territorio;Land use;Zone a rischio naturale;Natural risk zones;Zone sottoposte a gestione/limitazioni/regolamentazione e unità con obbligo di comunicare dati;Area management/restriction/regulation zones and reporting units</sch:let>
 		<sch:let name="gemetThesaurusTitle">GEMET - INSPIRE themes, version 1.0</sch:let>
 		<sch:let name="gemetThesaurusDate">2008-06-01</sch:let>
 		<sch:let name="gemetThesaurusDateType">publication</sch:let>
@@ -344,6 +349,36 @@
 		</sch:rule>
 		<!--			<sch:assert test="matches(gco:Date,'^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$') or matches(gco:Date,'^(((\d{4}((0[13578]|1[02])(0[1-9]|[12]\d|3[01])|(0[13456789]|1[012])(0[1-9]|[12]\d|30)|02(0[1-9]|1\d|2[0-8])))|((\d{2}[02468][048]|\d{2}[13579][26]))0229)){0,8}$')">$loc/strings/alert.M100</sch:assert>
 		</sch:rule>-->
+	</sch:pattern>
+	<!--COD IPA-->
+	<sch:pattern>
+		<sch:title>$loc/strings/M101</sch:title>
+		<sch:rule context="gmd:parentIdentifier|gmd:fileIdentifier|
+		/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:series/gmd:CI_Series/gmd:issueIdentification|
+		/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code">
+			<sch:assert test="contains(gco:CharacterString,':')">$loc/strings/alert.M101</sch:assert>
+		</sch:rule>
+			</sch:pattern>
+	<!--COD IPA - PARENT IDENTIFIER-->
+	<sch:pattern>
+		<sch:title>$loc/strings/M102</sch:title>
+		<sch:rule context="gmd:parentIdentifier[contains(../gmd:fileIdentifier/gco:CharacterString,':')]">
+			<sch:assert test="starts-with(gco:CharacterString,substring-before(../gmd:fileIdentifier/gco:CharacterString,':'))">$loc/strings/alert.M102</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<!--COD IPA - SERIES-->
+	<sch:pattern>
+		<sch:title>$loc/strings/M103</sch:title>
+		<sch:rule context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code[contains(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':')]">
+			<sch:assert test="starts-with(gco:CharacterString,substring-before(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':'))">$loc/strings/alert.M103</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<!--COD IPA - IDENTIFIER-->
+	<sch:pattern>
+		<sch:title>$loc/strings/M104</sch:title>
+		<sch:rule context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:series/gmd:CI_Series/gmd:issueIdentification[contains(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':')]">
+			<sch:assert test="starts-with(gco:CharacterString,substring-before(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':'))">$loc/strings/alert.M104</sch:assert>
+		</sch:rule>
 	</sch:pattern>
 	<!--NIL REASON-->
 	<sch:pattern>

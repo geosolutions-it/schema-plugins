@@ -25,8 +25,8 @@
 	<M8>Data/service Identification - Date Type</M8>
 	<alert.M8><div> dateType element is missing or has a wrong value</div></alert.M8>
 	<!--DATA/SERVICE IDENTIFICATION -  RESPONSIBLE PARTY-->
-	<M9>Data/service Identification - Responsible Party</M9>
-	<alert.M9><div> Responsible Party element is missing or has a wrong value. Responsible Party must contain organisationName,role,and electronicMailAddress elements and at least one of phone and onlineResource elements</div></alert.M9>
+	<M9>Data/service Identification - Metadata Responsible Party (Point of Contact)</M9>
+	<alert.M9><div> CI_ResponsibleParty element is missing or has a wrong value. Metadata Responsible Party must contain organisationName,role,and electronicMailAddress elements and at least one of phone and onlineResource elements</div></alert.M9>
 	<!--DATA/SERVICE IDENTIFICATION - IDENTIFIER-->
 	<M13>Data/service Identification - Identifier</M13>
 	<alert.M13><div> RS_Identifier element is missing or has a wrong value</div></alert.M13>
@@ -35,7 +35,7 @@
 	<alert.M14><div> series element is missing or has a wrong value</div></alert.M14>
 	<!--DATA/SERVICE IDENTIFICATION - DATASET RESPONSIBLE PARTY (POINT OF CONTACT)-->	
 	<M15>Data/service Identification - Dataset Responsible Party</M15>
-	<alert.M15><div>Dataset Responsible Party element is missing or has a wrong value. Dataset Responsible Party must contain organisationName,role,and electronicMailAddress elements and at least one of phone and onlineResource elements</div></alert.M15>
+	<alert.M15><div> citedResponsibleParty element is missing or has a wrong value. Dataset Responsible Party must contain organisationName,role,and electronicMailAddress elements and at least one of phone and onlineResource elements</div></alert.M15>
 	<!--DATA/SERVICE IDENTIFICATION - PRESENTATION FORM-->
 	<M30>Data/service Identification - Presentation Form</M30>
 	<alert.M30><div> PresentationFromCode element is missing or has a wrong value</div></alert.M30>
@@ -111,6 +111,18 @@
 	<!--DATE FORMAT-->
 	<M100>Date</M100>
 	<alert.M100>Dates must be documented through gco:Date</alert.M100>
+	<!--COD IPA-->
+	<M101>Identifiers - IPA code</M101>
+	<alert.M101>Identifiers must be prefixed with IPA Respansabile Administration code. Make sure you have properly configured GeoNetwork SiteId parameter.</alert.M101>
+	<!--COD IPA - PARENT IDENTIFIER-->
+	<M102>Parent Identifier - IPA code</M102>
+	<alert.M102>Parent Identifier must be prefixed with IPA Respansabile Administration code.</alert.M102>
+	<!--COD IPA - SERIES-->
+	<M103>Series - IPA code</M103>
+	<alert.M103>Series identifier must be prefixed with IPA Respansabile Administration code.</alert.M103>
+	<!--COD IPA - IDENTIFIER-->
+	<M104>Resource Identifier - IPA code</M104>
+	<alert.M104>Resource Identifier must be prefixed with IPA Respansabile Administration code.</alert.M104>
 	<!--NIL REASON-->
 	<M110>Attribute not allowed</M110>
 	<alert.M110>No must have attribute gco:nilReason</alert.M110>
