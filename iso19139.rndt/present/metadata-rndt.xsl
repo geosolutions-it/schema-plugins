@@ -602,7 +602,22 @@
 						<xsl:with-param name="id"
 							select="generate-id(/root/gui/schemas/iso19139.rndt/strings/conformity/title)" />
 						<xsl:with-param name="content">
-														
+							
+<!--							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+							</xsl:apply-templates>	
+							<xsl:if
+								test="not(../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult)">
+								<xsl:apply-templates mode="elementEP"
+									select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/geonet:child[string(@name)='DQ_ConformanceResult']">
+									<xsl:with-param name="schema" select="$schema" />
+									<xsl:with-param name="edit" select="$edit" />
+									<xsl:with-param name="force" select="true()" />
+								</xsl:apply-templates>
+							</xsl:if>-->
+							
 							<!-- Title -->
 							<xsl:apply-templates mode="elementEP"
 								select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title">
@@ -651,24 +666,31 @@
 								</xsl:apply-templates>
 							</xsl:if>
 							
+							<!-- Conformity Level -->
+							<xsl:variable name="conformity">
+								<xsl:value-of select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass"/>
+							</xsl:variable>
+							
+							<xsl:if test="$conformity != ''">
+								<xsl:apply-templates mode="elementEP"
+									select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass">
+									<xsl:with-param name="schema" select="$schema" />
+									<xsl:with-param name="edit" select="$edit" />
+								</xsl:apply-templates>	
+							</xsl:if>
+
+							<xsl:if
+								test="not(../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass)">
+								<xsl:apply-templates mode="elementEP"
+									select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/geonet:child[string(@name)='pass']">
+									<xsl:with-param name="schema" select="$schema" />
+									<xsl:with-param name="edit" select="$edit" />
+									<xsl:with-param name="force" select="true()" />
+								</xsl:apply-templates>
+							</xsl:if>
+							
 						</xsl:with-param>
 					</xsl:call-template>
-					
-					<!-- Conformity Level -->
-					<xsl:apply-templates mode="elementEP"
-						select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass">
-						<xsl:with-param name="schema" select="$schema" />
-						<xsl:with-param name="edit" select="$edit" />
-					</xsl:apply-templates>	
-					<xsl:if
-						test="not(../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass)">
-						<xsl:apply-templates mode="elementEP"
-							select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/geonet:child[string(@name)='pass']">
-							<xsl:with-param name="schema" select="$schema" />
-							<xsl:with-param name="edit" select="$edit" />
-							<xsl:with-param name="force" select="true()" />
-						</xsl:apply-templates>
-					</xsl:if>
 					
 				</xsl:with-param>
 			</xsl:call-template>

@@ -90,7 +90,7 @@
 				<xs:sequence>
 					<xs:element name="specification" type="gmd:CI_Citation_PropertyType"/>
 					<xs:element name="explanation" type="gco:CharacterString_PropertyType"/>
-					<xs:element name="pass" type="gco:Boolean_PropertyType"/>
+					<xs:element name="pass" type="gco:Boolean_PropertyType" minOccurs="0" maxOccurs="1"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>

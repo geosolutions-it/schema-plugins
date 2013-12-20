@@ -108,4 +108,33 @@
 
 	<!-- ============================================================================= -->
 
+	<xsl:template match="gmd:DQ_ConformanceResult">
+		<xsl:choose>
+			<xsl:when test="not(exists(gmd:pass))">
+				<xsl:copy>
+					<xsl:apply-templates select="@*|node()"/>
+					<xsl:element name="gmd:pass">
+						<xsl:text></xsl:text>
+						<xsl:attribute name="nilReason">unknown</xsl:attribute>
+					</xsl:element>
+				</xsl:copy>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:variable name="pass">
+					<xsl:value-of select="gmd:pass"/>
+				</xsl:variable>
+				<xsl:if test="$pass = ''">
+					<xsl:copy>
+						<xsl:apply-templates select="@*|gmd:specification"/>
+						<xsl:apply-templates select="@*|gmd:explanation"/>
+						<xsl:element name="gmd:pass">
+							<xsl:text></xsl:text>
+							<xsl:attribute name="nilReason">unknown</xsl:attribute>
+						</xsl:element>
+					</xsl:copy>				    	
+				</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
 </xsl:stylesheet>

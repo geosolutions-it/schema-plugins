@@ -513,6 +513,7 @@ TypeCode" codeListValue="image">Immagine</gmd:MD_CoverageContentTypeCode>
 							<gmd:explanation>
 								<gco:CharacterString>Fare riferimento alle specifiche indicate</gco:CharacterString>
 							</gmd:explanation>
+							<gmd:pass gco:nilReason="unknown"/>
 						</gmd:DQ_ConformanceResult>
 					</gmd:result>
 				</gmd:DQ_DomainConsistency>
