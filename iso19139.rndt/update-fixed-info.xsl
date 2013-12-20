@@ -18,6 +18,35 @@
     Add new parentIdentifier if a parentUuid is provided
     -->
 
+    <xsl:variable name="ipa" select="/root/env/config/site/siteId"/>
+    <xsl:variable name="fileId">
+            <xsl:choose>
+                <!-- no iPA defined -->
+                <xsl:when test="not(ends-with($ipa, ':'))">
+                    <xsl:message>ATTENZIONE: CODICE iPA NON DEFINITO: siteId <xsl:value-of select="$ipa"/></xsl:message>
+                    <xsl:value-of select="/root/env/uuid"/>
+                </xsl:when>
+                <!-- ipa defined, not ":" in code -->
+                <!-- either first metadatacreation, or ipa just defined: prepend the IPA -->
+                <xsl:when test="not(contains(/root/env/uuid, ':'))">
+                    <xsl:message>INFO: creazione fileIdentifier</xsl:message>
+                    <xsl:value-of select="concat($ipa,/root/env/uuid)"/>
+                </xsl:when>
+                <!-- ipa defined, already present in code: OK, just copy it -->
+                <xsl:when test="starts-with(/root/env/uuid, $ipa)">
+                    <xsl:message>INFO: fileIdentifier OK</xsl:message>
+                    <xsl:value-of select="/root/env/uuid"/>
+                </xsl:when>
+                <!-- ipa defined, different from the one in code -->
+                <!-- probably not needed, but in case replace the iPA code -->
+                <xsl:otherwise>
+                    <xsl:message>ATTENZIONE: riscrittura del fileIdentifier</xsl:message>
+                    <xsl:value-of select="concat($ipa,substring-after(/root/env/uuid,':'))"/>
+                </xsl:otherwise>
+            </xsl:choose>
+    </xsl:variable>
+
+    <xsl:variable name="isNew" select="not(ends-with($ipa, ':')) or not(starts-with(/root/env/uuid, $ipa))"/>
 
     <xsl:template match="gmd:MD_Metadata">
 
@@ -25,50 +54,15 @@
             <xsl:apply-templates select="@*"/>
 
             <!-- fileIdentifier : handling RNDT iPA-->
-            <xsl:variable name="ipa" select="/root/env/config/site/siteId"/>
             <xsl:message>INFO: iPA is <xsl:value-of select="$ipa"/></xsl:message>
+            <xsl:message>INFO: Metadata is new ? <xsl:value-of select="$isNew"/></xsl:message>
 
-            <xsl:choose>
-                <!-- no iPA defined -->
-                <xsl:when test="not(ends-with($ipa, ':'))">
-                    <xsl:message>ATTENZIONE: CODICE iPA NON DEFINITO: siteId <xsl:value-of select="$ipa"/></xsl:message>
-                    <gmd:fileIdentifier>
-                        <gco:CharacterString>
-                            <xsl:value-of select="/root/env/uuid"/>
-                        </gco:CharacterString>
-                    </gmd:fileIdentifier>
-                </xsl:when>
-                <!-- ipa defined, not ":" in code -->
-                <!-- either first metadatacreation, or ipa just defined: prepend the IPA -->
-                <xsl:when test="not(contains(/root/env/uuid, ':'))">
-                    <xsl:message>INFO: creazione fileIdentifier</xsl:message>
-                    <gmd:fileIdentifier>
-                        <gco:CharacterString>
-                            <xsl:value-of select="concat($ipa,/root/env/uuid)"/>
-                        </gco:CharacterString>
-                    </gmd:fileIdentifier>
-                </xsl:when>
-                <!-- ipa defined, already present in code: OK, just copy it -->
-                <xsl:when test="starts-with(/root/env/uuid, $ipa)">
-                    <xsl:message>INFO: fileIdentifier OK</xsl:message>
-                    <gmd:fileIdentifier>
-                        <gco:CharacterString>
-                            <xsl:value-of select="/root/env/uuid"/>
-                        </gco:CharacterString>
-                    </gmd:fileIdentifier>
-                </xsl:when>
-                <!-- ipa defined, different from the one in code -->
-                <!-- probably not needed, but in case replace the iPA code -->
-                <xsl:otherwise>
-                    <xsl:message>ATTENZIONE: riscrittura del fileIdentifier</xsl:message>
-                    <gmd:fileIdentifier>
-                        <gco:CharacterString>
-                            <xsl:value-of select="concat($ipa,substring-after(/root/env/uuid,':'))"/>
-                        </gco:CharacterString>
-                    </gmd:fileIdentifier>
-                </xsl:otherwise>
-            </xsl:choose>
-            <!-- END fileIdentifier -->
+            <gmd:fileIdentifier>
+                <gco:CharacterString>
+                    <xsl:value-of select="$fileId"/>
+                </gco:CharacterString>
+            </gmd:fileIdentifier>
+
 
             <xsl:apply-templates select="gmd:language"/>
             <xsl:apply-templates select="gmd:characterSet"/>
@@ -116,8 +110,6 @@
 
             <xsl:apply-templates select="node()[not(self::gmd:language) and not(self::gmd:characterSet)]"/>
 
-            <!--<xsl:copy-of select="/root/env"/>-->
-
         </xsl:copy>
 
     </xsl:template>
@@ -131,44 +123,50 @@
     <!-- ================================================================= -->
     <!-- Resource identifier -->
 
-    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code"  priority="10">
+    <xsl:variable name="oldResId" select="//gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString/text()"/>
 
-        <xsl:variable name="ipa" select="/root/env/config/site/siteId"/>
-        <xsl:message>==== RESOURCE IDENTIFIER ====</xsl:message>
+    <!-- this var is used both for the resource id and the series id -->
 
+    <xsl:variable name="resId">
         <xsl:choose>
             <!-- no iPA defined -->
             <xsl:when test="not(ends-with($ipa, ':'))">
                 <xsl:message>ATTENZIONE: CODICE iPA NON DEFINITO: resource identifier rimosso</xsl:message>
-                <xsl:copy>
-                    <gco:CharacterString>CODICE_RISORSA_NON_DEFINITO</gco:CharacterString>
-                </xsl:copy>
+                <xsl:value-of select="'NON DEFINITO'"/>
             </xsl:when>
             <!-- ipa defined, not ":" in code -->
             <!-- either first metadatacreation, or ipa just defined: create the code -->
-            <xsl:when test="not(contains(./gco:CharacterString , ':'))">
-                <xsl:message>INFO: creating resource identifier</xsl:message>
-                <xsl:copy>
-                    <gco:CharacterString><xsl:value-of select="concat($ipa,/root/env/uuid,'_resource')"/></gco:CharacterString>
-                </xsl:copy>
-            </xsl:when>
-            <!-- ipa defined, already present in code: OK, just copy it -->
-            <xsl:when test="starts-with(./gco:CharacterString , $ipa)">
-                <xsl:message>INFO: resource identifier OK</xsl:message>
-                <xsl:copy>
-                    <gco:CharacterString><xsl:value-of select="./gco:CharacterString"/></gco:CharacterString>
-                </xsl:copy>
+            <!-- Will be equals to the resource identifier, which is OK -->
+            <xsl:when test="not(contains($oldResId , ':'))">
+                <xsl:message>INFO: creating resource identifier</xsl:message>                
+                <xsl:value-of select="concat($fileId,'_resource')"/>
             </xsl:when>
             <!-- ipa defined, different from the one in code -->
             <!-- redefine the current code since it may no longer be valid -->
+            <xsl:when test="not(starts-with($oldResId , $ipa))">
+                <xsl:message>ATTENZIONE: resource identifier ricreato</xsl:message>
+                <xsl:value-of select="concat($fileId,'_resource')"/>
+            </xsl:when>
+            <!-- ipa defined, right one, but metadata is new-->
+            <!-- redefine the current code since it may no longer be valid -->
+            <xsl:when test="$isNew">
+                <xsl:message>INFO: resource identifier ricreato su metadato nuovo</xsl:message>
+                    <xsl:value-of select="concat($fileId,'_resource')"/>
+            </xsl:when>
+            <!-- ipa defined, already present in code, metadata not new: OK, just copy it -->
             <xsl:otherwise>
-                <xsl:message>ATTENZIONE: resource identifier ricreato </xsl:message>
-                <xsl:copy>
-                    <gco:CharacterString><xsl:value-of select="concat($ipa,/root/env/uuid,'_resource')"/></gco:CharacterString>
-                    <!--<gco:CharacterString><xsl:value-of select="concat($ipa,substring-after(./gco:CharacterString,':'), '-x')"/></gco:CharacterString>-->
-                </xsl:copy>
+                <xsl:message>INFO: resource identifier OK</xsl:message>
+                <xsl:value-of select="$oldResId"/>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:variable>
+
+
+    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code"  priority="10">
+        <xsl:message>==== RESOURCE IDENTIFIER ====</xsl:message>
+        <xsl:copy>
+            <gco:CharacterString><xsl:value-of select="$resId"/></gco:CharacterString>
+        </xsl:copy>
     </xsl:template>
 
 
@@ -177,7 +175,6 @@
 
     <xsl:template match="gmd:series/gmd:CI_Series/gmd:issueIdentification"  priority="10">
 
-        <xsl:variable name="ipa" select="/root/env/config/site/siteId"/>
         <xsl:message>==== CI_Series ISSUE IDENTIFIER ====</xsl:message>
 
         <xsl:choose>
@@ -188,29 +185,44 @@
                     <gco:CharacterString>NON DEFINITO</gco:CharacterString>
                 </xsl:copy>
             </xsl:when>
+            <!-- empty series: fill with current resId-->
+            <xsl:when test="./gco:CharacterString/text() = ''">
+                <xsl:message>ATTENZIONE: serie vuota: copia da resourceId</xsl:message>
+                <xsl:copy>
+                    <gco:CharacterString><xsl:value-of select="$resId"/></gco:CharacterString>
+                </xsl:copy>
+            </xsl:when>
+
             <!-- ipa defined, not ":" in code -->
             <!-- either first metadatacreation, or ipa just defined: create the code -->
             <!-- Will be equals to the resource identifier, which is OK -->
             <xsl:when test="not(contains(./gco:CharacterString , ':'))">
                 <xsl:message>INFO: creating series identifier</xsl:message>
                 <xsl:copy>
-                    <gco:CharacterString><xsl:value-of select="concat($ipa,/root/env/uuid,'_resource')"/></gco:CharacterString>
-                </xsl:copy>
-            </xsl:when>
-            <!-- ipa defined, already present in code: OK, just copy it -->
-            <xsl:when test="starts-with(./gco:CharacterString , $ipa)">
-                <xsl:message>INFO: series identifier OK</xsl:message>
-                <xsl:copy>
-                    <gco:CharacterString><xsl:value-of select="./gco:CharacterString"/></gco:CharacterString>
+                    <gco:CharacterString><xsl:value-of select="$resId"/></gco:CharacterString>
                 </xsl:copy>
             </xsl:when>
             <!-- ipa defined, different from the one in code -->
             <!-- redefine the current code since it may no longer be valid -->
-            <xsl:otherwise>
+            <xsl:when test="not(starts-with(./gco:CharacterString , $ipa))">
                 <xsl:message>ATTENZIONE: series identifier ricreato</xsl:message>
                 <xsl:copy>
-                    <!--<gco:CharacterString><xsl:value-of select="concat($ipa,substring-after(./gco:CharacterString,':'), '-x')"/></gco:CharacterString>-->
-                    <gco:CharacterString><xsl:value-of select="concat($ipa,/root/env/uuid,'_resource')"/></gco:CharacterString>
+                    <gco:CharacterString><xsl:value-of select="$resId"/></gco:CharacterString>
+                </xsl:copy>
+            </xsl:when>
+            <!-- ipa defined, right one, but metadata is new-->
+            <!-- redefine the current code since it may no longer be valid -->
+            <xsl:when test="$isNew">
+                <xsl:message>INFO: series identifier ricreato su metadato nuovo</xsl:message>
+                <xsl:copy>
+                    <gco:CharacterString><xsl:value-of select="$resId"/></gco:CharacterString>
+                </xsl:copy>
+            </xsl:when>
+            <!-- ipa defined, already present in code, metadata not new: OK, just copy it -->
+            <xsl:otherwise>
+                <xsl:message>INFO: series identifier OK</xsl:message>
+                <xsl:copy>
+                    <gco:CharacterString><xsl:value-of select="./gco:CharacterString"/></gco:CharacterString>
                 </xsl:copy>
             </xsl:otherwise>
         </xsl:choose>
