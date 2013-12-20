@@ -289,4 +289,27 @@
 		<xsl:call-template name="iso19139-javascript" />
 	</xsl:template>
 
+
+	<xsl:template mode="iso19139" match="gmd:DQ_AbsoluteExternalPositionalAccuracy">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+
+		<xsl:choose>
+			<xsl:when test="$edit=true()">
+<!--                <xsl:apply-templates mode="complexElement" select=".">
+                    <xsl:with-param name="schema" select="$schema"/>
+                    <xsl:with-param name="edit"   select="$edit"/>
+                </xsl:apply-templates>-->
+            </xsl:when>
+            <xsl:otherwise>
+				<xsl:apply-templates mode="simpleElement" select=".">
+					<xsl:with-param name="schema" select="$schema"/>
+                    <xsl:with-param name="edit"   select="$edit"/>
+                    <xsl:with-param name="text" select="."/>
+                </xsl:apply-templates>
+            </xsl:otherwise>
+        </xsl:choose>
+
+	</xsl:template>
+
 </xsl:stylesheet>
