@@ -13,7 +13,8 @@
   xmlns:exslt="http://exslt.org/common"
   exclude-result-prefixes="#all">
 
-	<xsl:include href="metadata.xsl"/>
+	<xsl:include href="metadata-view.xsl"/>
+	<xsl:include href="metadata-rndt.xsl"/>
 
 	<xsl:template name="view-with-header-iso19139.rndt">
 		<xsl:param name="tabs"/>
