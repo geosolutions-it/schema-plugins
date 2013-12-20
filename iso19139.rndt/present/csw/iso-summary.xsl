@@ -32,7 +32,11 @@
 				<xsl:apply-templates select="gmd:fileIdentifier"/>
 				<xsl:apply-templates select="gmd:language"/>
 				<xsl:apply-templates select="gmd:characterSet"/>
-				<xsl:apply-templates select="gmd:parentIdentifier"/>
+				<gmd:parentIdentifier>
+					<gco:CharacterString>
+						<xsl:value-of select="./gmd:fileIdentifier"/>
+					</gco:CharacterString>
+				</gmd:parentIdentifier>
 				<xsl:apply-templates select="gmd:hierarchyLevel"/>
 				<xsl:apply-templates select="gmd:hierarchyLevelName"/>
 				<xsl:apply-templates select="gmd:dateStamp"/>
@@ -46,26 +50,28 @@
 			</xsl:copy>
 		</xsl:element>
 	</xsl:template>
-	
+
 	<!-- Remove comments -->
 
-    <xsl:template match="comment()" priority="100"/>
+	<xsl:template match="comment()" priority="100"/>
 
-    <!-- Remove geonet's own stuff -->
+	<!-- Remove geonet's own stuff -->
 
-    <xsl:template match="geonet:info" priority="100"/>
+	<xsl:template match="geonet:info" priority="100"/>
 
-    <!-- Fix the namespace URI -->
+	<!-- Fix the namespace URI -->
 
-    <xsl:template match="*[namespace-uri()='http://www.opengis.net/gml/3.2']" priority="100">
-        <xsl:element name="{local-name(.)}" namespace="http://www.opengis.net/gml">
-            <xsl:apply-templates select="@*|node()"/>
-        </xsl:element>
-    </xsl:template>
+	<xsl:template match="*[namespace-uri()='http://www.opengis.net/gml/3.2']" priority="100">
+		<xsl:element name="{local-name(.)}" namespace="http://www.opengis.net/gml">
+			<xsl:apply-templates select="@*|node()"/>
+		</xsl:element>
+	</xsl:template>
 
-    <xsl:template match="@*[namespace-uri()='http://www.opengis.net/gml/3.2']" priority="100">
-        <xsl:attribute name="{local-name(.)}"><xsl:copy/></xsl:attribute>
-    </xsl:template>
+	<xsl:template match="@*[namespace-uri()='http://www.opengis.net/gml/3.2']" priority="100">
+		<xsl:attribute name="{local-name(.)}">
+			<xsl:copy/>
+		</xsl:attribute>
+	</xsl:template>
 
 
 	<!-- =================================================================== -->
