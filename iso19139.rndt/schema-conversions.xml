@@ -1,26 +1,24 @@
 <!-- 
 	Describes conversions to other schemas 
-
-		 The name is the name of the converter - used as a service name if a 
-		 service is provided to convert records from search results or show (this
-		 name should be unique in GeoNetwork so prefixing with xml_<schema_name>
-		 is a good idea.
-
-     The xslt attribute is the name of an xslt that does the conversion
-		 in the convert dir of the schema 
 -->
 <conversions>
     <!-- service xml_csw-record does not perform any further conversion after applying XSL -->
 
-	<converter name="xml_rndt2iso19139"
+	<converter name="rndt2rndt"
+               service="xml_csw-record"
+               nsUri="http://www.isotc211.org/2005/gmd"
+               schemaLocation="www.isotc211.org/2005/gmd/gmd.xsd"
+               xslt="xml_rndt2rndt.xsl"/>
+
+    <converter name="rndt2iso19139"
                service="xml_csw-record"
                nsUri="http://www.isotc211.org/2005/gmd"
                schemaLocation="www.isotc211.org/2005/gmd/gmd.xsd"
                xslt="xml_rndt2iso19139.xsl"/>
 
-    <converter name="xml_rndt2dc"
+    <converter name="rndt2dc"
                service="xml_csw-record"
-               nsUri="urn:int:nato:geometoc:geo:metadata:ngmp:1.0"
-               schemaLocation="https://nmrr.nc3a.nato.int/filerepo/GeoMetOc/metadata/ngmp/1.0/ngmp.xsd"
+               nsUri="http://www.openarchives.org/OAI/2.0/"
+               schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc.xsd"
                xslt="xml_rndt2dc.xsl"/>
 </conversions>

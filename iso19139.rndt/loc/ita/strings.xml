@@ -3,6 +3,10 @@
 
     <rules name="schematron-rules-rndt">Regole RNDT</rules>
 
+    <rndt2rndt>Esporta il metadato in formato RNDT</rndt2rndt>
+    <rndt2iso19139>Esporta il metadato in formato ISO19139 XML file</rndt2iso19139>
+    <rndt2dc>Esporta il metadato in formato Dublin Core file</rndt2dc>
+
     <rndtTab>Vista RNDT</rndtTab>
     <!--rndtTabDesc>Description</rndtTabDesc>
     <rndtTabTech>Technical info.</rndtTabTech>

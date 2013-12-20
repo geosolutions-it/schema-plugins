@@ -30,7 +30,7 @@
 			<xsl:namespace name="gco" select="'http://www.isotc211.org/2005/gco'"/>
 			<xsl:namespace name="gmx" select="'http://www.isotc211.org/2005/gmx'"/>
 			<xsl:namespace name="srv" select="'http://www.isotc211.org/2005/srv'"/>
-			<xsl:namespace name="gml" select="'http://www.opengis.net/gml/3.2'"/>
+			<xsl:namespace name="gml" select="'http://www.opengis.net/gml'"/>
 			<xsl:namespace name="xlink" select="'http://www.w3.org/1999/xlink'"/>
 			<xsl:copy-of select="@*[name()!='xsi:schemaLocation' and name()!='gco:isoType']"/>
 			<xsl:attribute name="xsi:schemaLocation">http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</xsl:attribute>
