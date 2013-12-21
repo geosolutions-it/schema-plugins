@@ -34,7 +34,14 @@
 				<xsl:apply-templates select="gmd:characterSet"/>
 				<gmd:parentIdentifier>
 					<gco:CharacterString>
-						<xsl:value-of select="./gmd:fileIdentifier"/>
+						<xsl:choose>
+							<xsl:when test="//gmd:MD_Metadata/gmd:parentIdentifier!='' ">
+								<xsl:value-of select="//gmd:MD_Metadata/gmd:parentIdentifier"/>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="./gmd:fileIdentifier"/>
+							</xsl:otherwise>
+						</xsl:choose>						
 					</gco:CharacterString>
 				</gmd:parentIdentifier>
 				<xsl:apply-templates select="gmd:hierarchyLevel"/>
