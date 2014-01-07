@@ -11,7 +11,8 @@
 	<sch:ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>
 	<!--FILE IDENTIFIER-->
 	<sch:pattern>
-		<sch:title>$loc/strings/M1</sch:title>
+		<!-- <sch:title>$loc/strings/M1</sch:title> -->
+		<sch:title><xsl:value-of select="//root/env/config/site/siteId"/></sch:title>
 		<sch:rule context="//gmd:MD_Metadata">
 			<sch:assert test="gmd:fileIdentifier/gco:CharacterString">$loc/strings/alert.M1</sch:assert>
 		</sch:rule>
@@ -383,7 +384,7 @@
 	<sch:pattern>
 		<sch:title>$loc/strings/M110</sch:title>
 		<sch:rule context="/gmd:MD_Metadata">
-			<sch:assert test="count(//*[@gco:nilReason])=0">$loc/strings/alert.M110</sch:assert>
+			<sch:assert test="count(//*[@gco:nilReason] except (//gmd:pass[@gco:nilReason]))=0">$loc/strings/alert.M110</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 </sch:schema>
