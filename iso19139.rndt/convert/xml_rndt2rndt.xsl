@@ -39,12 +39,14 @@
 			<xsl:apply-templates select="gmd:characterSet"/>
 			<gmd:parentIdentifier>
 				<gco:CharacterString>
-					<xsl:when test="//gmd:MD_Metadata/gmd:parentIdentifier/gco:CharacterString != '' ">
-						<xsl:value-of select="//gmd:MD_Metadata/gmd:parentIdentifier/gco:CharacterString"/>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="./gmd:fileIdentifier/gco:CharacterString"/>
-					</xsl:otherwise>	
+					<xsl:choose>
+						<xsl:when test="//gmd:MD_Metadata/gmd:parentIdentifier/gco:CharacterString != '' ">
+							<xsl:value-of select="//gmd:MD_Metadata/gmd:parentIdentifier/gco:CharacterString"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="./gmd:fileIdentifier/gco:CharacterString"/>
+						</xsl:otherwise>
+					</xsl:choose>					
 				</gco:CharacterString>
 			</gmd:parentIdentifier>
 			<xsl:apply-templates select="child::* except (gmd:fileIdentifier|gmd:language|gmd:characterSet)"/>
@@ -62,7 +64,7 @@
 
 	<!-- =================================================================== -->
 	<!-- Fix gmd:parentIdentifier -->
-	<xsl:template match="gmd:parentIdentifier">
+<!-- 	<xsl:template match="gmd:parentIdentifier">
 		<xsl:copy>
 			<gmd:parentIdentifier>
 				<gco:CharacterString>
@@ -70,7 +72,7 @@
 				</gco:CharacterString>
 			</gmd:parentIdentifier>
 		</xsl:copy>
-	</xsl:template>
+	</xsl:template> -->
 	<!-- =================================================================== -->
 
 	<xsl:template match="@*|node()">
