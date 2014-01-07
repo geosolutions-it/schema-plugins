@@ -4,6 +4,8 @@
   exclude-result-prefixes="xs"
   version="2.0">
   
+  <xsl:import href="../../iso19139/present/metadata-fop.xsl"/>
+  
   <!-- Redirect to iso19139 default layout -->
   <xsl:template name="metadata-fop-iso19139.rndt">
     <xsl:param name="schema"/>
