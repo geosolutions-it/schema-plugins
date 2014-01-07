@@ -49,7 +49,7 @@
 					</xsl:choose>					
 				</gco:CharacterString>
 			</gmd:parentIdentifier>
-			<xsl:apply-templates select="child::* except (gmd:fileIdentifier|gmd:language|gmd:characterSet)"/>
+			<xsl:apply-templates select="child::* except (gmd:fileIdentifier|gmd:language|gmd:characterSet|gmd:parentIdentifier)"/>
 		</xsl:element>
 	</xsl:template>
 
