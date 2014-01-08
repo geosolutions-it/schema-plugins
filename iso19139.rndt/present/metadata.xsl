@@ -13,6 +13,7 @@
 
   <xsl:import href="metadata-fop.xsl"/>
   <xsl:include href="metadata-rndt.xsl"/>
+  <xsl:include href="metadata-ovr.xsl"/>
 
   <xsl:template name="iso19139.rndtBrief">
     <metadata>
@@ -298,16 +299,16 @@
 	
 	<xsl:template mode="iso19139" priority="200" match="*[geonet:element and count(*)=1 and text()='']"/>
 	
-	<xsl:template mode="iso19139" match="gmd:DQ_AbsoluteExternalPositionalAccuracy">
+    <!--<xsl:template mode="iso19139" match="gmd:DQ_AbsoluteExternalPositionalAccuracy">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
 		<xsl:choose>
 			<xsl:when test="$edit=true()">
-<!--                <xsl:apply-templates mode="complexElement" select=".">
+                <!-\-<xsl:apply-templates mode="complexElement" select=".">
                     <xsl:with-param name="schema" select="$schema"/>
                     <xsl:with-param name="edit"   select="$edit"/>
-                </xsl:apply-templates>-->
+                </xsl:apply-templates>-\->
             </xsl:when>
             <xsl:otherwise>
 				<xsl:apply-templates mode="simpleElement" select=".">
@@ -318,6 +319,6 @@
             </xsl:otherwise>
         </xsl:choose>
 
-	</xsl:template>
+	</xsl:template>-->
 
 </xsl:stylesheet>
