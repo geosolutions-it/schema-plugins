@@ -12,7 +12,8 @@
 	exclude-result-prefixes="gmd gco gml gts srv xlink exslt geonet">
 
   <xsl:import href="metadata-fop.xsl"/>
-  <xsl:include href="metadata-view.xsl"/>  
-  <xsl:include href="metadata-rndt.xsl"/>  
+  
+  <xsl:include href="metadata-view.xsl"/>
+  <xsl:include href="metadata-rndt.xsl"/>
 
 </xsl:stylesheet>

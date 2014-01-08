@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<strings>
-  <rndtTab>Core view</rndtTab>
-  <rndtTabDesc>Description</rndtTabDesc>
-  <rndtTabTech>Technical info.</rndtTabTech>
-  <rndtTabQua>Quality</rndtTabQua>
-  <rndtTabAcc>Access constraints</rndtTabAcc>
-  <rndtTabMd>Metadata</rndtTabMd>
-</strings>

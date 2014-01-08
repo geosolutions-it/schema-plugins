@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- Transforms the GML URI from /gml int /gml/3.2 -->
+
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-                xmlns:ngmp="urn:int:nato:geometoc:geo:metadata:ngmp:1.0"
                 xmlns:gml="http://www.opengis.net/gml"
                 xmlns:srv="http://www.isotc211.org/2005/srv"
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
@@ -14,15 +15,15 @@
 
 	<xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
+
 	<!-- ================================================================= -->
-	
     <!-- skip the root element -->
+
     <xsl:template match="/root">
 		<xsl:apply-templates select="gmd:MD_Metadata"/>
 	</xsl:template>
 	
 	<!-- ================================================================= -->
-
     <!-- sanitize namespaces -->
 
 	<xsl:template match="gmd:MD_Metadata" priority="400">
@@ -54,11 +55,39 @@
 			  <xsl:apply-templates select="@*|node()"/>
 		 </xsl:copy>
 	</xsl:template>
-
-
+	
+	<xsl:template match="gmd:DQ_ConformanceResult">
+		<xsl:choose>
+			<xsl:when test="not(exists(gmd:pass))">
+				<xsl:copy>
+					<xsl:apply-templates select="@*|node()"/>
+					<xsl:element name="gmd:pass">
+						<xsl:text></xsl:text>
+						<xsl:attribute name="nilReason">unknown</xsl:attribute>
+					</xsl:element>
+				</xsl:copy>
+			</xsl:when>
+			<xsl:otherwise>
+					<xsl:variable name="pass">
+						<xsl:value-of select="gmd:pass"/>
+					</xsl:variable>
+					<xsl:if test="$pass = ''">
+				    		<xsl:copy>
+				    			<xsl:apply-templates select="@*|gmd:specification"/>
+				    			<xsl:apply-templates select="@*|gmd:explanation"/>
+				    			<xsl:element name="gmd:pass">
+				    				<xsl:text></xsl:text>
+				    				<xsl:attribute name="nilReason">unknown</xsl:attribute>
+				    			</xsl:element>
+				    		</xsl:copy>				    	
+				    </xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
+	<!-- ================================================================= -->
     <!-- Remove geonet's own stuff -->
     <xsl:template match="geonet:info" priority="100"/>
     
-	<!-- ================================================================= -->
 	
 </xsl:stylesheet>
