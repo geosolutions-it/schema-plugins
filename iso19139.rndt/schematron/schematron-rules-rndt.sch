@@ -352,7 +352,7 @@
 	<!--COD IPA-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M101</sch:title>
-		<sch:rule context="gmd:parentIdentifier|gmd:fileIdentifier|
+		<sch:rule context="gmd:parentIdentifier[.!='']|gmd:fileIdentifier|
 		/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:series/gmd:CI_Series/gmd:issueIdentification|
 		/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code">
 			<sch:assert test="contains(gco:CharacterString,':')">$loc/strings/alert.M101</sch:assert>
@@ -361,7 +361,7 @@
 	<!--COD IPA - PARENT IDENTIFIER-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M102</sch:title>
-		<sch:rule context="gmd:parentIdentifier[contains(../gmd:fileIdentifier/gco:CharacterString,':')]">
+		<sch:rule context="gmd:parentIdentifier[contains(../gmd:fileIdentifier/gco:CharacterString,':') and .!='']">
 			<sch:assert test="starts-with(gco:CharacterString,substring-before(../gmd:fileIdentifier/gco:CharacterString,':'))">$loc/strings/alert.M102</sch:assert>
 		</sch:rule>
 	</sch:pattern>
