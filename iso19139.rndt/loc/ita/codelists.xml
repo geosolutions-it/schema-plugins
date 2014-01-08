@@ -31,156 +31,6 @@
 	</codelist>
 	<!-- ==================================================== -->
 	<!-- RNDT -->
-	<codelist name="gmd:MD_CharacterSetCode">		
-		<entry>
-			<code>ucs2</code>
-			<label>UCS2</label>
-			<description>Universal Character Set a 16 bit, basato su ISO/IEC 10646</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>ucs4</code>
-			<label>UCS4</label>
-			<description>Universal Character Set a 32 bit, basato su ISO/IEC 10646</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>utf7</code>
-			<label>UTF7</label>
-			<description>7-bit variable size UCS Transfer Format, based on ISO/IEC 10646</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>utf8</code>
-			<label>UTF8</label>
-			<description>8-bit variable size UCS Transfer Format, based on ISO/IEC 10646</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>utf16</code>
-			<label>UTF16</label>
-			<description>16-bit variable size UCS Transfer Format, based on ISO/IEC 10646</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>8859part1</code>
-			<label>8859 Part 1</label>
-			<description>ISO/IEC 8859-1, Information technology - 8-bit single byte coded graphic
-				character sets - Part 1 : Latin alphabet No.1</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>8859part2</code>
-			<label>8859 Part 2</label>
-			<description>ISO/IEC 8859-2, Information technology - 8-bit single byte coded graphic
-				character sets - Part 2 : Latin alphabet No.2</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>8859part3</code>
-			<label>8859 Part 3</label>
-			<description>ISO/IEC 8859-3, Information technology - 8-bit single byte coded graphic
-				character sets - Part 3 : Latin alphabet No.3</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>8859part4</code>
-			<label>8859 Part 4</label>
-			<description>ISO/IEC 8859-4, Information technology - 8-bit single byte coded graphic
-				character sets - Part 4 : Latin alphabet No.4</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>8859part5</code>
-			<label>8859 Part 5</label>
-			<description>ISO/IEC 8859-5, Information technology - 8-bit single byte coded graphic
-				character sets - Part 5 : Latin/Cyrillic alphabet</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>8859part6</code>
-			<label>8859 Part 6</label>
-			<description>ISO/IEC 8859-6, Information technology - 8-bit single byte coded graphic
-				character sets - Part 6 : Latin/Arabic alphabet</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>8859part7</code>
-			<label>8859 Part 7</label>
-			<description>ISO/IEC 8859-7, Information technology - 8-bit single byte coded graphic
-				character sets - Part 7 : Latin/Greek alphabet</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>8859part8</code>
-			<label>8859 Part 8</label>
-			<description>ISO/IEC 8859-8, Information technology - 8-bit single byte coded graphic
-				character sets - Part 8 : Latin/Hebrew alphabet</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>8859part9</code>
-			<label>8859 Part 9</label>
-			<description>ISO/IEC 8859-9, Information technology - 8-bit single byte coded graphic
-				character sets - Part 9 : Latin alphabet No.5</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>8859part10</code>
-			<label>8859 Part 10</label>
-			<description>ISO/IEC 8859-10, Information technology - 8-bit single byte coded graphic
-				character sets - Part 10 : Latin alphabet No.6</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>8859part11</code>
-			<label>8859 Part 11</label>
-			<description>ISO/IEC 8859-11, Information technology - 8-bit single byte coded graphic
-				character sets - Part 11 : Latin/Thai alphabet</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>8859part13</code>
-			<label>8859 Part 13</label>
-			<description>ISO/IEC 8859-13, Information technology - 8-bit single byte coded graphic
-				character sets - Part 13 : Latin alphabet No.7</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>8859part14</code>
-			<label>8859 Part 14</label>
-			<description>ISO/IEC 8859-14, Information technology - 8-bit single byte coded graphic
-				character sets - Part 14 : Latin alphabet No.8 (Celtic)</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>8859part15</code>
-			<label>8859 Part 15</label>
-			<description>ISO/IEC 8859-15, Information technology - 8-bit single byte coded graphic
-				character sets - Part 15 : Latin alphabet No.9</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>8859part16</code>
-			<label>8859 Part 16</label>
-			<description>ISO/IEC 8859-16, Information technology - 8-bit single byte coded graphic
-				character sets - Part 16 : Latin alphabet No.10</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>jis</code>
-			<label>JIS</label>
-			<description>Set di codici giapponese utilizzati per la trasmissione elettronica</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>shiftJIS</code>
-			<label>Shift JIS</label>
-			<description>Set di codici giapponese utilizzati su macchine MS-DOS</description>
-		</entry>		
-	</codelist>
-	<!-- ==================================================== -->
-	<!-- RNDT -->
 	<codelist name="gmd:MD_DimensionNameTypeCode">		
 		<entry>
 			<code>row</code>
@@ -331,5 +181,191 @@
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
-
+	<!-- RNDT -->
+	<codelist name="gmd:MD_TopicCategoryCode">
+		<entry>
+			<code>farming</code>
+			<label>Agricoltura</label>
+			<description>Allevamento di animali e/o coltivazione di piante
+				Esempi:agricoltura, irrigazioni, acquacoltura, piantagioni, parassiti e malattie che interessano i raccolti e il bestiame</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>biota</code>
+			<label>Biologia</label>
+			<description>Flora e/o fauna nell’ambiente naturale
+				Esempi: fauna selvatica, vegetazione, scienze biologiche, ecologia, habitat
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>boundaries</code>
+			<label>Confini</label>
+			<description>Descrizione legale del territorio
+				Esempi: limiti politici e amministrativi</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>climatologyMeteorologyAtmosphere</code>
+			<label>Climatologia e meteorologia</label>
+			<description>Processi e  fenomeni dell’atmosfera
+				Esempi: annuvolamento, clima,  condizioni atmosferiche, cambiamenti climatici, precipitazioni</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>economy</code>
+			<label>Economia</label>
+			<description>Attività economiche
+				Esempi: produzione, lavoro, commercio, reddito, industria, turismo, ecoturismo, silvicoltura,
+				pesca, esplorazione e sfruttamento delle risorse come minerali, petrolio e gas.</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>elevation</code>
+			<label>Quote e prodotti derivati</label>
+			<description>Quote sopra o sotto il livello del mare
+				Esempi: altitudine, DEM, batimetria, pendenze e prodotti derivati</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>environment</code>
+			<label>Ambiente</label>
+			<description>Risorse ambientali, protezione e conservazione dell’ambiente
+				Esempi: inquinamento ambientale, trattamento dei rifiuti, valutazione di impatto ambientale,
+				monitoraggio del rischio ambientale, riserve naturali, paesaggio
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>geoscientificInformation</code>
+			<label>Informazioni geoscientifiche</label>
+			<description>Informazioni riguardanti le Scienze della Terra
+				Esempi: entità e processi geofisici, geologia, minerali,
+				struttura e origine delle rocce terrestri, rischi di terremoti,
+				attività vulcanica, suoli, idrogeologia, erosione.
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>health</code>
+			<label>Salute</label>
+			<description>Salute, servizi sanitari,	ecologia umana e sicurezza
+				Esempi: malattie, fattori che interessano la salute, igiene, abuso di sostanze, 
+				salute fisica e mentale, servizi sanitari</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>imageryBaseMapsEarthCover</code>
+			<label>Mappe di base</label>
+			<description>Mappe di base
+				Esempi: copertura territoriale, carte topografiche, immagini</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>intelligenceMilitary</code>
+			<label>Informazioni militari</label>
+			<description>Basi, strutture e attività militari
+				Esempi: addestramento, trasporto militare, raccolta di informazioni</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>inlandWaters</code>
+			<label>Acque interne</label>
+			<description>Caratteristiche delle acque
+				interne, sistemi di drenaggio e
+				loro caratteristiche
+				Esempi: fiumi e ghiacciai,laghi salati,  piani    di
+				utilizzazione      dell’acqua,
+				dighe, correnti, inondazioni,
+				qualità dell’acqua
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>location</code>
+			<label>Posizione</label>
+			<description>Informazioni e servizi sulla
+				localizzazione
+				Esempi:      indirizzi,    reti
+				geodetiche, punti di controllo,
+				zone e servizi postali,
+				toponimi
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>oceans</code>
+			<label>Acque marine</label>
+			<description>Entità e caratteristiche dei
+				corpi d’acqua salata (escluse
+				le acque interne)
+				Esempi: maree, informazioni
+				sulle linee di costa
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>planningCadastre</code>
+			<label>Pianificazione del territorio e catasto</label>
+			<description>Pianificazione del territorio
+				Esempi: carte dell’uso del
+				suolo, carte di zonizzazione,
+				indagini catastali, proprietà
+				terriere
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>society</code>
+			<label>Società</label>
+			<description>Caratteristiche    sociali   e
+				culturali
+				Esempi:          antropologia,
+				archeologia,       educazione,
+				costumi, dati demografici,
+				aree e attività per la
+				ricreazione, valutazione di
+				impatto sociale, giustizia,
+				informazioni fiscali
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>structure</code>
+			<label>Strutture</label>
+			<description>Costruzioni, manufatti
+				Esempi:      palazzi,  musei,
+				chiese, fabbriche, monumenti,
+				negozi, torri
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>transportation</code>
+			<label>Trasporto</label>
+			<description>Mezzi e servizi per il
+				trasporto delle persone e/o
+				delle merci
+				Esempi: strade, aeroporti,
+				carte nautiche, posizione dei
+				veicoli, carte aeronautiche,
+				ferrovie
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>utilitiesCommunication</code>
+			<label>Reti, infrastrutture e servizi di comunicazione</label>
+			<description>Energia, acqua e sistemi dei
+				rifiuti, infrastrutture e servizi
+				di comunicazione
+				Esempi:          idro-elettricità,
+				sorgenti         di      energia
+				geotermica,         solare       e
+				nucleare, potabilizzazione e
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+	</codelist>	
+	<!-- ==================================================== -->
 </codelists>
