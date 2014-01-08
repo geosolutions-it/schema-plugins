@@ -35,7 +35,8 @@
 			<xsl:apply-templates select="gmd:language"/>
 			<xsl:apply-templates select="gmd:characterSet"/>
 			<!-- <xsl:choose> -->
-				<xsl:if test="//gmd:MD_Metadata/gmd:parentIdentifier/gco:CharacterString != ./gmd:fileIdentifier/gco:CharacterString ">
+				<xsl:if test="//gmd:MD_Metadata/gmd:parentIdentifier/gco:CharacterString != ./gmd:fileIdentifier/gco:CharacterString and
+				//gmd:MD_Metadata/gmd:parentIdentifier/gco:CharacterString !=''">
 					<gmd:parentIdentifier>
 						<gco:CharacterString>
 							<xsl:value-of select="//gmd:MD_Metadata/gmd:parentIdentifier/gco:CharacterString"/>
