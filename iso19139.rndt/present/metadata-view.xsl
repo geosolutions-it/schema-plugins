@@ -11,11 +11,6 @@
 	xmlns:exslt="http://exslt.org/common"
 	exclude-result-prefixes="gmd gco gml gts srv xlink exslt geonet">
 
-  <xsl:import href="metadata-fop.xsl"/>
-  <xsl:include href="metadata-rndt.xsl"/>
-  <xsl:include href="metadata-view.xsl"/>  
-  <xsl:include href="metadata-ovr.xsl"/>
-
   <xsl:template name="iso19139.rndtBrief">
     <metadata>
 			<xsl:choose>
@@ -105,9 +100,9 @@
 							<xsl:apply-templates mode="brief" select="."/>
 						</xsl:variable>
 						<xsl:variable name="metadata" select="exslt:node-set($md)/*[1]"/>
-						<xsl:call-template name="thumbnail">
+						<!--xsl:call-template name="thumbnail">
 							<xsl:with-param name="metadata" select="$metadata"/>
-						</xsl:call-template>
+						</xsl:call-template-->
 					</div>
 				</xsl:if>
 				<xsl:if test="/root/gui/config/editor-metadata-relation">
@@ -287,39 +282,6 @@
 	<!-- === Javascript used by functions in this presentation XSLT          -->
 	<!-- =================================================================== -->
 	<!-- Javascript used by functions in this XSLT -->
-	<xsl:template name="iso19139.rndt-javascript">
-		<xsl:call-template name="iso19139-javascript" />
-	</xsl:template>
-	
-	<!-- Do not try do display element with no children in view mode -->
-	<!-- Usually this should not happen because GeoNetwork will add default children like gco:CharacterString. 
-		 Fixed #299
-		 TODO : metadocument contains geonet:element which is probably not required ?
-	-->
-	<xsl:template mode="iso19139" priority="200" match="*[(@gco:nilReason='missing' or @gco:nilReason='unknown') and geonet:element and count(*)=1]"/>
-	
-	<xsl:template mode="iso19139" priority="200" match="*[geonet:element and count(*)=1 and text()='']"/>
-	
-    <!--<xsl:template mode="iso19139" match="gmd:DQ_AbsoluteExternalPositionalAccuracy">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
+	<xsl:template name="iso19139.rndt-javascript" />
 
-		<xsl:choose>
-			<xsl:when test="$edit=true()">
-                <!-\-<xsl:apply-templates mode="complexElement" select=".">
-                    <xsl:with-param name="schema" select="$schema"/>
-                    <xsl:with-param name="edit"   select="$edit"/>
-                </xsl:apply-templates>-\->
-            </xsl:when>
-            <xsl:otherwise>
-				<xsl:apply-templates mode="simpleElement" select=".">
-					<xsl:with-param name="schema" select="$schema"/>
-                    <xsl:with-param name="edit"   select="$edit"/>
-                    <xsl:with-param name="text" select="."/>
-                </xsl:apply-templates>
-            </xsl:otherwise>
-        </xsl:choose>
-
-	</xsl:template>-->
-	
 </xsl:stylesheet>
