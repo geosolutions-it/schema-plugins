@@ -123,7 +123,7 @@
     <!-- ================================================================= -->
     <!-- Resource identifier -->
 
-    <xsl:variable name="oldResId" select="//gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString/text()"/>
+    <xsl:variable name="oldResId" select="//gmd:identificationInfo/gmd:MD_DataIdentification|srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString/text()"/>
 
     <!-- this var is used both for the resource id and the series id -->
 
@@ -162,7 +162,7 @@
     </xsl:variable>
 
 
-    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code"  priority="10">
+    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification|srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code"  priority="10">
         <xsl:message>==== RESOURCE IDENTIFIER ====</xsl:message>
         <xsl:copy>
             <gco:CharacterString><xsl:value-of select="$resId"/></gco:CharacterString>
