@@ -111,6 +111,18 @@
 	<!--DATE FORMAT-->
 	<M100>Date</M100>
 	<alert.M100>Dates must be documented through gco:Date</alert.M100>
+	<!--COD IPA-->
+	<M101>Identifiers - IPA code</M101>
+	<alert.M101>Identifiers must be prefixed with IPA Respansabile Administration code. Make sure you have properly configured GeoNetwork SiteId parameter.</alert.M101>
+	<!--COD IPA - PARENT IDENTIFIER-->
+	<M102>Parent Identifier - IPA code</M102>
+	<alert.M102>Parent Identifier must be prefixed with IPA Respansabile Administration code.</alert.M102>
+	<!--COD IPA - SERIES-->
+	<M103>Series - IPA code</M103>
+	<alert.M103>Series identifier must be prefixed with IPA Respansabile Administration code.</alert.M103>
+	<!--COD IPA - IDENTIFIER-->
+	<M104>Resource Identifier - IPA code</M104>
+	<alert.M104>Resource Identifier must be prefixed with IPA Respansabile Administration code.</alert.M104>
 	<!--NIL REASON-->
 	<M110>Attribute not allowed</M110>
 	<alert.M110>No must have attribute gco:nilReason</alert.M110>

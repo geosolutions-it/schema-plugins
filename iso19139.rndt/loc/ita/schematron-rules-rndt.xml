@@ -11,7 +11,9 @@
 	<alert.M3><div>L'elemento parentIdentifier è mancante, incompleto o ha un valore errato</div></alert.M3>
 	<!--HIERARCHY LEVEL-->
 	<M4>Informazioni sui dati - Livello gerarchico</M4>
-	<alert.M4><div>L'elemento hierarchyLevel è mancante, incompleto o ha un valore errato</div></alert.M4>
+	<!-- <alert.M4><div>L'elemento hierarchyLevel è mancante, incompleto o ha un valore errato</div></alert.M4>-->
+	<alert.M4><div>L'elemento hierarchyLevel è mancante</div></alert.M4>
+	<alert.M4a><div>L'elemento hierarchyLevel è incompleto</div></alert.M4a>
 	<!--METADATA STANDARD NAME-->
 	<M5>Informazioni sui dati - Nome dello standard</M5>
 	<alert.M5><div>L'elemento metadataStandardName è mancante, incompleto o ha un valore errato. Il valore dell'elemento deve essere uguale a 'DM - Regole tecniche RNDT'</div></alert.M5>
@@ -111,6 +113,18 @@
 	<!--DATE FORMAT-->
 	<M100>Data - Formato</M100>
 	<alert.M100>La date devono essere documentate attraverso l'elemento gco:Date</alert.M100>
+	<!--COD IPA-->
+	<M101>Identificativi - Codice IPA</M101>
+	<alert.M101>Gli identificatavi devono avere come prefisso il codice IPA dell'Amministrazione Responsabile. Verificare che sia stato correttamente configurato il SiteId di GeoNetwork.</alert.M101>
+	<!--COD IPA - PARENT IDENTIFIER-->
+	<M102>Id file precedente - Codice IPA</M102>
+	<alert.M102>L'identificatore del file precedente deve avere come prefisso il codice IPA dell'Amministrazione Responsabile.</alert.M102>
+	<!--COD IPA - SERIES-->
+	<M103>Id livello superiore - Codice IPA</M103>
+	<alert.M103>L'identificatore del livello superiore deve avere come prefisso il codice IPA dell'Amministrazione Responsabile.</alert.M103>
+	<!--COD IPA - IDENTIFIER-->
+	<M104>Id della risorsa - Codice IPA</M104>
+	<alert.M104>L'identificatore del livello superiore deve avere come prefisso il codice IPA dell'Amministrazione Responsabile.</alert.M104>
 	<!--NIL REASON-->
 	<M110>Attributo errato</M110>
 	<alert.M110>Nessun elemento del metadato può utilizzare l'attributo gco:nilReason</alert.M110>
