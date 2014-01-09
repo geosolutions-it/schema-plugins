@@ -140,7 +140,7 @@ de" codeListValue="area">Area</gmd:MD_CellGeometryCode>
 			<gmd:citation>
 				<gmd:CI_Citation>
 					<gmd:title>
-						<gco:CharacterString>Template per raster 'georeferenziabili' ISO19139.rndt</gco:CharacterString>
+						<gco:CharacterString>Template per raster "georeferenziabili" ISO19139.rndt</gco:CharacterString>
 					</gmd:title>
 					<gmd:date>
 						<gmd:CI_Date>
