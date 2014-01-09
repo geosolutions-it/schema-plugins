@@ -10,11 +10,7 @@
 	xmlns:gco="http://www.isotc211.org/2005/gco" 
 	xsi:schemaLocation="http://www.isotc211.org/2005/gmd
 	http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gmd/gmd.xsd" >
-<<<<<<< HEAD
-	<gmd:fileIdentifier>
-=======
 <!--	<gmd:fileIdentifier>
->>>>>>> upstream/rndt
 		<gco:CharacterString>cod_ipa:id_file</gco:CharacterString>
 	</gmd:fileIdentifier>-->
 	<gmd:language>
@@ -144,7 +140,7 @@ de" codeListValue="area">Area</gmd:MD_CellGeometryCode>
 			<gmd:citation>
 				<gmd:CI_Citation>
 					<gmd:title>
-						<gco:CharacterString>Template per raster "georeferenziabili" ISO19139.rndt</gco:CharacterString>
+						<gco:CharacterString>Template per raster 'georeferenziabili' ISO19139.rndt</gco:CharacterString>
 					</gmd:title>
 					<gmd:date>
 						<gmd:CI_Date>
@@ -508,13 +504,7 @@ TypeCode" codeListValue="image">Immagine</gmd:MD_CoverageContentTypeCode>
 							<gmd:explanation>
 								<gco:CharacterString>Fare riferimento alle specifiche indicate</gco:CharacterString>
 							</gmd:explanation>
-<<<<<<< HEAD
-							<gmd:pass>
-								<gco:Boolean>false</gco:Boolean>
-							</gmd:pass>
-=======
 							<gmd:pass gco:nilReason="unknown"/>
->>>>>>> upstream/rndt
 						</gmd:DQ_ConformanceResult>
 					</gmd:result>
 				</gmd:DQ_DomainConsistency>
