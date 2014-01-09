@@ -8,16 +8,7 @@
 	</element>
 	<element name="gmd:code" context="gmd:RS_Identifier">
 		<label>Identificatore</label>
-<<<<<<< HEAD
-		<condition>Identificatore univoco della risorsa</condition>
-		<condition>Obbligatorio</condition>
-	</element>
-	<element name="gmd:code" context="gmd:RS_Identifier">
-		<label>Identificatore</label>
-		<condition>Identificatore univoco della risorsa</condition>
-=======
 		<description>Identificatore univoco della risorsa</description>
->>>>>>> upstream/rndt
 		<condition>Obbligatorio</condition>
 	</element>
 	<element name="gmd:issueIdentification">
@@ -32,15 +23,6 @@
 	</element>
 	<element name="gmd:fileIdentifier">
 		<label>Identificatore del file</label>
-<<<<<<< HEAD
-		<description>Identificatore del file di metadati</description>
-		<condition>Obbligatorio</condition>
-	</element>
-	<element name="gmd:parentIdentifier">
-		<label>Id file precedente</label>
-		<description>Identificatore metadati di rango superiore</description>
-		<condition>Obbligatorio</condition>
-=======
 		<description>Identificatore univoco del file di metadati</description>
 		<condition>Obbligatorio</condition>
 		<help>L'identificatore deve avere come prefisso il codice IPA dell'Amministrazione titolare del dato o del servizio, seguito dal carattere ":". Il codice IPA assegnato all'Amministrazione nel momento dell'accreditamento come da comma 1 dell’art. 19 dell'allegato A del DPCM 1 aprile 2008.</help>
@@ -50,16 +32,11 @@
 		<description>Identificatore univoco del file di metadati dell'eventuale trasmissione precedente al RNDT, cui il file corrente è relazionato.</description>
 		<condition>Obbligatorio</condition>
 		<help>L'identificatore deve avere come prefisso il codice IPA dell'Amministrazione titolare del dato o del servizio, seguito dal carattere ":". Il codice IPA assegnato all'Amministrazione nel momento dell'accreditamento come da comma 1 dell’art. 19 dell'allegato A del DPCM 1 aprile 2008. Nel caso di prima trasmissione l'elemento assume lo stesso valore dell’elemento "Identificatore del file".</help>
->>>>>>> upstream/rndt
 	</element>
 	<element name="gmd:URL">
 		<label>Sito web</label>
 		<description>Sito web</description>
-<<<<<<< HEAD
-		<condition>Documentare alternativamente a 'Telefono'</condition>
-=======
 		<help>Se l'informazione è fornita per identificare un ente, un ufficio o un soggetto associato a un dato o a un servizio, può essere inserita alternativamente al 'Telefono'</help>
->>>>>>> upstream/rndt
 	</element>
 	<element name="gmd:date" context="gmd:CI_Citation">
 		<condition>Obbligatorio</condition>
@@ -111,54 +88,6 @@
 	<element name="srv:DCP">
 		<label>DCP (Distributed Computing Platforms)</label>		
 		<description>Lista dei valori DCPList</description>
-	</element>
-	<element name="srv:connectPoint">
-		<label>Punto di connessione</label>
-		<description>Gestione per l'accesso all'interfaccia del servizio</description>
-	</element>
-	<element name="srv:invocationName">
-		<label>Nome richiesta</label>
-		<description>Il nome utilizzato per richiamare questa interfaccia nel contesto del DCP. Il nome è identico per tutti i DCP</description>
-	</element>
-	<element name="gmd:attributeDescription">
-		<label>Descrizione degli attributi</label>
-		<description>Descrizione dell'attributo descritto dal valore di misura</description>
-		<condition>obbligatorio</condition>
-	</element>
-	<element name="gmd:bitsPerValue">
-		<label>Risoluzione radiometrica</label>
-		<description>Numero massimo di bit significativi con cui può essere rappresentata l'intensità radiometrica di ogni pixel</description>
-	</element>
-	<element name="gmd:resourceMaintenance">
-		<label>Gestione dei dati</label>
-		<description>Informazioni sulla frequenza di aggiornamento della risorsa.</description>
-	</element>
-	<element name="gmd:version" context="gmd:MD_Format">
-		<label>Versione formato</label>
-		<description>Versione di distribuzione</description>
-		<condition>Obbligatorio</condition>
-	</element>
-	<element name="gmd:name" context="gmd:MD_Format">
-		<label>Name formato</label>
-		<description>Formato di distribuzione</description>
-		<condition>Obbligatorio</condition>
-	</element>
-	<element name="gmd:numberOfDimensions">
-		<label>Numero di dimensioni</label>
-		<description>Numero degli assi spaziali-temporali indipendenti</description>
-		<condition>obbligatorio</condition>
-	</element>
-	<element name="gmd:cornerPoints">
-		<label>Punto del pixel</label>
-		<description>Posizione sulla Terra nel sistema di riferimento definito dall' SRS e dalla coordinata griglia delle celle agli estremi opposti di un'immagine raster lungo le due diagonali</description>
-		<condition>obbligatorio</condition>
-	</element>
-	<element name="srv:couplingType">
-		<label>Risorsa accoppiata</label>
-		<description>Tipo di accoppiamentog</description>
-	</element>
-	<element name="srv:DCP">
-		<label>DCP (Distributed Computing Platforms)</label>
 	</element>
 	<element name="srv:connectPoint">
 		<label>Punto di connessione</label>
@@ -294,7 +223,7 @@
 		<help>È necessario fornire le informazioni relative ai seguenti elementi, espressi in gradi decimali, con la precisione di almeno due cifre decimali, nel sistema WGS84</help>
 	</element>
 	<element name="gmd:verticalCRS">
-		<label>Datum verticale</label>
+		<label>CRS verticale</label>
 		<description>Fornisce informazioni sull'origine da cui vengono misurati i valori delle quote massime e minime</description>
 		<help>Per la documentazione di questo elemento, utilizzare, facendo comunque riferimento alla lista di valori “MD_ReferenceSystemCode” di cui al § 3.4.3.11 dell’allegato 2 al DM, il tag relativo con la compilazione del solo attributo “href” attraverso il quale indicare l’URI al quale reperire le informazioni del sistema di riferimento considerato. Nel caso in cui si tratta di un sistema di riferimento inserito nel database di EPSG, allora l’URI da considerare è “http://www.epsgregistry. org/export.htm?gml=urn:ogc:def:crs:EPSG::xxxx” dove ‘xxxx’ è il codice EPSG del sistema considerato (v., a questo proposito, la tabella delle corrispondenze al § 3.4.8.3 dell’allegato 2 al DM). Nel caso in cui il sistema di riferimento non sia inserito nel database di EPSG, allora l’URI da considerare è il seguente: “http://www.rndt.gov.it/ReferenceSystemCode#codice_domini o” dove ‘codice_dominio’ è il valore della omonima colonna della lista di valori citata, corrispondente al sistema considerato.</help>
 	</element>
@@ -386,19 +315,12 @@
 		<description>Descrizione del sistema di riferimento spaziale dei dati</description>
 	</element>
 	<element name="gmd:MD_TopicCategoryCode">
-<<<<<<< HEAD
-		<label>Categoria tematica</label>
-		<description>Classificazione tematica dei dati geografici usata per aiutare nel raggruppamento e nella ricerca dei dataset geografici disponibili. Può anche essere usata per raggruppare le keyword. NOTA: Ci sono sovrapposizioni tra le categorie generali; si incoraggia l'utente a selezionare quella più appropriata.</description>
-	</element>
-	<element name="gmd:classification" id="74.0">
-=======
 		<label>Categoria tematica</label>		
 		<description>Tema principale cui si riferiscono i dati.</description>
 		<condition>Obbligatorio</condition>
 		<help>L’elemento deve assumere uno dei valori della lista “MD_TopicCategoryCode” (§ 3.4.3.15 – all. 2 DM).</help>
 	</element>
 	<element name="gmd:classification" id="74.0">		
->>>>>>> upstream/rndt
 		<condition>Obbligatorio</condition>
 		<label>Vincoli di sicurezza</label>
 		<description>Nome delle restrizioni d'utilizzo sulla risorsa o sui metadati</description>
