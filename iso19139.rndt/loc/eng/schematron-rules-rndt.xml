@@ -117,12 +117,12 @@
 	<!--COD IPA - PARENT IDENTIFIER-->
 	<M102>Parent Identifier - IPA code</M102>
 	<alert.M102>Parent Identifier must be prefixed with IPA Respansabile Administration code.</alert.M102>
-	<!--COD IPA - SERIES-->
-	<M103>Series - IPA code</M103>
-	<alert.M103>Series identifier must be prefixed with IPA Respansabile Administration code.</alert.M103>
 	<!--COD IPA - IDENTIFIER-->
-	<M104>Resource Identifier - IPA code</M104>
-	<alert.M104>Resource Identifier must be prefixed with IPA Respansabile Administration code.</alert.M104>
+	<M103>Resource Identifier - IPA code</M103>
+	<alert.M103>Resource Identifier must be prefixed with IPA Respansabile Administration code.</alert.M103>
+	<!--COD IPA - SERIES-->
+	<M104>Series - IPA code</M104>
+	<alert.M104>Series identifier must be prefixed with IPA Respansabile Administration code.</alert.M104>
 	<!--NIL REASON-->
 	<M110>Attribute not allowed</M110>
 	<alert.M110>No must have attribute gco:nilReason</alert.M110>

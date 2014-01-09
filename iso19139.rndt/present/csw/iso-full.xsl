@@ -24,7 +24,7 @@
 
 	<!-- ================================================================= -->
 
-    <!-- Metadata root elem: set sane namespaces -->
+	<!-- Metadata root elem: set sane namespaces -->
 
 	<xsl:template match="gmd:MD_Metadata">
 		<xsl:element name="gmd:MD_Metadata">
@@ -36,17 +36,33 @@
 			<xsl:namespace name="xlink" select="'http://www.w3.org/1999/xlink'"/>
 			<xsl:copy-of select="@*[name()!='xsi:schemaLocation' and name()!='gco:isoType']"/>
 			<xsl:attribute name="xsi:schemaLocation">http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</xsl:attribute>
-			<xsl:apply-templates select="child::*"/>
+			<xsl:apply-templates select="gmd:fileIdentifier"/>
+			<xsl:apply-templates select="gmd:language"/>
+			<xsl:apply-templates select="gmd:characterSet"/>
+			<gmd:parentIdentifier>
+				<gco:CharacterString>
+					<xsl:choose>
+						<xsl:when test="//gmd:MD_Metadata/gmd:parentIdentifier/gco:CharacterString != '' ">
+							<xsl:value-of select="//gmd:MD_Metadata/gmd:parentIdentifier/gco:CharacterString"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="./gmd:fileIdentifier/gco:CharacterString"/>
+						</xsl:otherwise>	
+					</xsl:choose>
+				</gco:CharacterString>
+			</gmd:parentIdentifier>
+			<xsl:apply-templates select="child::* except (gmd:fileIdentifier|gmd:language|gmd:characterSet)"/>
+			<!-- <xsl:apply-templates select="//*[not(self::gmd:fileIdentifier)|not(self::gmd:language)|not(self::gmd:characterSet)]"/> -->
 		</xsl:element>
 	</xsl:template>
 
 	<!-- ================================================================= -->
 
-    <!-- Generic node -->
+	<!-- Generic node -->
 
 	<xsl:template match="@*|node()">
 		<xsl:variable name="info" select="geonet:info"/>
-		 <xsl:copy copy-namespaces="no">
+		<xsl:copy copy-namespaces="no">
 			<xsl:apply-templates select="@*|node()"/>
 
 			<!-- GeoNetwork elements added when resultType is equal to results_with_summary -->
@@ -57,30 +73,32 @@
 		</xsl:copy>
 	</xsl:template>
 
-    <!-- Remove comments -->
+	<!-- Remove comments -->
 
-    <xsl:template match="comment()" priority="100"/>
+	<xsl:template match="comment()" priority="100"/>
 
-    <!-- Remove geonet's own stuff -->
+	<!-- Remove geonet's own stuff -->
 
-    <xsl:template match="geonet:info" priority="100"/>
+	<xsl:template match="geonet:info" priority="100"/>
 
-    <!-- Fix the namespace URI -->
+	<!-- Fix the namespace URI -->
 
-    <xsl:template match="*[namespace-uri()='http://www.opengis.net/gml/3.2']" priority="100">
-        <xsl:element name="{local-name(.)}" namespace="http://www.opengis.net/gml">
-            <xsl:apply-templates select="@*|node()"/>
-        </xsl:element>
-    </xsl:template>
+	<xsl:template match="*[namespace-uri()='http://www.opengis.net/gml/3.2']" priority="100">
+		<xsl:element name="{local-name(.)}" namespace="http://www.opengis.net/gml">
+			<xsl:apply-templates select="@*|node()"/>
+		</xsl:element>
+	</xsl:template>
 
-    <xsl:template match="@*[namespace-uri()='http://www.opengis.net/gml/3.2']" priority="100">
-        <xsl:attribute name="{local-name(.)}"><xsl:copy/></xsl:attribute>
-    </xsl:template>
+	<xsl:template match="@*[namespace-uri()='http://www.opengis.net/gml/3.2']" priority="100">
+		<xsl:attribute name="{local-name(.)}">
+			<xsl:copy/>
+		</xsl:attribute>
+	</xsl:template>
 
 
 	<!-- ================================================================= -->
 
-    <!-- Replace RNDT metadata standard name/version -->
+	<!-- Replace RNDT metadata standard name/version -->
 
 	<xsl:template match="gmd:metadataStandardName">
 		<xsl:copy copy-namespaces="no">
@@ -94,6 +112,8 @@
 			<gco:CharacterString>1.0</gco:CharacterString>
 		</xsl:copy>
 	</xsl:template>
+	<!-- =================================================================== -->
+
 
 	<!-- ================================================================= -->
 
@@ -108,33 +128,4 @@
 
 	<!-- ============================================================================= -->
 
-	<xsl:template match="gmd:DQ_ConformanceResult">
-		<xsl:choose>
-			<xsl:when test="not(exists(gmd:pass))">
-				<xsl:copy>
-					<xsl:apply-templates select="@*|node()"/>
-					<xsl:element name="gmd:pass">
-						<xsl:text></xsl:text>
-						<xsl:attribute name="nilReason">unknown</xsl:attribute>
-					</xsl:element>
-				</xsl:copy>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:variable name="pass">
-					<xsl:value-of select="gmd:pass"/>
-				</xsl:variable>
-				<xsl:if test="$pass = ''">
-					<xsl:copy>
-						<xsl:apply-templates select="@*|gmd:specification"/>
-						<xsl:apply-templates select="@*|gmd:explanation"/>
-						<xsl:element name="gmd:pass">
-							<xsl:text></xsl:text>
-							<xsl:attribute name="nilReason">unknown</xsl:attribute>
-						</xsl:element>
-					</xsl:copy>				    	
-				</xsl:if>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:template>
-	
 </xsl:stylesheet>
