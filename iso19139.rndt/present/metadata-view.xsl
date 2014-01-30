@@ -27,24 +27,6 @@
     </metadata>
   </xsl:template>
 
-  <xsl:template name="iso19139.rndtCompleteTab">
-    <xsl:param name="tabLink"/>
-    <xsl:param name="schema"/>
-  	
-  	<!-- RNDT tab -->
-  	<xsl:call-template name="displayTab">
-  		<xsl:with-param name="tab"     select="'rndt'"/>
-  		<xsl:with-param name="text"    select="/root/gui/schemas/iso19139.rndt/strings/rndtTab"/>
-  		<xsl:with-param name="tabLink" select="$tabLink"/>
-  	</xsl:call-template>  	
-  	
-    <xsl:call-template name="iso19139CompleteTab">
-      <xsl:with-param name="tabLink" select="$tabLink"/>
-      <xsl:with-param name="schema" select="$schema"/>
-    </xsl:call-template>
-
-  </xsl:template>
-
 	<!-- main template - the way into processing iso19139.rndt -->
 	<xsl:template name="metadata-iso19139.rndt">
 		<xsl:param name="schema"/>
@@ -100,9 +82,11 @@
 							<xsl:apply-templates mode="brief" select="."/>
 						</xsl:variable>
 						<xsl:variable name="metadata" select="exslt:node-set($md)/*[1]"/>
+						<!-- FIXME: template thumbnail seems not to exist 
 						<xsl:call-template name="thumbnail">
 							<xsl:with-param name="metadata" select="$metadata"/>
 						</xsl:call-template>
+						-->
 					</div>
 				</xsl:if>
 				<xsl:if test="/root/gui/config/editor-metadata-relation">
@@ -283,7 +267,10 @@
 	<!-- =================================================================== -->
 	<!-- Javascript used by functions in this XSLT -->
 	<xsl:template name="iso19139.rndt-javascript">
+		<!-- original iso19139-javascript is empty as well -->
+		<!--
 		<xsl:call-template name="iso19139-javascript" />
+		-->
 	</xsl:template>
 	
 	<!-- Do not try do display element with no children in view mode -->
