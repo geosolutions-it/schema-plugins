@@ -11,9 +11,9 @@
 	xsi:schemaLocation="http://www.isotc211.org/2005/gmd
 	http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gmd/gmd.xsd" >
 	
-	<gmd:fileIdentifier>
+<!--	<gmd:fileIdentifier>
 		<gco:CharacterString>cod_ipa:id_file</gco:CharacterString>
-	</gmd:fileIdentifier>
+	</gmd:fileIdentifier>-->
 	<gmd:language>
 		<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="ita">ita</gmd:LanguageCode>
 	</gmd:language>
@@ -21,9 +21,9 @@
 		<gmd:MD_CharacterSetCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_CharacterSetCod
 e" codeListValue="utf8">utf8</gmd:MD_CharacterSetCode>
 	</gmd:characterSet>
-	<gmd:parentIdentifier>
+<!--	<gmd:parentIdentifier>
 		<gco:CharacterString>cod_ipa:id_file</gco:CharacterString>
-	</gmd:parentIdentifier>
+	</gmd:parentIdentifier>-->
 	<gmd:hierarchyLevel>
 		<gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</gmd:MD_ScopeCode>
 	</gmd:hierarchyLevel>
@@ -445,6 +445,7 @@ org/export.htm?gml=urn:ogc:def:crs:EPSG::4979"/>
 							<gmd:explanation>
 								<gco:CharacterString>Fare riferimento alle specifiche indicate</gco:CharacterString>
 							</gmd:explanation>
+							<gmd:pass gco:nilReason="unknown"/>
 						</gmd:DQ_ConformanceResult>
 					</gmd:result>
 				</gmd:DQ_DomainConsistency>
