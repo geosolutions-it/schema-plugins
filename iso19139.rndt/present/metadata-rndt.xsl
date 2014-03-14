@@ -80,7 +80,7 @@
 					</xsl:if>
 					
 					<!-- Optional for RNDT -->
-					<xsl:apply-templates mode="simpleElement" 
+					<xsl:apply-templates mode="elementEP" 
 						select="gmd:citation/gmd:CI_Citation/gmd:otherCitationDetails">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
@@ -173,13 +173,13 @@
 					</xsl:if>
 					
 					<!-- Date -->
-					<xsl:apply-templates mode="elementEP"
+					<xsl:apply-templates mode="complexElement"
 						select="gmd:citation/gmd:CI_Citation/gmd:date">
 						<xsl:with-param name="schema" select="$schema" />
 						<xsl:with-param name="edit" select="$edit" />
 					</xsl:apply-templates>
 					<xsl:if test="not(gmd:citation/gmd:CI_Citation/gmd:date)">
-						<xsl:apply-templates mode="elementEP"
+						<xsl:apply-templates mode="complexElement"
 							select="gmd:citation/gmd:CI_Citation/geonet:child[string(@name)='date']">
 							<xsl:with-param name="schema" select="$schema" />
 							<xsl:with-param name="edit" select="$edit" />
@@ -442,7 +442,7 @@
 						</xsl:when>
 					</xsl:choose>
 					
-					<!-- Vertical Extent -->					
+					<!-- Vertical Extent 					
 					<xsl:choose>
 						<xsl:when test="not(gmd:extent/gmd:EX_Extent/gmd:verticalElement)">
 							<xsl:apply-templates mode="elementEP"
@@ -464,60 +464,77 @@
 									<xsl:with-param name="schema" select="$schema" />
 									<xsl:with-param name="edit" select="$edit" />
 		                        	<xsl:with-param name="force" select="true()" />
-								</xsl:apply-templates>
-									
-<!--									<xsl:apply-templates mode="elementEP"
-					                    select="gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:EX_VerticalExtent/gmd:minimumValue">
-					                    <xsl:with-param name="schema" select="$schema" />
-					                    <xsl:with-param name="edit" select="$edit" />
-					                  </xsl:apply-templates>									
-					                  <xsl:if test="not(gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:EX_VerticalExtent/gmd:minimumValue)">
-					                    	<xsl:apply-templates mode="elementEP"
-						                      select="gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:EX_VerticalExtent/geonet:child[string(@name)='minimumValue']">
-						                      <xsl:with-param name="schema" select="$schema" />
-						                      <xsl:with-param name="edit" select="$edit" />
-						                    </xsl:apply-templates>
-					                  </xsl:if>
-
-									  <xsl:apply-templates mode="elementEP"
-						                   select="gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:EX_VerticalExtent/gmd:maximumValue">
-						                    <xsl:with-param name="schema" select="$schema" />
-						                    <xsl:with-param name="edit" select="$edit" />
-						              </xsl:apply-templates>					
-					                  <xsl:if test="not(gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:EX_VerticalExtent/gmd:maximumValue)">
-						                    <xsl:apply-templates mode="elementEP"
-						                      select="gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:EX_VerticalExtent/geonet:child[string(@name)='maximumValue']">
-						                      <xsl:with-param name="schema" select="$schema" />
-						                      <xsl:with-param name="edit" select="$edit" />
-						                    </xsl:apply-templates>
-					                  </xsl:if>
-					
-									  <xsl:apply-templates mode="elementEP"
-					                    	select="gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:EX_VerticalExtent/gmd:verticalCRS">
-					                    <xsl:with-param name="schema" select="$schema" />
-					                    <xsl:with-param name="edit" select="$edit" />
-					                  </xsl:apply-templates>	-->				
+								</xsl:apply-templates>			
 	
 
 								</xsl:with-param>
 							</xsl:call-template>	
 						</xsl:otherwise>
-					</xsl:choose>
+					</xsl:choose> -->
 					
-					<!-- Temporal extent -->
-					<xsl:apply-templates mode="elementEP"
+				    <!-- Vertical Extent -->
+					<xsl:apply-templates mode="complexElement"
+						select="gmd:extent/gmd:EX_Extent/gmd:verticalElement">
+						<xsl:with-param name="schema" select="$schema" />
+						<xsl:with-param name="edit" select="$edit" />
+						<xsl:with-param name="force" select="true()" />
+					</xsl:apply-templates>
+					<xsl:if test="not(gmd:extent/gmd:EX_Extent/gmd:verticalElement)">
+						<xsl:apply-templates mode="complexElement"
+							select="gmd:extent/gmd:EX_Extent/geonet:child[string(@name)='verticalElement']">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>
+					</xsl:if>
+					
+					<!-- Temporal extent 
+					<xsl:apply-templates mode="complexElement"
 						select="gmd:extent/gmd:EX_Extent/gmd:temporalElement">
 						<xsl:with-param name="schema" select="$schema" />
 						<xsl:with-param name="edit" select="$edit" />
 						<xsl:with-param name="force" select="true()" />
 					</xsl:apply-templates>
 					<xsl:if test="not(gmd:extent/gmd:EX_Extent/gmd:temporalElement)">
-						<xsl:apply-templates mode="elementEP"
+						<xsl:apply-templates mode="complexElement"
 							select="gmd:extent/gmd:EX_Extent/geonet:child[string(@name)='temporalElement']">
 							<xsl:with-param name="schema" select="$schema" />
 							<xsl:with-param name="edit" select="$edit" />
 						</xsl:apply-templates>
-					</xsl:if>
+					</xsl:if>-->
+					
+					<!-- Temporal extent -->
+					<xsl:choose>
+						<xsl:when test="exists(gmd:extent)">
+							<xsl:apply-templates mode="complexElement"
+								select="gmd:extent/gmd:EX_Extent/gmd:temporalElement">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+								<xsl:with-param name="force" select="true()" />
+							</xsl:apply-templates>
+							<xsl:if test="not(gmd:extent/gmd:EX_Extent/gmd:temporalElement)">
+								<xsl:apply-templates mode="elementEP"
+									select="gmd:extent/gmd:EX_Extent/geonet:child[string(@name)='temporalElement']">
+									<xsl:with-param name="schema" select="$schema" />
+									<xsl:with-param name="edit" select="$edit" />
+								</xsl:apply-templates>
+							</xsl:if>												
+						</xsl:when>
+						
+						<xsl:when test="exists(srv:extent)">
+							<xsl:apply-templates mode="complexElement"
+								select="srv:extent/gmd:EX_Extent/gmd:temporalElement">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+							</xsl:apply-templates>
+							<xsl:if test="not(srv:extent/gmd:EX_Extent/gmd:temporalElement)">
+								<xsl:apply-templates mode="elementEP"
+									select="srv:extent/gmd:EX_Extent/geonet:child[string(@name)='temporalElement']">
+									<xsl:with-param name="schema" select="$schema" />
+									<xsl:with-param name="edit" select="$edit" />
+								</xsl:apply-templates>
+							</xsl:if>
+						</xsl:when>
+					</xsl:choose>
 					
 				</xsl:with-param>					
 			</xsl:call-template>
@@ -560,41 +577,43 @@
 					</xsl:if>
 					
 					<!-- Positional Accuracy -->
-					<xsl:call-template name="complexElementGuiWrapper">
-						<xsl:with-param name="title"
-							select="/root/gui/schemas/iso19139.rndt/strings/positionalAccuracy/title" />
-						<xsl:with-param name="id"
-							select="generate-id(/root/gui/schemas/iso19139.rndt/strings/positionalAccuracy/title)" />
-						<xsl:with-param name="content">
-							
-							<xsl:apply-templates mode="elementEP" 
-								select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_QuantitativeResult/gmd:valueUnit">
-								<xsl:with-param name="schema" select="$schema" />
-								<xsl:with-param name="edit" select="$edit" />
-							</xsl:apply-templates>
-							<xsl:if test="not(../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_QuantitativeResult/gmd:valueUnit)">
-								<xsl:apply-templates mode="elementEP"
-									select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_QuantitativeResult/geonet:child[string(@name)='valueUnit']">
+					<xsl:if test="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy">
+						<xsl:call-template name="complexElementGuiWrapper">
+							<xsl:with-param name="title"
+								select="/root/gui/schemas/iso19139.rndt/strings/positionalAccuracy/title" />
+							<xsl:with-param name="id"
+								select="generate-id(/root/gui/schemas/iso19139.rndt/strings/positionalAccuracy/title)" />
+							<xsl:with-param name="content">
+								
+								<xsl:apply-templates mode="elementEP" 
+									select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_QuantitativeResult/gmd:valueUnit">
 									<xsl:with-param name="schema" select="$schema" />
 									<xsl:with-param name="edit" select="$edit" />
 								</xsl:apply-templates>
-							</xsl:if>
-							
-							<xsl:apply-templates mode="elementEP" 
-								select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_QuantitativeResult/gmd:value">
-								<xsl:with-param name="schema" select="$schema" />
-								<xsl:with-param name="edit" select="$edit" />
-							</xsl:apply-templates>
-							<xsl:if test="not(../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_QuantitativeResult/gmd:value)">
-								<xsl:apply-templates mode="elementEP"
-									select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_QuantitativeResult/geonet:child[string(@name)='value']">
+								<xsl:if test="not(../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_QuantitativeResult/gmd:valueUnit)">
+									<xsl:apply-templates mode="elementEP"
+										select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_QuantitativeResult/geonet:child[string(@name)='valueUnit']">
+										<xsl:with-param name="schema" select="$schema" />
+										<xsl:with-param name="edit" select="$edit" />
+									</xsl:apply-templates>
+								</xsl:if>
+								
+								<xsl:apply-templates mode="elementEP" 
+									select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_QuantitativeResult/gmd:value">
 									<xsl:with-param name="schema" select="$schema" />
 									<xsl:with-param name="edit" select="$edit" />
 								</xsl:apply-templates>
-							</xsl:if>
-							
-						</xsl:with-param>
-					</xsl:call-template>
+								<xsl:if test="not(../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_QuantitativeResult/gmd:value)">
+									<xsl:apply-templates mode="elementEP"
+										select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_QuantitativeResult/geonet:child[string(@name)='value']">
+										<xsl:with-param name="schema" select="$schema" />
+										<xsl:with-param name="edit" select="$edit" />
+									</xsl:apply-templates>
+								</xsl:if>
+								
+							</xsl:with-param>
+						</xsl:call-template>
+					</xsl:if>
 					
 					<!-- Specific Conformity  -->
 					<xsl:call-template name="complexElementGuiWrapper">
@@ -898,13 +917,13 @@
 						<!-- Dimension Properties -->
 						
 						<!-- MD_Georectified -->
-						<xsl:apply-templates mode="elementEP" 
+						<xsl:apply-templates mode="complexElement" 
 							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:axisDimensionProperties">
 							<xsl:with-param name="schema" select="$schema" />
 							<xsl:with-param name="edit" select="$edit" />
 						</xsl:apply-templates>			
 						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:axisDimensionProperties)">
-							<xsl:apply-templates mode="elementEP"
+							<xsl:apply-templates mode="complexElement"
 								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/geonet:child[string(@name)='axisDimensionProperties']">
 								<xsl:with-param name="schema" select="$schema" />
 								<xsl:with-param name="edit" select="$edit" />
@@ -913,13 +932,13 @@
 						</xsl:if>
 						
 						<!-- MD_Georeferenceable -->
-						<xsl:apply-templates mode="elementEP" 
+						<xsl:apply-templates mode="complexElement" 
 							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:axisDimensionProperties">
 							<xsl:with-param name="schema" select="$schema" />
 							<xsl:with-param name="edit" select="$edit" />
 						</xsl:apply-templates>			
 						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/gmd:axisDimensionProperties)">
-							<xsl:apply-templates mode="elementEP"
+							<xsl:apply-templates mode="complexElement"
 								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georeferenceable/geonet:child[string(@name)='axisDimensionProperties']">
 								<xsl:with-param name="schema" select="$schema" />
 								<xsl:with-param name="edit" select="$edit" />
