@@ -271,6 +271,33 @@
 		<!--
 		<xsl:call-template name="iso19139-javascript" />
 		-->
+		
+		<script type="text/javascript">
+			<![CDATA[
+				/**
+				 * JavaScript Functions to support the RNDT Profile
+				 */
+				 				 
+				/**
+				 * RNDT: Utility function for Vertical CRS suggestions dropdown.  
+				 */
+				function setInputCRSel(elem, hrefId){
+					var selectEl = elem;
+					var input = document.getElementById(hrefId);
+					var v = input.value;	
+				   
+				    if(selectEl.value == ""){
+						input.value = "http://www.rndt.gov.it/ReferenceSystemCode#999";
+					}else{
+						if(input.value.indexOf("ReferenceSystemCode") != -1){
+							input.value = "http://www.epsg-registry.org/export.htm?gml=urn:ogc:def:crs:" + selectEl.value;
+						}else{
+							input.value = v.substring(0, v.indexOf('EPSG')) + selectEl.value;
+						}
+					}
+				}
+			 ]]>
+		</script>
 	</xsl:template>
 	
 	<!-- Do not try do display element with no children in view mode -->

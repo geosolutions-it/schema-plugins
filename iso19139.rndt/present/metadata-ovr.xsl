@@ -40,7 +40,7 @@
 		
 		<xsl:choose>
 			<xsl:when test="$edit=true()">
-				<xsl:call-template name="editSimpleElement">
+				<xsl:call-template name="editSimpleElement.rndt">
 					<xsl:with-param name="schema"   select="$schema"/>
 					<xsl:with-param name="title"    select="$title"/>
 					<xsl:with-param name="editAttributes" select="$editAttributes"/>
@@ -59,6 +59,72 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
+	
+	<!--
+	shows editable fields for a simple element
+	-->
+	<xsl:template name="editSimpleElement.rndt">
+		<xsl:param name="schema"/>
+		<xsl:param name="title"/>
+		<xsl:param name="editAttributes"/>
+		<xsl:param name="text"/>
+		<xsl:param name="helpLink"/>
+		
+		<!-- if it's the last brother of it's type and there is a new brother make addLink -->
+		
+		<xsl:variable name="id" select="geonet:element/@uuid"/>
+		<xsl:variable name="addLink">
+			<xsl:call-template name="addLink">
+				<xsl:with-param name="id" select="$id"/>
+			</xsl:call-template>
+		</xsl:variable>
+		<xsl:variable name="addXMLFragment">
+			<xsl:call-template name="addXMLFragment">
+				<xsl:with-param name="id" select="$id"/>
+			</xsl:call-template>
+		</xsl:variable>
+		<xsl:variable name="removeLink">
+			<xsl:value-of select="concat('doRemoveElementAction(',$apos,'/metadata.elem.delete',$apos,',',geonet:element/@ref,',',geonet:element/@parent,',',$apos,$id,$apos,',',geonet:element/@min,');')"/>
+			<xsl:if test="not(geonet:element/@del='true')">
+				<xsl:text>!OPTIONAL</xsl:text>
+			</xsl:if>
+		</xsl:variable>
+		<xsl:variable name="upLink">
+			<xsl:value-of select="concat('doMoveElementAction(',$apos,'/metadata.elem.up',$apos,',',geonet:element/@ref,',',$apos,$id,$apos,');')"/>
+			<xsl:if test="not(geonet:element/@up='true')">
+				<xsl:text>!OPTIONAL</xsl:text>
+			</xsl:if>
+		</xsl:variable>
+		<xsl:variable name="downLink">
+			<xsl:value-of select="concat('doMoveElementAction(',$apos,'/metadata.elem.down',$apos,',',geonet:element/@ref,',',$apos,$id,$apos,');')"/>
+			<xsl:if test="not(geonet:element/@down='true')">
+				<xsl:text>!OPTIONAL</xsl:text>
+			</xsl:if>
+		</xsl:variable>
+		<!-- xsd and schematron validation info -->
+		<xsl:variable name="validationLink">
+			<xsl:variable name="ref" select="concat('#_',geonet:element/@ref)"/>
+			<xsl:call-template name="validationLink">
+				<xsl:with-param name="ref" select="$ref"/>
+			</xsl:call-template>
+		</xsl:variable>
+		
+		<xsl:call-template name="simpleElementGui.rndt">
+			<xsl:with-param name="title" select="$title"/>
+			<xsl:with-param name="text" select="$text"/>
+			<xsl:with-param name="schema" select="$schema"/>
+			<xsl:with-param name="addLink" select="$addLink"/>
+			<xsl:with-param name="addXMLFragment" select="$addXMLFragment"/>
+			<xsl:with-param name="removeLink" select="$removeLink"/>
+			<xsl:with-param name="upLink"     select="$upLink"/>
+			<xsl:with-param name="downLink"   select="$downLink"/>
+			<xsl:with-param name="helpLink"   select="$helpLink"/>
+			<xsl:with-param name="validationLink" select="$validationLink"/>
+			<xsl:with-param name="editAttributes" select="$editAttributes"/>
+			<xsl:with-param name="edit"       select="true()"/>
+			<xsl:with-param name="id" select="$id"/>
+		</xsl:call-template>
+	</xsl:template>	
 	
 	<xsl:template name="simpleAttribute.rndt" mode="simpleAttribute.rndt" match="@*" priority="3">
 		<xsl:param name="schema"/>
@@ -85,7 +151,7 @@
 			<xsl:when test="$edit=true()">
 				<xsl:variable name="name" select="name(.)"/>
 				<xsl:variable name="id" select="concat('_', ../geonet:element/@ref, '_', $name)"/>
-				
+
 				<xsl:call-template name="editAttribute">
 					<xsl:with-param name="schema"   select="$schema"/>
 					<xsl:with-param name="title"    select="$title"/>
@@ -157,10 +223,6 @@
 		
 		<xsl:variable name="isXLinked" select="count(ancestor-or-self::node()[@xlink:href]) > 0" />
 		<xsl:variable name="geonet" select="starts-with(name(.),'geonet:')"/>
-		
-        <!--<xsl:if test="contains($helpLink, '|gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:EX_VerticalExtent/gmd:verticalCRS/@xlink:href|')">
-			<h1>TEST</h1>
-		</xsl:if>-->
 		
 		<xsl:if test="
 			not(contains($helpLink, '|gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_QuantitativeResult/gmd:valueUnit/gml:BaseUnit/gml:unitsSystem|'))">
@@ -297,9 +359,47 @@
 							</xsl:apply-templates>
 						</xsl:when>
 					</xsl:choose>
+					
+					<!-- Adding custom SRS selection to the verticalCRS element -->
+					<xsl:if test="$isXLinked=true() and $edit=true() and contains($helpLink, '|gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:EX_VerticalExtent/gmd:verticalCRS')">	
+						<xsl:apply-templates mode="verticalCRS.suggestions" select="@*|geonet:attribute">
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="edit"   select="$edit"/>
+						</xsl:apply-templates>
+					</xsl:if>
 				</td>
 			</tr>		
 		</xsl:if>	
+	</xsl:template>
+	
+	<!-- Define suggestions for vertical CRS -->
+	<xsl:template name="verticalCRS.suggestions" mode="verticalCRS.suggestions" match="@*">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"   select="false()"/>
+
+		<xsl:variable name="name" select="name(.)"/>
+		
+		<xsl:variable name="updatename">
+			<xsl:call-template name="getAttributeName">
+				<xsl:with-param name="name" select="$name"/>
+			</xsl:call-template>
+		</xsl:variable>		
+		
+		<xsl:variable name="hrefId" select="concat('_', ../geonet:element/@ref, '_', $updatename)"/>
+		
+		<br/>
+		<span>
+			( <xsl:value-of select="/root/gui/schemas/iso19139.rndt/strings/geoloc/suggestionsLabel"/> : 
+			<select  id="vertCrs" class="md" onchange="setInputCRSel(this, '{$hrefId}');" oncontextmenu="setInputCRSel(this, '{$hrefId}');">	
+				<option value="{/root/gui/schemas/iso19139.rndt/strings/geoloc/verticalCRSValues/default}" 
+					selected="selected"><xsl:value-of select="/root/gui/schemas/iso19139.rndt/strings/geoloc/verticalCRSValues/default"/></option>
+				
+				<xsl:for-each select="/root/gui/schemas/iso19139.rndt/strings/geoloc/verticalCRSValues/crs">
+					<option value="{./value/text()}"><xsl:value-of select="./label/text()"/></option>
+				</xsl:for-each>
+			</select>
+			)
+		</span>
 	</xsl:template>
 	
 	<!-- Overrides the basic complex element template of GeoNetwork -->
