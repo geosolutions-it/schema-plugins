@@ -99,6 +99,13 @@
 				value="view">View Service (view)</option> <option value="download">Download 
 				Service (download)</option> <option value="transformation">Transformation 
 				Service (transformation)</option> <option value="other">Other Services (other)</option> -->
+			<option show="y" value="discovery">Servizio di ricerca (discovery)</option>
+			<option show="y" value="view">Servizio di consultazione (view)</option>
+			<option show="y" value="download">Servizio di scaricamento (download)</option>
+			<option show="y" value="transformation">Servizio di conversione (transformation)</option>
+			<option show="y" value="invoke">Servizio di richiesta dei servizi di dati territoriali (invoke)</option>
+			<option show="y" value="other">Altri servizi (other)</option>
+			
 		</helper>
 	</element>
 	<element name="srv:operatesOn">
