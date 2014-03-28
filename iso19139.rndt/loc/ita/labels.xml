@@ -29,7 +29,7 @@
 	</element>
 	<element name="gmd:parentIdentifier">
 		<label>Id file precedente</label>
-		<description>Identificatore univoco del file di metadati dell'eventuale trasmissione precedente al RNDT, cui il file corrente è relazionato.</description>
+		<description>Identificatore univoco del file di metadati dell'eventuale trasmissione precedente al RNDT, cui il file corrente è relazionato. Il campo è obbligatorio ma in fase di compilazione può essere lasciato vuoto, sarà valorizzato durante l'esportazione del metadato.</description>
 		<condition>Obbligatorio</condition>
 		<help>L'identificatore deve avere come prefisso il codice IPA dell'Amministrazione titolare del dato o del servizio, seguito dal carattere ":". Il codice IPA assegnato all'Amministrazione nel momento dell'accreditamento come da comma 1 dell’art. 19 dell'allegato A del DPCM 1 aprile 2008. Nel caso di prima trasmissione l'elemento assume lo stesso valore dell’elemento "Identificatore del file".</help>
 	</element>
