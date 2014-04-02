@@ -53,6 +53,7 @@
 					<xsl:apply-templates mode="simpleElement" select=".">
 						<xsl:with-param name="schema"  select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
+						<xsl:with-param name="editAttributes" select="$currTab!='rndt' and $currTab!='simple' "/>
 						<xsl:with-param name="text">
 							<xsl:variable name="ref" select="geonet:element/@ref"/>
 							<xsl:variable name="format" select="'%Y-%m-%d'"/>
