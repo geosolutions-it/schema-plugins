@@ -687,7 +687,7 @@
 							</xsl:if>
 							
 							<!-- Conformity Level -->
-							<xsl:variable name="conformity">
+							<!--<xsl:variable name="conformity">
 								<xsl:value-of select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass"/>
 							</xsl:variable>
 							
@@ -696,7 +696,7 @@
 									select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass">
 									<xsl:with-param name="schema" select="$schema" />
 									<xsl:with-param name="edit" select="$edit" />
-								</xsl:apply-templates>	
+								</xsl:apply-templates>
 							</xsl:if>
 
 							<xsl:if
@@ -707,11 +707,32 @@
 									<xsl:with-param name="edit" select="$edit" />
 									<xsl:with-param name="force" select="true()" />
 								</xsl:apply-templates>
+							</xsl:if>-->
+							
+							<!-- Only to support gmd:pass -->
+							<xsl:apply-templates mode="elementEP"
+								select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:explanation">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+							</xsl:apply-templates>
+							
+							<xsl:apply-templates mode="iso19139-rndt.pass"
+								select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="$edit" />
+							</xsl:apply-templates>
+							<xsl:if
+								test="not(../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass)">
+								<xsl:apply-templates mode="iso19139-rndt.pass"
+									select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/geonet:child[string(@name)='pass']">
+									<xsl:with-param name="schema" select="$schema" />
+									<xsl:with-param name="edit" select="$edit" />
+									<xsl:with-param name="force" select="true()" />
+								</xsl:apply-templates>
 							</xsl:if>
 							
 						</xsl:with-param>
-					</xsl:call-template>
-					
+					</xsl:call-template>					
 				</xsl:with-param>
 			</xsl:call-template>
 			
@@ -1280,4 +1301,96 @@
 			</xsl:call-template>
 		</xsl:for-each>
 	</xsl:template>
+	
+	<!-- Customize the gmd:pass element as dropdown in order to support the RNDT spec (for 'not evaluated' we use the explanation field as support) -->
+	<xsl:template mode="iso19139-rndt.pass" match="gmd:pass">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit" select="false()"/>
+		<xsl:param name="id" select="generate-id(.)"/>
+		
+		<!-- Used for the gmd:pass warkaround see below -->
+		<xsl:variable name="explanationValue" select="string(../gmd:explanation)"/>
+
+		<xsl:variable name="helpLink">
+			<xsl:call-template name="getHelpLink">
+				<xsl:with-param name="name"   select="name(.)"/>
+				<xsl:with-param name="schema" select="$schema"/>
+			</xsl:call-template>
+		</xsl:variable>
+
+		<th class="md" width="20%" valign="top">			
+			<span id="stip.{$helpLink}|{$id}" onclick="toolTip(this.id);" class="content" style="cursor:help;">
+				<xsl:value-of select=" concat(/root/gui/schemas/iso19139.rndt/labels/element[@name = 'gmd:pass']/label, ':')"/>
+			</span>
+		</th>
+		<td class="padded" valign="top">
+			<xsl:choose>
+				<xsl:when test="$edit=true()">
+					<input type="hidden" name="_{./gco:Boolean/geonet:element/@ref}" id="_{./gco:Boolean/geonet:element/@ref}" value="{./gco:Boolean}">
+						<xsl:choose>
+							<xsl:when test="./gco:Boolean = ''">
+								<xsl:attribute name="value">false</xsl:attribute>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:attribute name="value"><xsl:value-of select="./gco:Boolean"/></xsl:attribute>
+							</xsl:otherwise>
+						</xsl:choose>
+					</input>
+					
+					<!-- This choose element contains a warkaround to manage the 'gmd:pass' as a select due to the RNDT specifications -->
+					<xsl:choose>
+						<xsl:when test="./gco:Boolean/text()='true'">						    	
+							<xsl:variable name="explanationRef">
+								<xsl:value-of select="../gmd:explanation/gco:CharacterString/geonet:element/@ref"/>
+							</xsl:variable>
+							
+							<select class="md" style="width: 110px;" name="conformity-pass" id="_{./gco:Boolean/geonet:element/@ref}_checkbox" onChange="javascript:setConformityPass(this, '_{./gco:Boolean/geonet:element/@ref}', '_{$explanationRef}');">
+								<option value="non valutato">non valutato</option>
+								<option value="conforme" selected="selected">conforme</option>
+								<option value="non conforme">non conforme</option>
+							</select>					    	
+						</xsl:when>
+						<xsl:when test="./gco:Boolean/text()='false' and $explanationValue!='non valutato'">
+							<xsl:variable name="explanationRef">
+								<xsl:value-of select="../gmd:explanation/gco:CharacterString/geonet:element/@ref"/>
+							</xsl:variable>
+							
+							<select class="md" style="width: 110px;" name="conformity-pass" id="_{./gco:Boolean/geonet:element/@ref}_checkbox" onChange="javascript:setConformityPass(this, '_{./gco:Boolean/geonet:element/@ref}', '_{$explanationRef}');">
+								<option value="non valutato">non valutato</option>
+								<option value="conforme">conforme</option>
+								<option value="non conforme" selected="selected">non conforme</option>
+							</select>								
+						</xsl:when>
+						<xsl:when test="./gco:Boolean/text()='false' and $explanationValue='non valutato'">
+							<xsl:variable name="explanationRef">
+								<xsl:value-of select="../gmd:explanation/gco:CharacterString/geonet:element/@ref"/>
+							</xsl:variable>
+							
+							<select class="md" style="width: 110px;" name="conformity-pass" id="_{./gco:Boolean/geonet:element/@ref}_checkbox" onChange="javascript:setConformityPass(this, '_{./gco:Boolean/geonet:element/@ref}', '_{$explanationRef}');">
+								<option value="non valutato" selected="selected">non valutato</option>
+								<option value="conforme">conforme</option>
+								<option value="non conforme">non conforme</option>
+							</select>							
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:variable name="explanationRef">
+								<xsl:value-of select="../gmd:explanation/gco:CharacterString/geonet:element/@ref"/>
+							</xsl:variable>
+							
+							<select class="md" style="width: 110px;" name="conformity-pass" id="_{./gco:Boolean/geonet:element/@ref}_checkbox" onChange="javascript:setConformityPass(this, '_{./gco:Boolean/geonet:element/@ref}', '_{$explanationRef}');">
+								<option value="non valutato" selected="selected">non valutato</option>
+								<option value="conforme">conforme</option>
+								<option value="non conforme">non conforme</option>
+							</select>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="$explanationValue"/> 
+				</xsl:otherwise>
+			</xsl:choose>
+		</td>		
+				
+	</xsl:template>
+	
 </xsl:stylesheet>

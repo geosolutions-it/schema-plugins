@@ -105,7 +105,7 @@
 	
 	<!-- ================================================================= -->
 	
-	<xsl:template match="gmd:DQ_ConformanceResult">
+<!--	<xsl:template match="gmd:DQ_ConformanceResult">
 		<xsl:choose>
 			<xsl:when test="not(exists(gmd:pass))">
 				<xsl:copy>
@@ -130,6 +130,23 @@
 						</xsl:element>
 					</xsl:copy>				    	
 				</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>-->
+	
+	<!-- Use 'nilReason' to unknown for the pass element in un-compiled conformance -->	
+	<xsl:template match="gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass">
+		<xsl:choose>
+			<xsl:when test="../gmd:explanation/gco:CharacterString='non valutato'">
+				<xsl:copy>
+					<xsl:attribute name="nilReason">unknown</xsl:attribute>
+				</xsl:copy>
+				<xsl:comment>Conformance non compilata</xsl:comment>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:copy>
+					<xsl:apply-templates select="@*|node()"/>
+				</xsl:copy>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>

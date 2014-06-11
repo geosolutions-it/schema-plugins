@@ -228,7 +228,8 @@
 			not(contains($helpLink, '|gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_QuantitativeResult/gmd:valueUnit/gml:BaseUnit/gml:unitsSystem|'))">
 		
 			<tr id="{$id}" type="metadata">
-				<xsl:if test="not($visible)">
+				<xsl:if test="not($visible)	or
+					contains($helpLink, '|gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:explanation|')">
 					<xsl:attribute name="style">
 						display:none;
 					</xsl:attribute>
