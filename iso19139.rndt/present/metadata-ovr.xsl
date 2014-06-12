@@ -304,7 +304,7 @@
 					<!-- Display attributes for :
 					* non codelist element
 				 	* empty field with nilReason attributes 
-				-->
+				    -->
 					<xsl:choose>
 						<xsl:when test="$edit and $editAttributes
 							and count(geonet:attribute)&gt;0 
@@ -318,7 +318,8 @@
 							
 							<fieldset class="attributes metadata-block">
 								<legend>
-									<span>
+									<!-- RNDT: remove unnecessary collapsible fragment in order to clean up the GUI -->
+									<!--<span>
 										<div onclick="toggleFieldset(this, $('toggled{$id}'));">
 											<xsl:attribute name="class">
 												<xsl:choose>
@@ -328,7 +329,7 @@
 											</xsl:attribute>
 										</div>
 									</span>
-									...
+									...-->
 								</legend>
 								<table id="toggled{$id}" style="display:none;">
 									<xsl:attribute name="style">

@@ -31,17 +31,12 @@
       <xsl:with-param name="tabLink" select="$tabLink"/>
       <xsl:with-param name="schema" select="$schema"/>
     </xsl:call-template>
-
   </xsl:template>
 
-
-
-
   <!-- ===================================================================== -->
-  <!-- Overrides iso19139/metadata template at #1304 -->
-
-  <!-- Forces format to date only (no time) -->
-  <!-- gml:TimePeriod (format = %Y-%m-%d) -->
+  <!-- Overrides iso19139/metadata template at #1304                         -->
+  <!-- Forces format to date only (no time)                                  -->
+  <!-- gml:TimePeriod (format = %Y-%m-%d)                                    -->
   <!-- ===================================================================== -->
 
 	<xsl:template mode="iso19139" match="gml:*[gml:beginPosition|gml:endPosition]|gml:TimeInstant[gml:timePosition]" priority="3">
@@ -81,6 +76,5 @@
 			</xsl:choose>
 		</xsl:for-each>
 	</xsl:template>
-
 
 </xsl:stylesheet>
