@@ -298,7 +298,7 @@
 				}
 				
 				/**
-				 * GMD:Pass management
+				 * RNDT: gm:pass management
 				 */
 				function setConformityPass(sel, selRef, explRef){	
 					if (sel.value.indexOf("non conforme") != -1) {
@@ -312,6 +312,45 @@
 						$(explRef).value = sel.value;
 					}
 				}
+				
+                /**
+				 * RNDT: Special validation function for the telephone/linkage in ResponsibleParty
+				 */
+				function validateNonEmpty_rndt(linkageElem, phoneRef){
+					var phone = $(phoneRef);
+					
+					if(phone.value.length < 1){
+						if (linkageElem.value.length < 1) {
+					        linkageElem.addClassName('error');
+					        return false;
+					    } else {
+					        linkageElem.removeClassName('error');
+					        return true;
+					    }
+					}else{
+				        linkageElem.removeClassName('error');
+				        return true;
+					}
+				}
+				
+				/**
+				 * RNDT: Force the linkage validation when editing the phone
+				 */
+				function setValidationCheck_rndt(linkageElem, phoneRef){
+					var phone = $(phoneRef);
+					var linkage = $(linkageElem);
+					
+					phone.onkeyup = function(){
+						if(phone.value.length > 1){							
+							linkage.removeClassName('error');
+					        return true;
+						}else if(linkage.value.length < 1){
+							linkage.addClassName('error');
+					        return false;
+						}
+					};
+				}
+				
 			 ]]>
 		</script>
 	</xsl:template>
