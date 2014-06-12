@@ -319,7 +319,7 @@
 				function validateNonEmpty_rndt(linkageElem, phoneRef){
 					var phone = $(phoneRef);
 					
-					if(phone.value.length < 1){
+					if(phone && phone.value.length < 1){
 						if (linkageElem.value.length < 1) {
 					        linkageElem.addClassName('error');
 					        return false;
@@ -340,15 +340,17 @@
 					var phone = $(phoneRef);
 					var linkage = $(linkageElem);
 					
-					phone.onkeyup = function(){
-						if(phone.value.length > 1){							
-							linkage.removeClassName('error');
-					        return true;
-						}else if(linkage.value.length < 1){
-							linkage.addClassName('error');
-					        return false;
-						}
-					};
+					if(phone){
+						phone.onkeyup = function(){
+							if(phone.value.length > 1){							
+								linkage.removeClassName('error');
+						        return true;
+							}else if(linkage.value.length < 1){
+								linkage.addClassName('error');
+						        return false;
+							}
+						};
+					}
 				}
 				
 			 ]]>
