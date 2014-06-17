@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fields>	
-  <!-- <field name="gmd:contactInstructions">
-    <suggest name="gco:CharacterString"/>
-    <suggest name="gmx:FileName"/>
-  </field> -->
+	<!-- <field name="gmd:contactInstructions">
+	    <suggest name="gco:CharacterString"/>
+	    <suggest name="gmx:FileName"/>
+	</field> -->
   
 	<!-- <field name="gmd:otherCitationDetails">
 		<suggest name="gco:CharacterString"/>
@@ -102,10 +102,7 @@
 		<suggest name="gmd:postalCode"/>
 		<suggest name="gmd:country"/>-->
 		<suggest name="gmd:electronicMailAddress"/>
-	</field>
-	
-  
-  
+	</field> 
   
     <!-- Keywords -->
 	<field name="gmd:MD_Keywords">
@@ -123,12 +120,10 @@
 	<field name="gmd:thesaurusName">
         <suggest name="gmd:CI_Citation"/>
     </field>
-	
-  
+	  
     <field name="gmd:extent">
         <suggest name="gmd:EX_Extent"/>
-    </field>   
-    
+    </field>       
     
     <!-- Extent -->
 	<field name="gmd:EX_Extent">
@@ -164,8 +159,7 @@
     <field name="gml:TimePeriod">
 		<suggest name="gml:beginPosition"/>
 		<suggest name="gml:endPosition"/>	
-	</field>
-	
+	</field>	
 	
 	<!--<field name="gmd:polygon">
 		<suggest name="gml:Polygon"/>
@@ -222,25 +216,23 @@
 	</field> -->
 
 
-  <field name="gmd:MD_Constraints">
-    <suggest name="gmd:useLimitation"/>
-  </field>
-  
-  <field name="gmd:MD_LegalConstraints">
-	<!-- RNDT -->
-    <!-- <suggest name="gmd:useLimitation"/> -->
-    <suggest name="gmd:accessConstraints"/>
-    <suggest name="gmd:useConstraints"/>
-    <suggest name="gmd:otherContraints"/>
-  </field>
-  
-  <field name="gmd:MD_SecurityContraints">
-    <suggest name="gmd:classification"/>
-	<!-- RNDT -->
-    <!-- <suggest name="gmd:useLimitation"/> -->
-  </field>
-  
-
+	<field name="gmd:MD_Constraints">
+	    <suggest name="gmd:useLimitation"/>
+	</field>
+	  
+	<field name="gmd:MD_LegalConstraints">
+		<!-- RNDT -->
+	    <!-- <suggest name="gmd:useLimitation"/> -->
+	    <suggest name="gmd:accessConstraints"/>
+	    <suggest name="gmd:useConstraints"/>
+	    <suggest name="gmd:otherContraints"/>
+	</field>
+	  
+	<field name="gmd:MD_SecurityContraints">
+	    <suggest name="gmd:classification"/>
+		<!-- RNDT -->
+	    <!-- <suggest name="gmd:useLimitation"/> -->
+	</field>
 
     <!-- Quality
     <field name="gmd:report">
@@ -288,8 +280,7 @@
 	<field name="gmd:MD_Resolution">  <!--TOB: fixed the namespace-->
         <suggest name="gmd:distance"/>
 		<suggest name="gmd:equivalentScale"/>
-    </field>
-	
+    </field>	
 	
 	<field name="gmd:RS_Identifier">
 		<suggest name="gmd:codeSpace"/>

@@ -1389,8 +1389,19 @@
 					<xsl:value-of select="$explanationValue"/> 
 				</xsl:otherwise>
 			</xsl:choose>
-		</td>		
-				
+		</td>						
+	</xsl:template>
+	
+	<!-- Allows the possibility to add multiple connection points -->
+	<xsl:template mode="elementEP" match="srv:connectPoint">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit" select="false()"/>
+		
+		<xsl:apply-templates mode="complexElement"
+			select=".">
+			<xsl:with-param name="schema" select="$schema" />
+			<xsl:with-param name="edit" select="$edit" />
+		</xsl:apply-templates>
 	</xsl:template>
 	
 </xsl:stylesheet>
