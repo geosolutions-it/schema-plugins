@@ -1404,4 +1404,16 @@
 		</xsl:apply-templates>
 	</xsl:template>
 	
+	<!-- Allows the possibility to see the unit of measure for gmd:resolution -->
+	<xsl:template mode="elementEP" match="gmd:resolution">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit" select="false()"/>
+		
+		<xsl:apply-templates mode="complexElement" 
+			select=".">
+			<xsl:with-param name="schema" select="$schema" />
+			<xsl:with-param name="edit" select="$edit" />
+		</xsl:apply-templates>
+	</xsl:template>
+	
 </xsl:stylesheet>
