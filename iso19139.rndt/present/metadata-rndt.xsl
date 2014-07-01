@@ -1392,6 +1392,17 @@
 		</td>						
 	</xsl:template>
 	
+	<xsl:template mode="elementEP" match="gmd:CI_Citation/gmd:date">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit" select="false()"/>
+		
+		<xsl:apply-templates mode="complexElement"
+			select=".">
+			<xsl:with-param name="schema" select="$schema" />
+			<xsl:with-param name="edit" select="$edit" />
+		</xsl:apply-templates>
+	</xsl:template>
+	
 	<!-- Allows the possibility to add multiple connection points -->
 	<xsl:template mode="elementEP" match="srv:connectPoint">
 		<xsl:param name="schema"/>
