@@ -160,12 +160,12 @@
 					</xsl:if>
 					
 					<!-- Topic Category -->
-					<xsl:apply-templates mode="elementEP" select="gmd:topicCategory">
+					<xsl:apply-templates mode="complexElement" select="gmd:topicCategory">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
 					</xsl:apply-templates>
 					<xsl:if test="not(gmd:topicCategory)">
-						<xsl:apply-templates mode="elementEP"
+						<xsl:apply-templates mode="complexElement"
 							select="geonet:child[string(@name)='topicCategory']">
 							<xsl:with-param name="schema" select="$schema" />
 							<xsl:with-param name="edit" select="$edit" />
@@ -813,7 +813,7 @@
 				<xsl:with-param name="edit" select="$edit" />
 			</xsl:apply-templates>
 			<xsl:if	test="not(gmd:resourceMaintenance)">
-				<xsl:apply-templates mode="elementEP"
+				<xsl:apply-templates mode="complexElement"
 					select="geonet:child[string(@name)='resourceMaintenance']">
 					<xsl:with-param name="schema" select="$schema" />
 					<xsl:with-param name="edit" select="$edit" />
@@ -1392,6 +1392,8 @@
 		</td>						
 	</xsl:template>
 	
+	<!-- Allows the possibility to add new element in gmd:CI_Citation/gmd:date 
+		in box as the first element -->
 	<xsl:template mode="elementEP" match="gmd:CI_Citation/gmd:date">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit" select="false()"/>
@@ -1426,5 +1428,35 @@
 			<xsl:with-param name="edit" select="$edit" />
 		</xsl:apply-templates>
 	</xsl:template>
+	
+	<!-- Allows the possibility to add multiple gmd:topicCategory in box -->
+	<xsl:template mode="elementEP" match="gmd:topicCategory">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit" select="false()"/>
+		
+		<xsl:apply-templates mode="complexElement"
+			select=".">
+			<xsl:with-param name="schema" select="$schema" />
+			<xsl:with-param name="edit" select="$edit" />
+		</xsl:apply-templates>
+	</xsl:template>
+	
+	<!-- Sometime occurs that new elements cannot be removed this template fix thie behavior-->
+	<xsl:template mode="elementEP" match="gmd:resourceMaintenance">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit" select="false()"/>
+		
+		<xsl:apply-templates mode="complexElement"
+			select=".">
+			<xsl:with-param name="schema" select="$schema" />
+			<xsl:with-param name="edit" select="$edit" />
+		</xsl:apply-templates>
+	</xsl:template>
+	
+	<!-- Don't add some gmd:thesaurusName|gmd:MD_Keywords sub elements because not required by RNDT -->
+	<xsl:template mode="elementEP" match="gmd:thesaurusName/gmd:CI_Citation/gmd:citedResponsibleParty |
+		gmd:thesaurusName/gmd:CI_Citation/gmd:presentationForm | gmd:thesaurusName/gmd:CI_Citation/gmd:identifier"/>
+	
+	<xsl:template mode="elementEP" match="gmd:MD_Keywords/gmd:type"/>
 	
 </xsl:stylesheet>

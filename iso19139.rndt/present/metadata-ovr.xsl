@@ -469,7 +469,9 @@
 			</xsl:call-template>
 		</xsl:variable>
 		<xsl:variable name="removeLink">
-			<xsl:value-of select="concat('doRemoveElementAction(',$apos,'/metadata.elem.delete',$apos,',',geonet:element/@ref,',',geonet:element/@parent,',',$apos,$id,$apos,',',geonet:element/@min,');')"/>
+			<xsl:if test="not(contains($helpLink, '|gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:thesaurusName|'))">
+				<xsl:value-of select="concat('doRemoveElementAction(',$apos,'/metadata.elem.delete',$apos,',',geonet:element/@ref,',',geonet:element/@parent,',',$apos,$id,$apos,',',geonet:element/@min,');')"/>
+			</xsl:if>
 			<xsl:if test="not(geonet:element/@del='true')">
 				<xsl:text>!OPTIONAL</xsl:text>
 			</xsl:if>
