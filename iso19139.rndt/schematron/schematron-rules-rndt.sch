@@ -82,14 +82,17 @@
 	<sch:pattern>
 		<sch:title>$loc/strings/M9</sch:title>
 		<sch:rule context="//gmd:MD_Metadata/gmd:contact">
-			<sch:let name="responsibleParty" value="(gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString!='')
-			and count(gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue='pointOfContact')>0 		
-			and (gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString!='') 
-			and ((gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString!='') 
+			<sch:let name="req8test" value="(gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString!='')
+			and count(gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='')>0
+			and (gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString!='')
+			and ((gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString!='')
 			or (gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL!=''))"/>
-			<sch:assert test="$responsibleParty">$loc/strings/alert.M9</sch:assert>
+            <sch:let name="req9test" value="count(gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode[@codeListValue!='pointOfContact'])=0"/>
+            <sch:assert test="$req8test">$loc/strings/alert.req8</sch:assert>
+            <sch:assert test="$req9test">$loc/strings/alert.req9</sch:assert>
 		</sch:rule>
 	</sch:pattern>
+
 	<!--DATA/SERVICE IDENTIFICATION - IDENTIFIER-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M13</sch:title>
@@ -396,15 +399,12 @@
 		</sch:rule>
 	</sch:pattern>
 	<!--NIL REASON-->
-	<sch:pattern>
+<!--	<sch:pattern>
 		<sch:title>$loc/strings/M110</sch:title>
 		<sch:rule context="/gmd:MD_Metadata">
-			<!-- <sch:assert test="count(//*[@gco:nilReason])=0">$loc/strings/alert.M110</sch:assert> -->
-			<!--sch:assert test="count(//*[@gco:nilReason] except (//gmd:pass[@gco:nilReason]))=0">$loc/strings/alert.M110</sch:assert-->
-			
 			<sch:assert test="count(//*[not(self::gmd:protocol or self::gmd:name or self::gmd:description or self::gmd:pass or self::gmd:otherConstraints)][@gco:nilReason])=0">$loc/strings/alert.M110</sch:assert>
 		</sch:rule>
-	</sch:pattern>
+	</sch:pattern>-->
     <!--VERTICAL ELEMENT-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M111</sch:title>

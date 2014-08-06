@@ -24,9 +24,13 @@
 	<!--DATA/SERVICE IDENTIFICATION - DATE TYPE-->
 	<M8>Identificazione dei Dati/Servizi - Tipo Data</M8>
 	<alert.M8><div>L'elemento dateType è mancante, incompleto o ha un valore errato</div></alert.M8>
-	<!--DATA/SERVICE IDENTIFICATION -  RESPONSIBLE PARTY-->
-	<M9>Identificazione dei Dati/Servizi - Responsabile dei metadati (Punto di contatto)</M9>
-	<alert.M9><div>L'elemento CI_ResponsibleParty è mancante, incompleto o ha un valore errato. Il metadato deve contenere gli elementi organisationName,role e electronicMailAddress e almeno uno tra gli elemnti phone e onlineResource</div></alert.M9>
+
+    <!--DATA/SERVICE IDENTIFICATION -  RESPONSIBLE PARTY-->
+	<M9>Identificazione dei Dati/Servizi - Responsabile dei metadati</M9>
+
+	<alert.req8><div>Devono essere forniti i seguenti elementi: nome dell'Ente, ruolo, indirizzo e-mail, sito web e/o riferimento telefonico.</div></alert.req8>
+	<alert.req9><div>Il valore della codelist CI_RoleCode per il ruolo deve essere "punto di contatto" (pointOfContact).</div></alert.req9>
+
 	<!--DATA/SERVICE IDENTIFICATION - IDENTIFIER-->
 	<M13>Identificazione dei Dati/Servizi - Identificatore</M13>
 	<alert.M13><div>L'elemento RS_Identifier è mancante, incompleto o ha un valore errato</div></alert.M13>
@@ -113,7 +117,7 @@
 	<alert.M100>La date devono essere documentate attraverso l'elemento gco:Date</alert.M100>
 	<!--COD IPA-->
 	<M101>Identificativi - Codice IPA</M101>
-	<alert.M101>Gli identificatavi devono avere come prefisso il codice IPA dell'Amministrazione Responsabile. Verificare che sia stato correttamente configurato il SiteId di GeoNetwork.</alert.M101>
+	<alert.M101>Gli identificativi devono avere come prefisso il codice IPA dell'Amministrazione Responsabile. Verificare che sia stato correttamente configurato il SiteId di GeoNetwork.</alert.M101>
 	<!--COD IPA - PARENT IDENTIFIER-->
 	<M102>Id file precedente - Codice IPA</M102>
 	<alert.M102>L'identificatore del file precedente deve avere come prefisso il codice IPA dell'Amministrazione Responsabile.</alert.M102>
