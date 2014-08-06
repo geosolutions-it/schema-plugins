@@ -39,7 +39,11 @@
 	<alert.M14><div>L'elemento series è mancante, incompleto o ha un valore errato</div></alert.M14>
 	<!--DATA/SERVICE IDENTIFICATION - DATASET RESPONSIBLE PARTY -->	
 	<M15>Identificazione dei Dati/Servizi - Responsabile del dato/servizio</M15>
-	<alert.M15><div>L'elemento citedResponsibleParty è mancante, incompleto o ha un valore errato. Il metadato deve contenere gli elementi organisationName,role e electronicMailAddress e almeno uno tra gli elementi phone e onlineResource</div></alert.M15>
+	<!--<alert.M15><div>L'elemento citedResponsibleParty è mancante, incompleto o ha un valore errato. Il metadato deve contenere gli elementi organisationName,role e electronicMailAddress e almeno uno tra gli elementi phone e onlineResource</div></alert.M15>-->
+	<alert.M15org><div>Nome dell'Ente mancante</div></alert.M15org>
+	<alert.M15poc><div>Ruolo mancante</div></alert.M15poc>
+	<alert.M15mail><div>Indirizzo e-mail mancante</div></alert.M15mail>
+	<alert.M15phone><div>È obbligatorio inserire il numero di telefono o l'indirizzo del sito web</div></alert.M15phone>
 	<!--DATA/SERVICE IDENTIFICATION - PRESENTATION FORM-->
 	<M30>Identificazione dei Dati/Servizi - Formato di presentazione</M30>
 	<alert.M30><div>L'elemento presentationForm è mancante, incompleto o ha un valore errato</div></alert.M30>
@@ -133,6 +137,11 @@
 	<!--VERTICAL ELEMENT-->
 	<M111>Attributo errato</M111>
 	<alert.M111>L'elemento CRS Verticale deve avere l'attributo xlink:href</alert.M111>
-	<M112>Attributo errato</M112>
+
+    <M112>Attributo errato</M112>
 	<alert.M112>Il riferimento esterno (XLink) a CRS Verticale non può essere vuoto</alert.M112>
+
+    <M120>Elementi di lista</M120>
+	<alert.M120>L'elemento della codelist è vuoto:</alert.M120>
+
 </strings>

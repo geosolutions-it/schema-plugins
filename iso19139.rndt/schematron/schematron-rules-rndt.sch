@@ -111,15 +111,14 @@
 	<!--DATA/SERVICE IDENTIFICATION - DATASET RESPONSIBLE PARTY-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M15</sch:title>
-		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation
-		|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation">
-			<sch:let name="responsibleParty" value="(gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString!='') 
-			and count(gmd:citedResponsibleParty[gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='pointOfContact'
-			or gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='distributor']) > 0
-			and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString!='') 
-			and ((gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString!='') 
-			or (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL!=''))"/>
-			<sch:assert test="$responsibleParty">$loc/strings/alert.M15</sch:assert>
+		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty
+		                  |//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty">
+
+            <sch:assert test="gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString!=''">$loc/strings/alert.M15org</sch:assert>
+            <sch:assert test="gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!=''">$loc/strings/alert.M15poc</sch:assert>
+            <sch:assert test="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString!=''">$loc/strings/alert.M15mail</sch:assert>
+            <sch:assert test="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString!=''
+                           or gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL!=''">$loc/strings/alert.M15phone</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 	<!--DATA/SERVICE IDENTIFICATION - PRESENTATION FORM-->
@@ -413,4 +412,15 @@
 			<sch:assert test="(@xlink:href != '')">$loc/strings/alert.M112</sch:assert>
 		</sch:rule>
 	</sch:pattern>
+
+	<sch:pattern>
+		<sch:title>$loc/strings/M120</sch:title>
+		<sch:rule context="//gmd:MD_Metadata//*[@codeListValue]">
+			<sch:let name="elementName" value="local-name()"/>
+			<sch:assert test="@codeListValue!=''">
+                <sch:value-of select="$loc/strings/alert.M120"/> <sch:value-of select="$elementName"/>
+            </sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
 </sch:schema>
