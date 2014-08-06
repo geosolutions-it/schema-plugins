@@ -277,16 +277,18 @@
 	<!--CONSTRAINTS - OTHER CONSTRAINTS -->
 	<sch:pattern>
 		<sch:title>$loc/strings/M53</sch:title>
-		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification|
-			//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
+		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints|
+			//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:resourceConstraints">
 			
-			<sch:assert test="count(gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:otherConstraints/gco:CharacterString != ''
-				and gmd:MD_LegalConstraints/gmd:useConstraints/gmd:MD_RestrictionCode/@codeListValue!='otherRestrictions'
-				and gmd:MD_LegalConstraints/gmd:accessConstraints/gmd:MD_RestrictionCode/@codeListValue!='otherRestrictions']) = 0">$loc/strings/alert.M53</sch:assert>
-			
-			<sch:assert test="count(gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:otherConstraints/gco:CharacterString = ''
-				and (gmd:MD_LegalConstraints/gmd:useConstraints/gmd:MD_RestrictionCode/@codeListValue='otherRestrictions'
-				or gmd:MD_LegalConstraints/gmd:accessConstraints/gmd:MD_RestrictionCode/@codeListValue='otherRestrictions')]) = 0">$loc/strings/alert.M53</sch:assert>
+			<sch:assert test="count(gmd:MD_LegalConstraints[
+                                gmd:otherConstraints/gco:CharacterString != ''
+                            and gmd:useConstraints/gmd:MD_RestrictionCode/@codeListValue!='otherRestrictions'
+                            and gmd:accessConstraints/gmd:MD_RestrictionCode/@codeListValue!='otherRestrictions'])=0">$loc/strings/alert.M53notneeded</sch:assert>
+
+			<sch:assert test="count(gmd:MD_LegalConstraints[
+                                /gmd:otherConstraints/gco:CharacterString = ''
+                            and (   gmd:useConstraints/gmd:MD_RestrictionCode/@codeListValue='otherRestrictions'
+				                 or gmd:accessConstraints/gmd:MD_RestrictionCode/@codeListValue='otherRestrictions')]) = 0">$loc/strings/alert.M53missing</sch:assert>
 			
 		</sch:rule>
 	</sch:pattern>

@@ -610,6 +610,53 @@
             </xsl:choose>
         </xsl:element>        
     </xsl:template>
+
+    <!-- ================================================================= -->
+    <!-- transform datoPubblico as requested by specs -->
+
+<!--        <gmd:resourceConstraints>
+				<gmd:MD_LegalConstraints>
+					<gmd:accessConstraints>
+						<gmd:MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_RestrictionCode" codeListValue="trademark">trademark</gmd:MD_RestrictionCode>
+					</gmd:accessConstraints>
+					<gmd:useConstraints>
+						<gmd:MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions">otherRestrictions</gmd:MD_RestrictionCode>
+					</gmd:useConstraints>
+					<gmd:otherConstraints>
+						<gco:CharacterString>Dato pubblico</gco:CharacterString>
+					</gmd:otherConstraints>-->
+
+    <xsl:template match="gmd:resourceConstraints[.//gmd:MD_RestrictionCode/@codeListValue='datoPubblico']">
+        <xsl:copy>
+            <xsl:apply-templates select="@*|node()" mode="datoPubblico"/>
+        </xsl:copy>
+    </xsl:template>
+
+       <!-- forza otherConstraints a Dato pubblico, che esista o no -->
+    <xsl:template match="gmd:MD_LegalConstraints" mode="datoPubblico">
+        <xsl:copy>
+            <xsl:apply-templates select="child::* except (gmd:otherConstraints)" mode="datoPubblico"/>
+
+            <gmd:otherConstraints>
+                <gco:CharacterString>Dato pubblico</gco:CharacterString>
+            </gmd:otherConstraints>
+        </xsl:copy>
+
+    </xsl:template>
+
+       <!-- replace MD_RestrictionCode codeListValue-->
+    <xsl:template match="gmd:MD_RestrictionCode[@codeListValue='datoPubblico']" mode="datoPubblico">
+        <gmd:MD_RestrictionCode
+            codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_RestrictionCode"
+            codeListValue="otherRestrictions">otherRestrictions"</gmd:MD_RestrictionCode>
+    </xsl:template>
+
+       <!-- copy everything else as is -->
+    <xsl:template match="@*|node()" mode="datoPubblico">
+        <xsl:copy>
+            <xsl:apply-templates select="@*|node()" mode="datoPubblico"/>
+        </xsl:copy>
+    </xsl:template>
     
     <!-- ================================================================= -->
     <!-- copy everything else as is -->
