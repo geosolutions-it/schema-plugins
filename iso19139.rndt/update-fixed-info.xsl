@@ -344,12 +344,7 @@
             <xsl:apply-templates select="@*[name(.)!='codeList']"/>
 
             <!-- add a node text-->
-            <xsl:if test="string-length()=0">
-                <xsl:value-of select="@codeListValue"/>
-            </xsl:if>
-            <xsl:if test="string-length()>0">
-                <xsl:value-of select="."/>
-            </xsl:if>
+            <xsl:value-of select="@codeListValue"/>
         </gmd:LanguageCode>
     </xsl:template>
 
@@ -361,12 +356,7 @@
             </xsl:attribute>
 
             <!-- add a node text-->
-            <xsl:if test="string-length()=0">
-                <xsl:value-of select="@codeListValue"/>
-            </xsl:if>
-            <xsl:if test="string-length()>0">
-                <xsl:value-of select="."/>
-            </xsl:if>
+            <xsl:value-of select="@codeListValue"/>
         </xsl:copy>
     </xsl:template>
 
@@ -380,12 +370,7 @@
             </xsl:attribute>
 
             <!-- add a node text-->
-            <xsl:if test="string-length()=0">
-                <xsl:value-of select="@codeListValue"/>
-            </xsl:if>
-            <xsl:if test="string-length()>0">
-                <xsl:value-of select="."/>
-            </xsl:if>
+            <xsl:value-of select="@codeListValue"/>
         </xsl:copy>
     </xsl:template>
 
