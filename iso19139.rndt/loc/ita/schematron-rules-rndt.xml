@@ -91,7 +91,8 @@
 	<alert.M52><div>useConstraints è mancante, incompleto o ha un valore errato</div></alert.M52>
 	<!--CONSTRAINTS - OTHER CONSTRAINTS-->
 	<M53>Vincoli sui Dati - Altri Vincoli</M53>
-	<alert.M53><div>L'elemento otherConstraints è mancante, incompleto o ha un valore errato</div></alert.M53>
+	<alert.M53missing><div>L'elemento testuale [altri vincoli] è obbligatorio nel caso in cui sia selezionato <i>altri vincoli</i>. Aggiungere l'elemento testuale.</div></alert.M53missing>
+	<alert.M53notneeded><div>L'elemento testuale [altri vincoli] deve essere valorizzato solo nel caso in cui sia selezionato <i>altri vincoli</i>. Eliminare l'elemento testuale.</div></alert.M53notneeded>
 	<!--CONTENT INFO - CONTENT TYPE (RASTER DATA)-->
 	<M60>Informazioni sul contenuto - Tipo di contenuto (solo per Dati Raster)</M60>
 	<alert.M60><div>L'elemento contentType è mancante, incompleto o ha un valore errato</div></alert.M60>
