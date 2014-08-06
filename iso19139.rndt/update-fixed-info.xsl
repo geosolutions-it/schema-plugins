@@ -582,7 +582,7 @@
                 <xsl:comment>Conformance non compilata</xsl:comment>-->
                 <xsl:element name="gmd:pass">
                     <xsl:text></xsl:text>
-                    <xsl:attribute name="nilReason">unknown</xsl:attribute>
+                    <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
                 </xsl:element>
             </xsl:when>
             <xsl:otherwise>
