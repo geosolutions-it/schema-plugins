@@ -982,13 +982,13 @@
 						<!-- Coorner Points Coordinates -->
 						
 						<!-- Only for MD_Georectified -->
-						<xsl:apply-templates mode="elementEP" 
+						<xsl:apply-templates mode="complexElement" 
 							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:cornerPoints">
 							<xsl:with-param name="schema" select="$schema" />
 							<xsl:with-param name="edit" select="$edit" />
 						</xsl:apply-templates>			
 						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:cornerPoints)">
-							<xsl:apply-templates mode="elementEP"
+							<xsl:apply-templates mode="complexElement"
 								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/geonet:child[string(@name)='cornerPoints']">
 								<xsl:with-param name="schema" select="$schema" />
 								<xsl:with-param name="edit" select="$edit" />
@@ -1382,6 +1382,17 @@
 	
 	<!-- Allows the possibility to add multiple gmd:resourceConstraints in box -->
 	<xsl:template mode="elementEP" match="gmd:resourceConstraints">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit" select="false()"/>
+		
+		<xsl:apply-templates mode="complexElement"
+			select=".">
+			<xsl:with-param name="schema" select="$schema" />
+			<xsl:with-param name="edit" select="$edit" />
+		</xsl:apply-templates>
+	</xsl:template>	
+	
+	<xsl:template mode="elementEP" match="gmd:cornerPoints">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit" select="false()"/>
 		
