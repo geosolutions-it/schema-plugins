@@ -5,6 +5,7 @@
                   xmlns:gmx="http://www.isotc211.org/2005/gmx"
                   xmlns:gco="http://www.isotc211.org/2005/gco"
                   xmlns:gmd="http://www.isotc211.org/2005/gmd"
+				  xmlns:xlink="http://www.w3.org/1999/xlink"
                   exclude-result-prefixes="gmd srv gmx">
     <xsl:include href="../iso19139/convert/functions.xsl"/>
 
@@ -489,17 +490,28 @@
     error on XSD validation. -->	
     <xsl:template match="srv:operatesOn">
 		<xsl:choose>
-			<xsl:when test=".[not(@uuidref)]">
-				<xsl:copy>
+			<xsl:when test=".[not(@uuidref)] or @uuidref = ''">
+				<!-- Not include the operatesOn if there are no reference to a coupled resource -->
+				<!--xsl:copy>
 					<xsl:attribute name="uuidref">
 						<xsl:value-of select="''"/>
 					</xsl:attribute>
 					<xsl:apply-templates select="@*"/>
-				</xsl:copy>
+				</xsl:copy-->
 			</xsl:when>
 			<xsl:otherwise>
 			    <xsl:copy>
 					<xsl:copy-of select="@*"/>
+					
+					<xsl:choose>
+						<xsl:when test="@uuidref != ''">
+							<xsl:attribute name="xlink:href">
+								<xsl:value-of select="concat(/root/env/siteURL,'/csw?request=GetRecordById&amp;service=CSW&amp;version=2.0.2&amp;id=',@uuidref,'&amp;elementSetName=full&amp;outputSchema=http://www.isotc211.org/2005/gmd')"/>
+							</xsl:attribute>
+						</xsl:when>
+						<xsl:otherwise>
+						</xsl:otherwise>
+					</xsl:choose>
 				</xsl:copy>
 			</xsl:otherwise>
 		</xsl:choose>
