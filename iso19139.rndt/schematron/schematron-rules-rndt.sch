@@ -404,6 +404,14 @@ temporalSamplingService;temporalProximityAnalysisService;metadataProcessingServi
 		</sch:rule>
 	</sch:pattern>
 	
+	<!--CONSTRAINTS - SECURITY CONSTRAINTS-->
+	<sch:pattern>
+		<sch:title>$loc/strings/M54</sch:title>
+		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
+			<sch:assert test="count(gmd:resourceConstraints[gmd:MD_SecurityConstraints/gmd:classification/gmd:MD_ClassificationCode/@codeListValue])>0">$loc/strings/alert.M54</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	
 	<!--CONSTRAINTS - OTHER CONSTRAINTS -->
 	<sch:pattern>
 		<sch:title>$loc/strings/M53</sch:title>

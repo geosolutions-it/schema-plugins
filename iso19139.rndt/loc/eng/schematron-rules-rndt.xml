@@ -78,12 +78,15 @@
 	<!--CONSTRAINTS - ACCESS CONSTRAINTS-->
 	<M51>Constraints - Access Constraints</M51>
 	<alert.M51><div> AccessConstraints element is missing or has a wrong value</div></alert.M51>
-	<!--CONSTRAINTS - ACCESS CONSTRAINTS-->
+	<!--CONSTRAINTS - USE CONSTRAINTS-->
 	<M52>Constraints - Use Constraints</M52>
 	<alert.M52><div> UseConstraints element is missing or has a wrong value</div></alert.M52>
 	<!--CONSTRAINTS - OTHER CONSTRAINTS-->
 	<M53>Constraints - Other Constraints</M53>
 	<alert.M53><div> otherConstraints element is missing or has a wrong value</div></alert.M53>
+	<!--CONSTRAINTS - SECURITY CONSTRAINTS-->
+	<M54>Constraints - Security Constraints</M54>
+	<alert.M54><div>SecurityConstraints element is missing or has a wrong value</div></alert.M54>
 	<!--CONTENT INFO - CONTENT TYPE (RASTER DATA)-->
 	<M60>Content Info - Content Type (Raster Data only)</M60>
 	<alert.M60><div> ContentType element is missing or has a wrong value</div></alert.M60>
