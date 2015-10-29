@@ -275,7 +275,17 @@
 								</xsl:attribute>
 							</xsl:if>
 							
-							<xsl:value-of select="gmd:linkage/gmd:URL"/>
+							<xsl:variable name="downloadLinkCustomProtocol">http://www.geoportale2.piemonte.it/geocatalogorp/?sca[]=<xsl:value-of select="//gmd:fileIdentifier/gco:CharacterString"/>&amp;sezione=mappa</xsl:variable>
+							
+							<xsl:choose>
+								<xsl:when test="gmd:protocol/gco:CharacterString='WWW:DOWNLOAD-1.0-http--custom'">
+									<xsl:value-of select="$downloadLinkCustomProtocol"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="gmd:linkage/gmd:URL"/>
+								</xsl:otherwise>
+							</xsl:choose>
+
 						</dc:URI>
 					</xsl:if>
 				</xsl:for-each>

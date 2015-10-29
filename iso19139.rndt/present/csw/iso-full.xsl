@@ -357,6 +357,19 @@
 		</xsl:element>
 	</xsl:template>
 
+	<!-- Manage the download URL for the custom download service -->
+	<xsl:template match="gmd:CI_OnlineResource/gmd:linkage/gmd:URL" priority="11">
+		<xsl:variable name="downloadLinkCustomProtocol">http://www.geoportale2.piemonte.it/geocatalogorp/?sca[]=<xsl:value-of select="//gmd:fileIdentifier/gco:CharacterString/text()"/>&amp;sezione=mappa</xsl:variable>
+		<xsl:choose>
+			<xsl:when test="../../gmd:protocol/gco:CharacterString/text()='WWW:DOWNLOAD-1.0-http--custom'">
+				<gmd:URL><xsl:value-of select="$downloadLinkCustomProtocol"/></gmd:URL>
+			</xsl:when>
+			<xsl:otherwise>
+				<gmd:URL><xsl:value-of select="text()"/></gmd:URL>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
 	<!-- ================================================================= -->
     <!-- remap generic gmd elements in tile metadata -->
 
@@ -407,8 +420,7 @@
             <xsl:apply-templates select="node()|@*"/>
         </xsl:copy>
     </xsl:template>
-
-
+    
 	<!-- ================================================================= -->
 
 	<xsl:template match="*[@gco:isoType]" priority="100">
