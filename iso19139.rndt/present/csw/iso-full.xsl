@@ -369,6 +369,11 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
+	
+	<!-- Manage the name tag for resources stored in the local catalog () -->
+	<xsl:template match="gmd:CI_OnlineResource/gmd:name/gmx:MimeFileType" priority="11">
+		<gco:CharacterString><xsl:value-of select="text()" /></gco:CharacterString>
+	</xsl:template>
 
 	<!-- ================================================================= -->
     <!-- remap generic gmd elements in tile metadata -->
