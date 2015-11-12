@@ -6,6 +6,7 @@
                   xmlns:gco="http://www.isotc211.org/2005/gco"
                   xmlns:gmd="http://www.isotc211.org/2005/gmd"
 				  xmlns:xlink="http://www.w3.org/1999/xlink"
+				  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   exclude-result-prefixes="gmd srv gmx">
     
     <xsl:include href="../iso19139/convert/functions.xsl"/>
@@ -736,5 +737,7 @@
             <xsl:apply-templates select="@*|node()"/>
         </xsl:copy>
     </xsl:template>
+    
+    <xsl:template match="@xsi:schemaLocation" />
 
 </xsl:stylesheet>
