@@ -110,11 +110,11 @@
                     <xsl:if test="not(starts-with(/root/env/parentUuid, $ipa))">
                         <xsl:message>ATTENZIONE: parentId: codice iPA non corrisponde. Eliminazione parentId (<xsl:value-of select="/root/env/parentUuid"/>)</xsl:message>
                         <gmd:parentIdentifier>
-                            <gco:CharacterString></gco:CharacterString>
+                            <gco:CharacterString/>
                         </gmd:parentIdentifier>
                     </xsl:if>
                 </xsl:when>
-                <xsl:when test="gmd:parentIdentifier">
+                <xsl:when test="gmd:parentIdentifier!=''">
                     <xsl:choose>
                         <xsl:when test="starts-with(gmd:parentIdentifier/gco:CharacterString, $ipa)">
                             <xsl:message>INFO: parentId esterno OK</xsl:message>
@@ -123,15 +123,15 @@
                         <xsl:otherwise>
                             <xsl:message>ATTENZIONE: iPA non corrispondente nel parentId esterno. Eliminazione parentId (<xsl:value-of select="gmd:parentIdentifier/gco:CharacterString"/>)</xsl:message>
                             <gmd:parentIdentifier>
-                                <gco:CharacterString></gco:CharacterString>
-                            </gmd:parentIdentifier>                            
+                                <gco:CharacterString/>
+                            </gmd:parentIdentifier>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:message>INFO: parentId non trovato: env[<xsl:value-of select="/root/env/parentUuid"/>] md[<xsl:value-of select="gmd:parentIdentifier/gco:CharacterString"/>]</xsl:message>
                     <gmd:parentIdentifier>
-                        <gco:CharacterString></gco:CharacterString>
+                        <gco:CharacterString/>
                     </gmd:parentIdentifier>
                 </xsl:otherwise>
             </xsl:choose>
@@ -516,34 +516,29 @@
     service metadata to datasets. This will avoid to have
     error on XSD validation. -->	
     <xsl:template match="srv:operatesOn">
-		<xsl:choose>
-			<xsl:when test=".[not(@uuidref)] or @uuidref = ''">
-				<!-- Not include the operatesOn if there are no reference to a coupled resource -->
-				<!--xsl:copy>
-					<xsl:attribute name="uuidref">
-						<xsl:value-of select="''"/>
-					</xsl:attribute>
-					<xsl:apply-templates select="@*"/>
-				</xsl:copy-->
-			</xsl:when>
-			<xsl:otherwise>
-			    <xsl:copy>
-					<xsl:copy-of select="@*"/>
-					
-					<xsl:choose>
-						<xsl:when test="@uuidref != ''">
-							<xsl:attribute name="xlink:href">
-								<xsl:value-of select="concat(/root/env/siteURL,'/csw?request=GetRecordById&amp;service=CSW&amp;version=2.0.2&amp;id=',@uuidref,'&amp;elementSetName=full&amp;outputSchema=http://www.isotc211.org/2005/gmd')"/>
-							</xsl:attribute>
-						</xsl:when>
-						<xsl:otherwise>
-						</xsl:otherwise>
-					</xsl:choose>
-				</xsl:copy>
-			</xsl:otherwise>
-		</xsl:choose>
+        <xsl:choose>
+            <xsl:when test=".[not(@uuidref)] or @uuidref = ''">
+                <!-- Not include the operatesOn if there are no reference to a coupled resource -->
+                <!--xsl:copy>
+                    <xsl:attribute name="uuidref">
+                    <xsl:value-of select="''"/>
+                    </xsl:attribute>
+                    <xsl:apply-templates select="@*"/>
+                    </xsl:copy-->
+            </xsl:when>
+            <xsl:when test="$ipaDefined and not(starts-with(@uuidref, $ipa))">
+                <xsl:message>ATTENZIONE: operatesOn: codice iPA non corrisponde. Eliminazione operatesOn (<xsl:value-of select="@uuidref"/>)</xsl:message>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy>
+                    <xsl:copy-of select="@*"/>     
+                    <xsl:attribute name="xlink:href">
+                        <xsl:value-of select="concat(/root/env/siteURL,'/csw?request=GetRecordById&amp;service=CSW&amp;version=2.0.2&amp;id=',@uuidref,'&amp;elementSetName=full&amp;outputSchema=http://www.isotc211.org/2005/gmd')"/>
+                    </xsl:attribute>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
-
 
     <!-- ================================================================= -->
     <!-- Set local identifier to the first 3 letters of iso code. Locale ids
