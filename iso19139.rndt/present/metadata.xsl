@@ -27,7 +27,7 @@
             <xsl:with-param name="tabLink" select="$tabLink"/>
         </xsl:call-template>  	
   	
-        <xsl:call-template name="iso19139CompleteTab">
+        <xsl:call-template name="iso19139.rndtTab">
             <xsl:with-param name="tabLink" select="$tabLink"/>
             <xsl:with-param name="schema" select="$schema"/>
         </xsl:call-template>
@@ -205,5 +205,134 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    
+    <xsl:template name="iso19139.rndtTab">
+		<xsl:param name="tabLink"/>
+		<xsl:param name="schema"/>
+
+		<!-- INSPIRE tab -->
+		<xsl:if test="/root/gui/env/inspire/enable = 'true' and /root/gui/env/metadata/enableInspireView = 'true'">
+			<xsl:call-template name="displayTab">
+				<xsl:with-param name="tab"     select="'inspire'"/>
+				<xsl:with-param name="text"    select="/root/gui/strings/inspireTab"/>
+				<xsl:with-param name="tabLink" select="$tabLink"/>
+			</xsl:call-template>
+        </xsl:if>
+
+		<xsl:if test="/root/gui/env/metadata/enableIsoView = 'true'">
+			<xsl:call-template name="displayTab">
+				<xsl:with-param name="tab"     select="'groups'"/> <!-- just a non-existing tab -->
+				<xsl:with-param name="text"    select="/root/gui/strings/byGroup"/>
+				<xsl:with-param name="tabLink" select="''"/>
+			</xsl:call-template>
+
+			<xsl:call-template name="displayTab">
+				<xsl:with-param name="tab"     select="'ISOMinimum'"/>
+				<xsl:with-param name="text"    select="/root/gui/strings/isoMinimum"/>
+				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+				<xsl:with-param name="tabLink" select="$tabLink"/>
+			</xsl:call-template>
+
+			<xsl:call-template name="displayTab">
+				<xsl:with-param name="tab"     select="'ISOCore'"/>
+				<xsl:with-param name="text"    select="/root/gui/strings/isoCore"/>
+				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+				<xsl:with-param name="tabLink" select="$tabLink"/>
+			</xsl:call-template>
+
+			<xsl:call-template name="displayTab">
+				<xsl:with-param name="tab"     select="'ISOAll'"/>
+				<xsl:with-param name="text"    select="/root/gui/strings/isoAll"/>
+				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+				<xsl:with-param name="tabLink" select="$tabLink"/>
+			</xsl:call-template>
+		</xsl:if>
+
+		<xsl:if test="/root/gui/config/metadata-tab/advanced">
+			<xsl:call-template name="displayTab">
+				<xsl:with-param name="tab"     select="'packages'"/> <!-- just a non-existing tab -->
+				<xsl:with-param name="text"    select="/root/gui/strings/byPackage"/>
+				<xsl:with-param name="tabLink" select="''"/>
+			</xsl:call-template>
+
+			<xsl:call-template name="displayTab">
+				<xsl:with-param name="tab"     select="'metadata'"/>
+				<xsl:with-param name="text"    select="/root/gui/strings/metadata"/>
+				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+				<xsl:with-param name="tabLink" select="$tabLink"/>
+			</xsl:call-template>
+
+			<xsl:call-template name="displayTab">
+				<xsl:with-param name="tab"     select="'identification'"/>
+				<xsl:with-param name="text"    select="/root/gui/strings/identificationTab"/>
+				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+				<xsl:with-param name="tabLink" select="$tabLink"/>
+			</xsl:call-template>
+
+			<xsl:call-template name="displayTab">
+				<xsl:with-param name="tab"     select="'maintenance'"/>
+				<xsl:with-param name="text"    select="/root/gui/strings/maintenanceTab"/>
+				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+				<xsl:with-param name="tabLink" select="$tabLink"/>
+			</xsl:call-template>
+
+			<xsl:call-template name="displayTab">
+				<xsl:with-param name="tab"     select="'constraints'"/>
+				<xsl:with-param name="text"    select="/root/gui/strings/constraintsTab"/>
+				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+				<xsl:with-param name="tabLink" select="$tabLink"/>
+			</xsl:call-template>
+
+			<xsl:call-template name="displayTab">
+				<xsl:with-param name="tab"     select="'spatial'"/>
+				<xsl:with-param name="text"    select="/root/gui/strings/spatialTab"/>
+				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+				<xsl:with-param name="tabLink" select="$tabLink"/>
+			</xsl:call-template>
+
+			<xsl:call-template name="displayTab">
+				<xsl:with-param name="tab"     select="'refSys'"/>
+				<xsl:with-param name="text"    select="/root/gui/strings/refSysTab"/>
+				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+				<xsl:with-param name="tabLink" select="$tabLink"/>
+			</xsl:call-template>
+
+			<xsl:call-template name="displayTab">
+				<xsl:with-param name="tab"     select="'distribution'"/>
+				<xsl:with-param name="text"    select="/root/gui/strings/distributionTab"/>
+				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+				<xsl:with-param name="tabLink" select="$tabLink"/>
+			</xsl:call-template>
+
+			<xsl:call-template name="displayTab">
+				<xsl:with-param name="tab"     select="'dataQuality'"/>
+				<xsl:with-param name="text"    select="/root/gui/strings/dataQualityTab"/>
+				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+				<xsl:with-param name="tabLink" select="$tabLink"/>
+			</xsl:call-template>
+
+			<xsl:call-template name="displayTab">
+				<xsl:with-param name="tab"     select="'appSchInfo'"/>
+				<xsl:with-param name="text"    select="/root/gui/strings/appSchInfoTab"/>
+				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+				<xsl:with-param name="tabLink" select="$tabLink"/>
+			</xsl:call-template>
+
+			<xsl:call-template name="displayTab">
+				<xsl:with-param name="tab"     select="'porCatInfo'"/>
+				<xsl:with-param name="text"    select="/root/gui/strings/porCatInfoTab"/>
+				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+				<xsl:with-param name="tabLink" select="$tabLink"/>
+			</xsl:call-template>
+
+			<xsl:call-template name="displayTab">
+				<xsl:with-param name="tab"     select="'contentInfo'"/>
+				<xsl:with-param name="text"    select="/root/gui/strings/contentInfoTab"/>
+				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+				<xsl:with-param name="tabLink" select="$tabLink"/>
+			</xsl:call-template>
+
+		</xsl:if>		
+	</xsl:template>
 
 </xsl:stylesheet>
