@@ -481,20 +481,6 @@
                                                 </xsl:apply-templates>
                                         </xsl:if>
 
-                                        <!-- Quality level description -->
-                                        <xsl:apply-templates mode="elementEP"
-                                                select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:levelDescription">
-                                                <xsl:with-param name="schema" select="$schema"/>
-                                                <xsl:with-param name="edit"   select="$edit"/>
-                                        </xsl:apply-templates>
-                                        <xsl:if test="not(../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:levelDescription)">
-                                                <xsl:apply-templates mode="elementEP"
-                                                        select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/geonet:child[string(@name)='levelDescription']">
-                                                        <xsl:with-param name="schema" select="$schema" />
-                                                        <xsl:with-param name="edit" select="$edit" />
-                                                </xsl:apply-templates>
-                                        </xsl:if>
-
                                         <!-- Lineage -->
                                         <xsl:apply-templates mode="elementEP"
                                                 select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage/gmd:LI_Lineage/gmd:statement">

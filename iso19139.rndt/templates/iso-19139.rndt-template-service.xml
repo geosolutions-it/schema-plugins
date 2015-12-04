@@ -311,8 +311,8 @@ MD_ScopeCode" codeListValue="service">Servizio</gmd:MD_ScopeCode>
 					</gmd:level>
 					<gmd:levelDescription>
 						<gmd:MD_ScopeDescription>
-							<gmd:other gco:nilReason="missing">
-								<gco:CharacterString/>
+							<gmd:other>
+								<gco:CharacterString>empty_placeholder</gco:CharacterString>
 							</gmd:other>
 						</gmd:MD_ScopeDescription>
 					</gmd:levelDescription>
