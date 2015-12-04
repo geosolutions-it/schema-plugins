@@ -334,5 +334,129 @@
 
 		</xsl:if>		
 	</xsl:template>
+	
+	<!-- ============================================================================= -->
+	<!-- Online Resource: protocol custom visualization                                -->
+	<!-- ============================================================================= -->
+
+	<xsl:template mode="iso19139" match="gmd:protocol" priority="10000">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+
+		<xsl:choose>
+			<xsl:when test="$edit=true()">
+				<xsl:call-template name="simpleElementGui">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit" select="$edit"/>
+					<xsl:with-param name="title">
+						<xsl:call-template name="getTitle">
+							<xsl:with-param name="name"   select="name(.)"/>
+							<xsl:with-param name="schema" select="$schema"/>
+						</xsl:call-template>
+					</xsl:with-param>
+
+					<xsl:with-param name="helpLink">
+		                <xsl:call-template name="getHelpLink">
+		                    <xsl:with-param name="name" select="name(.)"/>
+		                    <xsl:with-param name="schema" select="$schema"/>
+		                </xsl:call-template>
+		            </xsl:with-param>
+					<xsl:with-param name="text">
+						<xsl:variable name="value" select="string(gco:CharacterString)"/>
+						<xsl:variable name="ref" select="gco:CharacterString/geonet:element/@ref"/>
+						<xsl:variable name="fref" select="../gmd:name/gco:CharacterString/geonet:element/@ref|../gmd:name/gmx:MimeFileType/geonet:element/@ref"/>
+						<xsl:variable name="relatedJsAction">
+			            	<xsl:value-of select="concat('checkForFileUpload(&quot;',$fref,'&quot;, &quot;',$ref,'&quot;, this.options[this.selectedIndex].value);')" />
+			      		</xsl:variable>
+			            
+			            <input type="hidden" id="_{$ref}" name="_{$ref}" value="{$value}"/>
+			            <input type="hidden" id="previous_{$ref}" name="previous_{$ref}" value="{$value}"/>
+			            <xsl:for-each select="gco:CharacterString">
+			             <xsl:call-template name="helperProtocol">
+			               <xsl:with-param name="schema" select="$schema"/>
+			               <xsl:with-param name="attribute" select="false()"/>
+			               <xsl:with-param name="jsAction" select="$relatedJsAction"/>
+			               <xsl:with-param name="selectedValue" select="$value"/>
+			             </xsl:call-template>
+			           </xsl:for-each>
+			          </xsl:with-param>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:apply-templates mode="element" select=".">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="false()"/>
+				</xsl:apply-templates>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
+		<!-- Create an helper list for the current input element.
+		Current input could be an element or an attribute (eg. uom). 
+	
+	In editing mode, for gco:CharacterString elements (with no codelist 
+	or enumeration defined in the schema) an helper list could be defined 
+	in loc files using the helper tag. Then a list of values
+	is displayed next to the input field. 
+	-->
+	<xsl:template name="helperProtocol">
+		<xsl:param name="schema"/>
+		<xsl:param name="attribute"/>
+		<xsl:param name="jsAction"/>
+		<xsl:param name="selectedValue"/>
+		
+		<!-- Define the element to look for. -->
+		<xsl:variable name="parentName">
+			<xsl:choose>
+				<!-- In dublin core element contains value.
+					In ISO, attribute also but element contains characterString which contains the value -->
+				<xsl:when test="$attribute=true() or $schema = 'dublin-core'">
+					<xsl:value-of select="name(.)"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="name(parent::node())"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		
+		<!-- Look for the helper -->
+		<xsl:variable name="helper">
+			<xsl:choose>
+			  <xsl:when test="starts-with($schema,'iso19139') and not(/root/gui/schemas/*[name(.)=$schema]/labels/element[@name = $parentName]/helper)">
+					<!-- Fallback to iso19139 helper for ISO profil if not exist ... -->
+					<xsl:copy-of select="/root/gui/schemas/iso19139/labels/element[@name = $parentName]/helper"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:copy-of select="/root/gui/schemas/*[name(.)=$schema]/labels/element[@name = $parentName]/helper"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		
+		<!-- Display the helper list -->
+		<xsl:if test="normalize-space($helper)!=''">
+		  <xsl:variable name="list" select="exslt:node-set($helper)"/>
+		  <xsl:variable name="refId" select="if ($attribute=true()) then concat(../geonet:element/@ref, '_', name(.)) else geonet:element/@ref"/>
+		  <xsl:variable name="relatedElementName" select="$list/*/@rel"/>
+		  <xsl:variable name="relatedElementAction">
+		    <xsl:if test="$relatedElementName!=''">
+		      <xsl:variable name="relatedElement" select="../following-sibling::node()[name()=$relatedElementName]/gco:CharacterString"/>
+		      <xsl:variable name="relatedElementRef" select="../following-sibling::node()[name()=$relatedElementName]/gco:CharacterString/geonet:element/@ref"/>
+		      <xsl:variable name="relatedElementIsEmpty" select="normalize-space($relatedElement)=''"/>
+		      
+		      <xsl:value-of select="concat('if ($(&quot;_', $relatedElementRef, '&quot;)) $(&quot;_', $relatedElementRef, '&quot;).value=this.options[this.selectedIndex].title;')"/>
+		       
+		    </xsl:if>
+		  </xsl:variable>
+			<xsl:text> </xsl:text>
+		  <xsl:variable name="descr" select="$list/*/option[@value=$selectedValue]"/>
+		  <input type="label" for="s_{$refId}" size="50" id="label-s_{$refId}" name="label-s_{$refId}" value="{$descr}"/>
+		  <select id="s_{$refId}" name="s_{$refId}" size="1"
+		  onchange="$('label-s_{$refId}').value=this.options[this.selectedIndex].text; $('_{$refId}').value=this.options[this.selectedIndex].value; if ($('_{$refId}').onkeyup) $('_{$refId}').onkeyup(); {$relatedElementAction} {$jsAction}" class="md">
+		    <option/>
+		    <!-- This assume that helper list is already sort in alphabetical order in loc file. -->
+		    <xsl:copy-of select="$list/*"/>
+			</select>
+		</xsl:if>
+	</xsl:template>
 
 </xsl:stylesheet>
