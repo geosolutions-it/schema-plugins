@@ -590,11 +590,14 @@
 											</xsl:call-template>
 										</xsl:otherwise>
 									</xsl:choose>
-									
 									<xsl:if test="$edit and not($isXLinked)">
 										<xsl:call-template name="getButtons">
 											<xsl:with-param name="addLink" select="$addLink"/>
-											<xsl:with-param name="addXMLFragment" select="$addXMLFragment"/>
+											<xsl:with-param name="addXMLFragment">
+												<xsl:if test="name(.)!='gmd:referenceSystemInfo'">
+													<xsl:value-of select="$addXMLFragment" />
+												</xsl:if>
+											</xsl:with-param>
 											<xsl:with-param name="removeLink" select="$removeLink"/>
 											<xsl:with-param name="upLink" select="$upLink"/>
 											<xsl:with-param name="downLink" select="$downLink"/>
