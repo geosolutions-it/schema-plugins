@@ -165,6 +165,22 @@
 				</xsl:apply-templates>
 			</xsl:when>
 			
+			<!-- This is the list of the available interactive maps-->
+			<xsl:when test="$currTab='InteractiveMap'">
+				<xsl:apply-templates mode="elementEP" select="gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource[starts-with(gmd:protocol/gco:CharacterString,'OGC:WMS-') and contains(gmd:protocol/gco:CharacterString,'-get-map') and gmd:name]">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit" select="$edit"/>
+				</xsl:apply-templates>
+			</xsl:when>
+			
+			<!-- This is the list of data available for the download-->
+			<xsl:when test="$currTab='downloadData'">
+				<xsl:apply-templates mode="elementEP" select="gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource[matches(gmd:protocol/gco:CharacterString,'^WWW:DOWNLOAD-.*')]">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit" select="$edit"/>
+				</xsl:apply-templates>
+			</xsl:when>
+			
 			<!-- dataQuality tab -->
 			<xsl:when test="$currTab='dataQuality'">
 				<xsl:apply-templates mode="elementEP" select="gmd:dataQualityInfo|geonet:child[string(@name)='dataQualityInfo']">
@@ -524,7 +540,6 @@
 						}
 					});
 				}
-				
 			 ]]>
 		</script>
 	</xsl:template>
