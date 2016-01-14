@@ -723,7 +723,23 @@
             <xsl:apply-templates select="@*|node()" mode="datoPubblico"/>
         </xsl:copy>
     </xsl:template>
-    
+
+    <!-- ================================================================= -->
+    <!-- setup the CRS info -->
+
+    <xsl:template match="gmd:referenceSystemIdentifier/gmd:RS_Identifier">
+        <xsl:copy>
+            <xsl:apply-templates select="gmd:code"/>
+
+            <xsl:variable name="code" select="gmd:code/gco:CharacterString/text()"/>
+            <xsl:if test="number($code)">
+                <gmd:codeSpace>
+                    <gco:CharacterString>http://www.epsg-registry.org</gco:CharacterString>
+                </gmd:codeSpace>
+            </xsl:if>
+        </xsl:copy>
+    </xsl:template>
+
     <!-- ================================================================= -->
     <!-- copy everything else as is -->
 
